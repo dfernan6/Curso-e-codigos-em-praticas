@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de idade</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body oncontextmenu="verificar()">
+    <header>
+    <h1>Verificador de idade e sexo</h1>
+    <titulo></titulo>
+</header>
+<section>
+    <p>Ano de Nascimento <input type="number" name="nasc" id="nasc"></p>
+    <div id="radsex"><p1>Sexo: 
+        
+        <input type="radio" name="sexo" id="masculino" checked>
+        <label for="masculino">Masculino</label> 
+        <input type="radio" name="sexo" id="feminino" >
+        <label for="feminino">Feminino</label></p1><br>
+        <p2><input type="button" value="Verificar" onclick="verificar()"></p2>
+        </div> <div id="resposta">Preencha os dados acima para ver o resultado!</div>
+        </div>
+        <div id="foto"></div>
+</section>
+<footer>
+    <p>&copy; Danilo Fernandes</p>
+
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

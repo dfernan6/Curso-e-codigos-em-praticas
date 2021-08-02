@@ -1,0 +1,1569 @@
+Tools » Apache2, PHP, MySQL
+---------------------------------------------------------
+Aula 4 – Variáveis em PHP
+
+<html>
+<html lang="pt-br">
+  <head>
+  <meta charset="UTF-8">
+    <title>PHP Test</title>
+  </head>
+  <body>
+    <?php echo '<p>Ola, Mundo!</br>O que fazem aqui?</p><br>
+    <h1>Sua mae é uma puta</h1>' ?> 
+  </body>
+</html>
+ dentro do script echo podem ser colocados Palavras e tag HTML.
+
+Anotação »---
+As variaveis no PHP começam com so símbolo $.
+
+Ex »---
+$idade = 3;
+$sal = 1825.54;
+$nome = "Leonardo";
+$casado = false;
+
+    <?php 
+    $nome = "Maria";
+    $idade = 30;
+    $civil = "solteira";
+
+    echo "<b>$nome</b> tem <i>$idade</i> anos, mas é <u>$civil</u>.";
+    ?> 
+
+Anotação »---
+Todo echo para reconhecer as variaveis têm que ser colocados as aspas
+duplas (") tanto pra abrir qto pra fechar.
+Toda variável tem que começar com letras minusculas.
+---------------------------------------------------------
+Aula 5 – Operadores Aritméticos
+
+Anotação »---
+São utilizados os mesmos códigos que no JS
+
+Ex »---
+    <?php 
+$n1 = 3;
+$n2 = 7;
+$n3 = 2;
+Com () »  echo ($n1 + $n2) / $n3;
+    ?> = 5
+Sem () » echo $n1 + $n2 / $n3;
+    ?> = 6.5
+
+Pode se notar que usa o mesmo estilo de calculo que no JS
+ (ordem da precedência).
+
+Arquivo » somador.php
+
+$n1 = 3;
+$n2 = 7;
+$n3 = 2;
+  echo " A soma de $n1 + $n2 é igual à ". ($n1 + $n2)."
+ e se eu dividir por $n3 ele fica ". (($n1 + $n2) / $n3).".";
+
+Anotação »---
+Foram colocados ( . ) para fazer concatenação e os números dentro
+dos () para fazer o calculo sem erro.
+
+Arquivo » operadores.php
+
+    <?php
+      $n1 = 20;
+      $n2 = 2;
+      echo "<h2>Valores recebidos: $n1 e $n2</h2>";
+      $m = ($n1 + $n2) / 2;
+      echo "A soma vale ". ($n1+$n2);
+      echo "<br/>A subracao vale ". ($n1-$n2);
+      echo "<br/>A multiplicacao vale ". ($n1*$n2);
+      echo "<br/>A divisao vale ". ($n1/$n2);
+      echo "<br/>O modulo vale ". ($n1%$n2);
+      echo "<br/>A media vale $m";
+    ?>
+
+VALORES PERSONALIZADOS ====
+
+Anotação »---
+
+no URL: http://localhost/Aulas/php-aula05/aula05/operadores.php
+e http://127.0.0.1/Aulas/php-aula05/aula05/operadores.php
+têm o mesmo diretório.
+
+Eu posso passar os valores personalizados diretamente pelo URL assim:
+http://localhost/Aulas/php-aula05/aula05/operadores.php?a=3&b=2
+
+Mas para que isso ocorra sem problemas, foram alteradas as variaveis.
+
+$n1 = $_GET["a"]
+$n2 = $_GET["b"]
+
+Arquivo »--- funcoesaritmeticas.php
+
+<?php
+        $v1 = $_GET["x"];
+        $v2 = $_GET["y"];
+        echo "<h2>Valores recebidos: $v1 e $v2</h2>";
+        echo "O valor absoluto de $v2 e " . abs($v2);
+        echo "<br/>O valor de $v1<sup>$v2</sup> e " . pow($v1, $v2);
+        echo "<br/>A raiz de $v1 e " . sqrt($v1);
+        echo "<br/>O valor de $v2 arredondado e " . round($v2); // ceil floor
+        echo "<br/>A parte inteira de $v2 e " . intval($v2);
+        echo "<br/>O valor de $v1 em moeda e R$" . number_format($v1,2,",", ".");
+    ?>
+</div>
+
+Anotação »---
+
+Podem ser usados para arredondar: round, ceil (arredonda acima), 
+Floor (arredonda abaixo).
+---------------------------------------------------------
+Aula 6 – Operadores de Atribuição
+
+PHP »---
+
+Arquivo » 01-operadores.php
+   
+ <?php 
+$preco = 2;
+echo "O preco do produto e R$ ". number_format($preco, 2);
+$preco += $preco *10/100;
+echo "<br>E o novo preco com 10% de aumento sera 
+R$ ". number_format($preco, 2);
+  ?>
+
+Anotação »---
+Feitos com o formato monetário ► number_format()
+Feito um diminutivo com a troca do . por ,
+
+    <?php
+       $preco = $_GET["p"];
+       echo "O preco do produto e R$ " . number_format($preco, 2, ",", ".");
+       $preco -= $preco*10/100;
+       echo "<br/>E o novo preco com 10% de desconto será R$ " . number_format($preco, 2, ",", ".");
+    ?>
+
+o sinal utilizado += pode ser utilizado para substituir a soma e pode 
+ser utilizado em todos outros sinais.
+
+Ex »---
+$a = $a + $b ► $a += $b
+$a = $a % $b ► $a %= $b
+
+Arquivo » 02-incremento.php
+
+ <?php
+       $atual = $_GET["aa"];
+       echo "O ano atual e $atual e o ano anterior e " . --$atual;
+  ?>
+
+Anotação »---
+Percebe que o incremento e o decremento podem ser feitos no mesmo jeito q é feito
+no JS.
+
+Arquivo » 03-referencia.php
+Variaveis referenciadas
+
+    <?php 
+$a = 3;
+$b = &$a;
+$b += 5;
+
+echo "A variavel A vale $a";
+echo "<br>A variavel B vale $b";
+?>
+
+Anotação »---
+
+Feito a referência da variavel $a como valor igual na variável $b
+colocando o símbolo & para colocar o mesmo valor da $a para ambas.
+Feito a soma do valor 5 ma variavel $b, onde ambas variaveis terão o
+ mesmo valor após a soma.
+
+Arquivo » 04-variaveisvariaveis.php
+Variáveis de variáveis
+
+
+    <?php 
+$x = abc;
+$$x = def;
+
+echo "O conteudo da variavel X é $x";
+echo "<br>A variavel abc criada recebeu o valor $abc";
+?>
+
+Anotação »---
+
+$ colocados antes das variaveis vão criar as variaveis das variaveis.
+ 
+---------------------------------------------------------
+Aula 7 – Operadores Relacionais
+
+Anotação »---
+Operadores ralacionais no PHP é igual os operadores relacionais no JS.
+
+Arquivo » 01-operacao.php
+Operador Unario
+
+    <?php
+       $n1 = $_GET["a"];
+       $n2 = $_GET["b"];
+       $tipo = $_GET["op"];
+       echo "Os valores passados foram $n1 e $n2 <br/>";
+       $r = ($tipo == "s") ? $n1+$n2 : $n1*$n2;
+       echo "O resultado sera $r";
+    ?>
+-----------
+    <?php 
+$n1 = 2;
+$n2 = 3;
+echo "Os valores passados foram ". ($n1)." e ". ($n2);
+$r = $n1 > $n2 ? "Sim": "Nao";
+echo "<br>O resultado será $r";
+
+?>
+
+Arquivo » 02-igualidentico.php
+Iguais e identicas
+
+    <?php 
+$a = 3;
+$b = "3";
+
+$r = ($a === $b) ? "Sim" : "Nao";
+echo "As variaveis A e B são indenticas? $r"
+?>
+
+Anotação »---
+
+Colocado do modo acima consta que não, pois ===
+é sinal de identicos.
+
+$r = ($a == $b) ? "Sim" : "Nao";
+Colocado nesse modo com == diz q são iguais, acaba
+não levando adiante o número que é "" String.
+
+Arquivo » 03-situacao.php
+
+    <?php
+        $nota1 = $_GET["n1"];
+        $nota2 = $_GET["n2"];
+        $m = ($nota1+$nota2)/2;
+        echo "A media entre $nota1 e $nota2 e $m <br/>";
+        echo "A situacao do aluno e " . (($m<6)?"REPROVADO":"APROVADO");
+    ?>
+
+
+Arquivo » 04-eleicoes.php
+Operadores lógicos
+
+    <?php 
+$ano = 1987;
+$idade = 2021 - $ano;
+
+echo "Quem nasceu em $ano tem $idade anos de idade<br>";
+$tipo = ( $idade <= 65 && $idade >= 18) ?Obrigatorio:Nao_obrigatorio;
+echo "E dessa forma seu voto é $tipo"; 
+?>
+-----------------------------------------------------
+Aula 8 – Integração HTML5 + PHP
+
+Exercicio 1 ⏣
+⟹Formulário criado no HTML5
+
+HTML5 ⏩ 
+
+<div>
+<form method="get" action="01valor.php">
+Valor: <input type="number" name="v">
+<input type="submit" value="Calcular Raiz">
+</form>
+</div>
+
+PHP ⏩
+
+Por exemplo, vamos considerar um formulário que use o método GET e envie um valor V para o arquivo DADOS.PHP:
+
+Obs: O método GET envia dados de um formulário diretamente pela URL.
+
+Interligando o formulário HTML com o script PHP
+
+Para interligar o formulário, vamos usar a cláusula $_GET
+
+<?php
+
+     $valor = $_GET[“v”];
+
+     echo “Digitou $valor”;
+
+?>
+
+Obs: O $_GET sempre vai utilizar todas as letras maiúsculas. Obs: Se por acaso seu formulário utilizar o método post, você vai precisar usar $_POST.
+
+Obs:
+Feito calculo da raiz quadrada
+ <?php
+$valor = $_GET["v"];
+$rq = sqrt($valor);
+echo "A raiz de $valor e igual a $rq";
+?>
+
+Exercicio 2 ⏣⏣
+⟹Interligando outros tipos de controles de formulários HTML5 com PHP
+
+A integração de qualquer controle de formulário PHP pode ser feita através do parâmetro NAME de cada um deles. Durante a aula, criamos um formulário com vários tipos de controles e interligamos eles ao arquivo PHP.
+
+Pegando o ano atual com PHP Para obter o ano atual no PHP, utilizamos
+
+$idade = date(“Y”) – $ano;
+
+HTML5 ⏩
+
+<div>
+<form method="get" action="01valor.php">
+Nome:<input type="text" name="nome"><br>
+Ano de nascimento: <input type="number" name="ano" ><br>
+<fieldset>
+<legend>Sexo:</legend><br> 
+<input type="radio" name="sexo" id="masc" value="homem" checked> 
+<label for="masc">Masculino<br>
+</label>
+<input type="radio" name="sexo" id="fem" value="mulher">
+<label for="fem"> Feminino<br>
+</label>
+</fieldset>
+ <input type="submit" value="Enviar">
+</form>
+</div>
+
+PHP ⏩
+
+<?php
+$nome = $_GET["nome"];
+$ano = $_GET["ano"];
+$sexo = $_GET["sexo"];
+$idade = date("Y") - $ano;
+
+echo "Olá $nome você tem $idade anos de idade e é $sexo";
+?>
+
+Obs:
+Para evitar problemas devido à falta de informações, foi adicionado o comando isset
+
+<?php
+$nome = isset($_GET["nome"])?$_GET["nome"]:"[nao_informado]";
+$ano = isset($_GET["ano"])?$_GET["ano"]:0;
+$sexo = isset($_GET["sexo"])?$_GET["sexo"]:"[sem_sexo]";
+$idade = date("Y") - $ano;
+
+echo "Olá $nome você tem $idade anos de idade e é $sexo";
+?>
+
+Exercicio 3 ⏣⏣⏣
+
+Obs:
+Feito <span> no texto para colocar os atributos selecionados pro texto no html.
+
+HTML5 ⏩
+
+  <body>
+<div>
+<form method="get" action="01valor.php">
+<label for="itxt"> Texto: </label>
+<input type="text name="ntxt" id="itxt"><br>
+<label for="itam">Tamanho</label>
+<select name="ntam" id="itam">
+<option value="8">8</option>
+<option value="10">10</option>
+<option value="14"selected>14</option>
+<option value="20">20</option>
+<option value="40">40</option>
+</select><br>
+<label for="icor">Cor: </label>
+<input type="color" name="ncor" id="icor">
+<br>
+<input type="submit" value="Gerar">
+</form>
+</div>
+  </body>
+  
+ PHP ⏩
+ 
+   <head>
+  <?php
+$txt = $_GET["ntxt"];
+$tam = $_GET["ntam"];
+$cor = $_GET["ncor"];
+?>
+  <meta charset="UTF-8">
+    <title>PHP Test</title>
+    <style>
+    span.texto {
+      font-size: <?php echo $tam; ?>;
+      color: <?php echo $cor; ?>;
+    }
+    
+    </style>
+  </head>
+  <body>
+<div>
+<?php
+echo "<span class='texto'>$txt</span>";
+?>
+</div>
+<a href="index.php"> Voltar.
+  </body>  
+  
+  
+  ------------------------------------
+  Aula 9 – Estrutura Condicional if
+  
+ PHP ⏩
+ 
+ <?php
+$age = 2;
+$bajo = 3;
+
+if ($age >= $bajo){
+  echo "Age é maior!";
+}
+else {
+  echo "Bajo é maior";
+}
+
+?> 
+
+Obs:
+Feito ternário
+
+<?php
+$age = 3;
+$bajo = 2;
+
+$maior = $age>$bajo?$age:$bajo;
+
+echo "$maior";
+?>
+
+Exercicio 1 ⏣
+⟹Estutura condicional aninhada.
+
+HTML5 ⏩
+
+<div>
+<form method="get" action="ex01.php">
+Ano de nascimento <br><input type="number" name="nano" >
+<input type="submit" value="Enviar">
+</form>
+</div>
+
+PHP ⏩
+
+<?php
+$ano = $_GET["nano"];
+$idade = date("Y") - $ano;
+
+if ($idade >= 18){
+  echo "Você pode dirigir, tem $idade anos.";
+}
+else {
+  echo "Você é de menor! Tem apenas $idade anos.";
+}
+?>
+
+Exercicio 2 ⏣⏣
+⟹Estrutura condicional composta.
+
+PHP ⏩
+
+<?php
+$ano = $_GET["nano"];
+$idade = date("Y") - $ano;
+
+if ($idade < 16){
+  $tipovoto = "Não vota!";
+}
+else if (($idade >= 16 && $idade < 18) || ($idade > 65)){
+  $tipovoto = "Facultativo";
+}
+else {
+  $tipovoto = "Voto obrigatorio.";
+}
+echo "$tipovoto";
+?>
+------------------------------------
+Aula 10 – Estrutura Condicional Switch
+
+Exercicio 1 ⏣
+
+HTML5 ⏩
+
+<div>
+<form method="get" action="ex01.php">
+Numero: <input type="number" name="nnum" type="tnum">
+<fieldset>
+<legend>Operaçao</legend>
+<input type="radio" name="oper" id="dobro" checked>
+<label for="dobro">Dobro</label>
+<input type="radio" name="oper" id="cubo">
+<label for="cubo">Cubo</label>
+<input type="radio" name="oper" id="quadrado">
+<label for="quadrado">Raiz quadrada</label>
+</fieldset>
+<input type="submit" value="Calcular">
+</form>
+</div>
+
+PHP ⏩
+
+<?php
+$num = isset($_GET["nnum"])?$_GET["nnum"]:0;
+$ope = isset($_GET["oper"])?$_GET["oper"]:1;
+switch ($ope){
+case 1:
+$res = $num * 2;
+break;
+case 2:
+$res = $num ^ 3;
+break;
+case 3:
+$res = sqrt($num);
+break;
+}
+echo "O resultado da sua operação solicitada foi $res";
+?>
+
+Exercicio 2 ⏣⏣
+
+HTML5 ⏩
+
+<div>
+<form method="get" action="ex01.php">
+Dia da semana:<input type="number"
+name="ds">
+<input type="submit" value="Analisar">
+</form>
+</div>
+
+PHP ⏩
+
+<?php
+$dia = isset($_GET["ds"])?$_GET["ds"]:0;
+switch ($dia){
+case 2:
+case 3:
+case 4:
+case 5:
+case 6:
+echo "Levanta e vai estudar";
+break;
+case 1:
+case 7:
+echo "Descanse";
+break;
+default:
+echo "Dia da semana invalido!";
+}
+?>
+------------------------------------
+Aula 11 – Estrutura de Repetição While
+
+Exercicio 1 ⏣
+
+PHP ⏩
+
+<?php
+$c = 1;
+while ($c <= 10){
+  echo "$c"; $c++;
+}
+?>
+
+Contagem regressiva
+
+<?php
+$c = 10;
+while ($c >= 1){
+  echo "$c"; $c--;
+}
+?>
+
+Exercicio 2 ⏣⏣
+
+
+<div>
+<form method="get" action="01test.php">
+<?php
+$c = 1;
+while ($c <= 5){
+  echo "valor $c: <input type='number' name='c$' maxx='100' min='0' value='0'><br>";
+  $c++;
+}
+?>
+</div>
+
+Exercicio 3 ⏣⏣⏣
+Criar um contador personalizavel
+
+HTML5 ⏩
+
+<div>
+<form method="get" action="01test.php">
+<label for="ninicio">Inicio:</label>
+<input type="number" name="ninicio" id="iinicio" max="10" min="1"><br>
+<label for="nfim">Fim:</label>
+<input type="number" name="nfim" id="ifim" max="100" min="10"><br>
+<label for="nincremento">Incremento:</label>
+<input type="number" name="nincremento" id="iincremento" max="10" min="1" >
+</form>
+</div>
+
+PHP ⏩
+
+<?php
+$inicio = isset ($_GET["ninicio"])?$_GET["ninicio"]:1;
+$fim = isset ($_GET["nfim"])?$_GET["nfim"]:50; 
+$incremento = isset ($_GET["nincremento"])?$_GET["nincremento"]:1;
+
+if ( $fim > $inicio ){
+$index = $inicio;
+while ($index < $fim){
+ $res = $index + $incremento;
+echo "$res ,";
+$index = $index + $incremento;
+}
+}
+else {
+$index = $inicio;
+while ($index > $fim){
+      $res = $index - $incremento;
+echo "$res ,";
+$index = $index - $incremento;       
+       }
+}
+
+?>
+------------------------------------
+Aula 12 – Estrutura de Repetição Do While
+
+PHP ⏩
+
+<?php
+$inicio = isset ($_GET["ninicio"])?$_GET["ninicio"]:1;
+$fim = isset ($_GET["nfim"])?$_GET["nfim"]:50; 
+$incremento = isset ($_GET["nincremento"])?$_GET["nincremento"]:1;
+echo "$inicio, ";
+if ( $fim > $inicio ){
+$index = $inicio;
+do {
+ $res = $index + $incremento;
+echo "$res ,";
+$index = $index + $incremento;
+}while ($index < $fim);
+}
+else {
+$index = $inicio;
+do {
+  $res = $index - $incremento;
+echo "$res, ";
+$index = $index - $incremento;}
+while ($index > $fim);       
+}
+
+?>
+------------------------------------
+Aula 13 – Estrutura de Repetição For
+
+Exercicio 1 ⏣
+
+PHP ⏩
+
+  <?php
+        for ($i = 1; $i <= 10; $i++) {
+            echo "$i ";
+        }
+        echo "<br/>";
+        for ($i = 10; $i >= 1; $i--) {
+            echo "$i ";
+        }
+        echo "<br/>";
+        for ($i = 0; $i <= 50; $i+=5) {
+            echo "$i ";
+        }
+        echo "<br/>";
+        for ($i=20; $i>=0; $i-=2) {
+            print "$i ";
+        }
+    ?> 
+    
+ ⟹ Feito o mesmo exercicio  acima mas com repetição diferente.
+ 
+ HTML ⏩
+ 
+ <html>
+<html lang="pt-br">
+  <head>
+  <meta charset="UTF-8">
+    <title>PHP Test</title>
+  </head>
+  <body>
+ <div>
+<form method="get" action="01test.php">
+<label for="ninicio">Inicio:</label>
+<input type="number" name="ninicio" id="iinicio"><br>
+<label for="nfim">Fim:</label>
+<input type="number" name="nfim" id="ifim"><br>
+<label for="nincremento">Incremento:</label>
+<input type="number" name="nincremento" id="iincremento">
+<input type="submit" value="Calcular">
+</form>
+</div>
+    </body>
+</html>
+
+PHP ⏩
+
+<?php
+$inicio = isset ($_GET["ninicio"])?$_GET["ninicio"]:1;
+$fim = isset ($_GET["nfim"])?$_GET["nfim"]:50; 
+$incremento = isset ($_GET["nincremento"])?$_GET["nincremento"]:1;
+if ( $inicio < $fim)
+{
+  for ( $index = $inicio ; $index <= $fim ; $index += $incremento )
+  {
+echo "$index ";
+  }
+}
+else
+{
+  for ( $index = $inicio ; $index >= $fim ; $index -= $incremento )
+  echo "$index ";
+}
+?>
+
+Exercicio 2 ⏣⏣
+⟹Tabuada
+
+HTML ⏩
+
+<div>
+<form method="get" action="01test.php">
+<label for="ninicio">Número:</label>
+<input type="number" name="nMultiplicador" id="iMultiplicador" size="10"><br>
+<label for="nfim">Até esse multiplicador</label>
+<input type="number" name="nMultiplicando" id="iMultiplicando" size="10"><br>
+<input type="submit" value="Multiplicar">
+</form>
+</div> 
+
+PHP ⏩
+
+<?php
+$multiplicador = $_GET["nMultiplicador"];
+$multiplicando = $_GET["nMultiplicando"];
+for ( $index = 0 ; $index <= $multiplicando ; $index++)
+{
+$res = $index * $multiplicador;
+ echo "$multiplicador X $index = $res<br>";
+}
+?>   
+    
+Exercicio 3 ⏣⏣⏣
+⟹ Número primo
+
+HTML ⏩
+
+<html>
+<html lang="pt-br">
+  <head>
+  <meta charset="UTF-8">
+    <title>PHP Test</title>
+  </head>
+  <body>
+<div>
+	<form method="get" action="01test.php">
+	N&uacute;mero: <input type="number" name="num" min="1" max="1000" value="1"/>
+	<input type="submit" value="&Eacute; primo?"/>
+	</form>
+</div>
+    </body>
+</html>
+
+PHP ⏩
+
+    <?php
+       $n = isset($_GET["num"])?$_GET["num"]:1;
+	   echo "<h1>Analisando o número $n ...</h1>";
+	   echo "Valores múltiplos: ";
+	   $mult = 0;
+	   for ($c = 1; $c <= $n; $c++) {
+			if ($n % $c == 0) {
+				$mult++;
+				echo "$c ";
+			}
+		}
+		echo "<p> Total de multiplos: $mult </p>";
+		echo "<h2> Resultado: $n <span class='foco'>";
+		if ($mult <= 2) {
+			echo " Número PRIMO! ";
+		} else {
+			echo " Não é número PRIMO! ";
+		}
+		 echo "</span></h2>";
+    ?>
+    
+------------------------------------    
+Aula 14 – Rotinas em PHP – Parte 1
+
+Exercicio 1 ⏣
+
+PHP ⏩
+
+<?php
+function soma($n1,$n2)
+{
+  $res = $n1 + $n2;
+  echo "A soma é $res";
+}
+  soma(3,4);
+?>
+
+Exercicio 2 ⏣⏣
+⟹ O return tem que ser montado assim como mostra
+abaixo.
+
+PHP ⏩
+
+<?php
+function soma($n1,$n2)
+{
+ return $n1 + $n2;
+  
+}
+$x = -4;
+$y = 2;
+$res = soma($x,$y);
+echo "A soma entre $x e $y é $res";
+
+?>
+
+Exercicio ⏣⏣⏣
+⟹ Rotinas com parametros dinâmicos.
+
+PHP ⏩
+
+<?php
+function soma()
+{
+ $argumentos = func_get_args();
+ $todos = func_num_args();
+ $soma = 0;
+  for ($index = 0 ; $index <= $todos ; $index++ )
+  {
+    $soma += $argumentos[$index];
+  }
+return $soma;
+}
+$res = soma(2,3,5);
+echo "A soma de todos os números é $res";
+?>
+
+------------------------------------
+Aula 15 – Rotinas em PHP – Parte 2
+
+Exercicio 1 ⏣
+⟹ Criar um procedimento que use passagem de parâmetros
+ por referência.
+ 
+PHP ⏩
+
+<?php
+function teste($x) {
+  $x = $x + 2;
+  echo "O valor de X é $x<br>";
+}
+$a = 3;
+teste($a);
+echo "O valor de A é $a";
+?>
+
+Outpost
+O valor de X é 5
+O valor de A é 3
+
+⟹ Agora foi colocado & no parâmetro.
+
+<?php
+function teste(&$x) {
+  $x = $x + 2;
+  echo "O valor de X é $x<br>";
+}
+$a = 3;
+teste($a);
+echo "O valor de A é $a";
+?>
+
+Outpost ⬋⬋
+O valor de X é 5
+O valor de A é 5
+
+Exercicio 2 ⏣⏣
+⟹ Como utilizar rotinas externas. 
+
+PHP ⏩
+Arquivo: index.php
+
+<?php
+include "01-funcao.php";
+ echo "<h2>Testando as funções...<br> Função 1</h2>";
+ ola();
+echo "<br><h2> Função 2 </h2> ";
+include "02-funcao.php";
+ teste();
+?>
+
+Arquivo: 01-funcao.php
+
+<?php
+ function ola(){
+   echo "Olá Mundo!";
+ }
+?>
+
+Arquivo: 02-funcao.php
+
+<?php
+function teste($x) {
+  $x = $x + 2;
+  echo "O valor de X é $x<br>";
+}
+$a = 3;
+teste($a);
+echo "O valor de A é $a";
+?>
+
+Outpost ⬋⬋
+
+Testando as funções...
+Função 1
+Olá Mundo!
+Função 2
+O valor de X é 5
+O valor de A é 3
+
+⟹ Diferenças entres os comandos.
+
+⬏ Include: Inclui o arquivo mantendo os outros ativos.
+⬏ Require: Solicita somente aquele arquivo.
+⬏ Include_once: Somente irá incluir uma vez.
+⬏ Require_ once: Solicita somente aquele arquivo uma vez.
+
+------------------------------------
+Aula 16 – Funções String em PHP (Parte 1)
+
+1 ⏩ Função printf()
+Permite exibir uma string com itens formatados.
+
+⟹ Anotações
+%s = String
+%f = Numero real
+
+<?php
+$prod = "Leite";
+$preco = 4.5;
+printf ("O %s está custando R$ %.2f", $prod,$preco);
+?>
+
+⏣ Outpost: O Leite está custando R$ 4.50
+
+2 ⏩ Função print_r()
+Exibe coleções, objetos e variáveis compostas (vetores e matrizes) de maneira organizada.
+
+⟹ Anotações
+=> = associação
+<?php
+$x[0] = 4;
+$x[1] = 3;
+$x[2] = 8;
+print_r($x);
+?>
+
+⏣ Outpost: Array ( [0] => 4 [1] => 3 [2] => 8 )
+
+<?php
+$v2 = array (3,7,5,8,8);
+print_r($v2);
+?>
+
+⏣ Outpost: Array ( [0] => 3 [1] => 7 [2] => 5 [3] => 8 [4] => 8 )
+
+
+
+3 ⏩ Função wordwrap()
+Cria quebras de linha ou divisões em uma string em um tamanho especificado.
+
+⟹ Anotações
+Feito as quebras de linhas
+<?php
+$txt =
+"<b>Este_e_um_exemplo_de_string_gigante_que...</b>";
+$res = wordwrap($txt, 3, "<br>n", false);
+
+echo($res);
+?>
+
+⏣ Outpost: Este
+ne
+num
+nexemplo
+nde
+nstring
+ngigante
+nque...
+
+4 ⏩ Função strlen() 
+Permite verificar o tamanho de uma string, contando seus caracteres (inclusive espaços em branco).
+
+<?php
+$txt = "Curso em viceo";
+$tamanho = strlen($txt);
+echo $tamanho;
+?>
+
+⏣ Outpost: 14
+
+5 ⏩ Função trim()
+Elimina espaços em branco antes e depois de uma string.
+
+<?php
+$nome = "   José da Silva   ";
+echo strlen($nome);
+$novo = trim($nome);
+echo "<br>$novo<br>";
+echo strlen($novo);
+?>
+
+⏣ Outpost: 20
+José da Silva
+14
+
+6 ⏩ Função ltrim() 
+Elimina espaços no início de uma string.
+
+<?php
+$nome = "   José da Silva   ";
+echo strlen($nome);
+$novo = ltrim($nome);
+echo "<br>$novo<br>";
+echo strlen($novo);
+?>
+
+⏣ Outpost: 20
+José da Silva
+17
+
+7 ⏩ Função rtrim()
+Elimina espaços em branco no final de uma string
+
+<?php
+$nome = "   José da Silva   ";
+echo strlen($nome);
+$novo = rtrim($nome);
+echo "<br>$novo<br>";
+echo strlen($novo);
+?>
+
+⏣ Outpost: 20
+José da Silva
+17
+
+8 ⏩ Função str_word_count()
+Conta quantas palavras uma string possui.
+
+<?php
+$nome = "José da Silva";
+echo str_word_count($nome);
+?>
+
+⏣ Outpost: 3
+
+<?php
+$nome = "José da Silva Gonçalves";
+$blard = str_word_count($nome,1);
+echo print_r($blard);
+?>
+
+Feito com vetor "1" reconhece como array, feito echo print_r();
+
+⏣ Outpost: Array ( [0] => Jos [1] => da [2] => Silva [3] => Gon [4] => alves ) 1
+
+Se for feito com o vetor "2" ele conta qual a posição do elemento no Array;
+
+⏣ Outpost: Array ( [0] => Jos [6] => da [9] => Silva [15] => Gon [20] => alves ) 1
+
+9 ⏩ Função explode()
+Quebra uma string e coloca os itens em um vetor.
+
+<?php
+$nome = "José da Silva";
+$vetor = explode(" ",$nome);
+echo print_r($vetor);
+?>
+
+⏣ Outpost: Array ( [0] => José [1] => da [2] => Silva ) 1
+
+10 ⏩ Função str_split()
+Coloca cada letra de uma string em uma posição de um vetor.
+
+<?php
+$nome = "José da Silva";
+$vetor = str_split($nome);
+echo print_r($vetor);
+?>
+
+⏣ Outpost: Array ( [0] => J [1] => o [2] => s [3] => � [4] => � [5] => [6] => d [7] => a [8] => [9] => S [10] => i [11] => l [12] => v [13] => a ) 1
+
+11 ⏩ Função implode() ou join()
+Transforma um vetor inteiro em uma string.
+
+<?php
+$nome[0] = "José ";
+$nome[1] = "da ";
+$nome[3] = "Silva";
+$vetor = implode($nome);
+print($vetor);
+?>
+
+⏣ Outpost: José da Silva
+
+12 ⏩ Função chr(
+Retorna um caractere de acordo com seu código ASCII passado como parâmetro.
+
+<?php
+$letra = chr(67);
+$cod = ord($letra);
+echo "A letra $letra tem código $cod";
+?>
+
+⏣ Outpost: A letra C tem código 67
+
+13 ⏩ Função ord()
+Retorna o código ASCII de um caractere passado como parâmetro.
+
+<?php
+$letra = "Y";
+$cod = ord($letra);
+echo "A letra $letra tem código $cod";
+?>
+
+⏣ Outpost: A letra Y tem código 89
+
+------------------------------------
+Aula 17 – Funções String em PHP (Parte 2)
+
+14 ⏩ Função strtolower()
+Ele reduz todas as letras da String para minusculas.
+
+<?php
+$nome = "Jose Alves Gonçalves Costa";
+echo strtolower($nome);
+?>
+
+⏣ Outpost: jose alves gonçalves costa
+
+15 ⏩ Função strtoupper()
+Ele aumenta todas as letras da String para maiusculas.
+
+<?php
+$nome = "Jose Alves Gonçalves Costa";
+echo strtoupper($nome);
+?>
+
+⏣ Outpost: JOSE ALVES GONçALVES COSTA
+
+16 ⏩ Função ucfirst()
+Aumento o tamanho da primeira letra da String
+
+<?php
+$nome = "jose alves gonçalves costa";
+print("Seu nome é ".ucfirst($nome));
+?>
+
+⏣ Outpost: Seu nome é Jose alves gonçalves costa
+
+17 ⏩ Função lcfirst()
+
+<?php
+$nome = "JOSE alves gonçalves costa";
+print("Seu nome é ".lcfirst($nome));
+?>
+
+⏣ Outpost: Seu nome é jOSE alves gonçalves costa
+
+18 ⏩ Função ucwords()
+Aumento o tamanho da primeira letra de cada palavras da String
+
+<?php
+$nome = "jose alves gonçalves costa";
+print("Seu nome é ".ucwords($nome));
+?>
+
+⏣ Outpost: Seu nome é Jose Alves Gonçalves Costa
+
+19 ⏩ Função strrev()
+Inverte as letras da string
+
+<?php
+$nome = "Jose Alves Goncalves da Costa";
+print("Seu nome invertido é ".strrev($nome));
+?>
+
+⏣ Outpost: Seu nome invertido é atsoc ad sevlacnog sevla esoj
+
+20 ⏩ Função strpos()
+Ela informa ondo ela encontra a posição da palrava marcada dentro da String
+
+<?php
+$nome = "Jose Alves Goncalves da Costa";
+$pos = strpos($nome, "Costa");
+echo "A string foi encontrada da posição $pos";
+?>
+
+⟹ Anotação
+Ele pode utilizar "stripos()" que é a mesma função, mas ela encontra o elementro tanto maiúsculo ou minúsculo.
+
+⏣ Outpost: A string foi encontrada da posição 24
+
+21 ⏩ Função substr_count()
+Ele conta quantas vezes a palavra é encontrada na frase.
+
+<?php
+$nome = "Jose Alves Goncalves da Costa";
+$cont = substr_count($nome, "Costa");
+echo "A string foi encontrada $cont vezes";
+?>
+
+⏣ Outpost: A string foi encontrada 1 vezes
+
+22 ⏩ Função substr()
+Você decide nos parâmetros quantos elementos vão participar da String
+
+<?php
+$nome = "Jose Alves Goncalves da Costa";
+$sub = substr($nome,0,10);
+echo "$sub ";
+?>
+
+⏣ Outpost: Jose Alves
+
+23 ⏩ Função str_pad()
+Você escolhe o elemento que vai colocar antes, após ou em ambas posições da String que você vai colocar.
+
+<?php
+$nome = "Jose";
+$novo = str_pad($nome,30,"x", STR_PAD_LEFT);
+print("Eu sei que $novo é doido!");
+?>
+
+⏣ Outpost: Eu sei que xxxxxxxxxxxxxxxxxxxxxxxxxxJose é doido!
+
+24 ⏩ Função str_repeat()
+Ela repete a string quantas vezes você escolhe no parâmetro
+
+<?php
+$nome = str_repeat("Jose ",5);
+print $nome;
+?>
+
+⏣ Outpost: Jose Jose Jose Jose Jose
+
+25 ⏩ Função str_replace
+Nos parâmetros você escolhe qual String você quer fazer a troca.
+
+<?php
+$frase = "Gosto de estudar matemática!!!";
+$novaFrase = str_replace("matemática", "PHP", $frase);
+echo $novaFrase;
+?>
+
+⏣ Outpost: Gosto de estudar PHP!!!
+
+⟹ Anotações
+
+ Feito com str_ireplace() e ele repete pela frase inteira.
+ 
+⏣ Outpost: Gosto de estudar PHP! PHP é muito legal!
+------------------------------------
+Aula 18 – Vetores e Matrizes – Parte 1
+
+Exercicio 1 ⏣
+
+PHP e HTML5 ⏩
+
+<pre>
+<?php
+$n = array(1,2,3,4);
+$n[] = 5;
+print_r($n);
+?>
+</pre>
+
+⏣ Outpost: 
+Array
+(
+    [0] => 1
+    [1] => 2
+    [2] => 3
+    [3] => 4
+    [4] => 5
+)
+⟹ Anotações
+
+Foi colocada a tag <pre> para fazer sairem em coluna.
+
+<pre>
+<?php
+$n = range(7,39,3);
+print_r($n);
+?>
+</pre>
+
+⏣ Outpost: 
+Array
+(
+    [0] => 7
+    [1] => 10
+    [2] => 13
+    [3] => 16
+    [4] => 19
+    [5] => 22
+    [6] => 25
+    [7] => 28
+    [8] => 31
+    [9] => 34
+    [10] => 37
+)
+
+⟹ Anotações
+
+Range adiciona o elemento na soma da array como se fosse uma repetição.
+
+<pre>
+<?php
+$n = range(7,39,3);
+foreach($n as $v) {
+echo "$v ";
+}
+?>
+
+⏣ Outpost: 7 10 13 16 19 22 25 28 31 34 37 
+
+⟹ Anotações
+
+Colocado a função foreach () mostrando somente os valores
+
+<pre>
+<?php
+$v = array(0=>A,1=>B,2=>C);
+$v[] = "D";
+print_r($v);
+?>
+</pre>
+
+⏣ Outpost: 
+Array
+(
+    [0] => A
+    [1] => B
+    [2] => C
+    [3] => D
+)
+
+⟹ Anotações
+
+Array editado mas escolhendo a ordem dos elementos
+Se colocado o comando unset($v[]) ele desativa aquele elemento do array
+
+⏣ Outpost:
+
+Array
+(
+    [7] => B
+    [9] => C
+    [10] => D
+)
+
+<?php
+$d = array("nome"=>"Danilo","idade"=>34,"peso"=>90);
+$d["Atleta"] = "Sim";
+foreach($d as $campo => $v){
+echo "O valor de $campo é $v<br>";
+}
+?>
+
+⏣ Outpost:
+
+O valor de nome é Danilo
+O valor de idade é 34
+O valor de peso é 90
+O valor de Atleta é Sim
+
+<?php
+$n = array(array(2,9),array(3,3),array(6,4));
+foreach($n as $v)
+print_r($v);
+?>
+
+⏣ Outpost:
+
+Array
+(
+    [0] => 2
+    [1] => 9
+)
+Array
+(
+    [0] => 3
+    [1] => 3
+)
+Array
+(
+    [0] => 6
+    [1] => 4
+)
+
+⟹Anotações
+
+Agora vou fazer a mudança de valor, possivel verificar no Outpost
+
+<?php
+$n = array(array(2,9),array(3,3),array(6,4));
+$n[2][0] = $n[1][1];
+foreach($n as $v)
+print_r($v);
+?>
+
+⟹ Anotações
+ Feito a alteração 
+ $n[2][0] = $n[1][1];
+ Ou seja, ele vai trocar o numero 6 pelo 3
+ 
+⏣ Outpost:
+
+Array
+(
+    [0] => 2
+    [1] => 9
+)
+Array
+(
+    [0] => 3
+    [1] => 3
+)
+Array
+(
+    [0] => 3
+    [1] => 4
+)
+------------------------------------
+Aula 19– Vetores e Matrizes – Parte 2
+
+var_dump($v);
+
+⏣ Outpost:
+
+array(5) {
+  [0]=>
+  string(1) "A"
+  [1]=>
+  string(1) "J"
+  [2]=>
+  string(1) "M"
+  [3]=>
+  string(1) "X"
+  [4]=>
+  string(1) "R"
+}
+
+echo "".count($v) 
+⏣ Outpost:
+5
+
+array_push(parametro,numeroRecebra);
+array_pop(parametro) = retira o ultimo elemento da lenght
+array_unshift(parametro, numeroRecebera);
+array_shit(parametro) = retira o primeiro elementro da lenght
+
+⏣ Explicação do comando sort()
+
+<?php
+$v = array(3, 5 , 2 , 8 , 1);
+print_r($v);
+ksort($v);
+print_r($v);
+asort($v);
+print_r($v);
+sort($v);
+print_r($v);
+?>
+
+⏣ Outpost: 
+
+Array = Ordem normal dos elementos
+(
+    [0] => 3
+    [1] => 5
+    [2] => 2
+    [3] => 8
+    [4] => 1
+)
+Array ksort($v)
+(
+    [0] => 3
+    [1] => 5
+    [2] => 2
+    [3] => 8
+    [4] => 1
+)
+Array asort($v);
+(
+    [4] => 1
+    [2] => 2
+    [0] => 3
+    [1] => 5
+    [3] => 8
+)
+Array sort($v);
+(
+    [0] => 1
+    [1] => 2
+    [2] => 3
+    [3] => 5
+    [4] => 8
+) 
+Array arsort($v);
+(
+    [4] => 8
+    [3] => 5
+    [2] => 3
+    [1] => 2
+    [0] => 1
+)
+Array rsort($v);
+(
+    [0] => 8
+    [1] => 5
+    [2] => 3
+    [3] => 2
+    [4] => 1
+)
+Array krsort($v);
+(
+    [4] => 1
+    [3] => 2
+    [2] => 3
+    [1] => 5
+    [0] => 8
+)
+
+
