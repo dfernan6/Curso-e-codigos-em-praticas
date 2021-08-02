@@ -6,4 +6,6 @@ Nas linguagens: <br>
 <li><b>CSS</b></li>
 <li><b>JavaScript</b></li>
 <li><b>PHP</b></li>
-</ul>
+</ul><br>
+Anoção <b>IMPORTANTE</b>:<br>
+Os códigos PHO estão no arquivo: Anotações-Curso PHP.txt<br>
