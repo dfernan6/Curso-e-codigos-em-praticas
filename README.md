@@ -8,4 +8,4 @@ Nas linguagens: <br>
 <li><b>PHP</b></li>
 </ul><br>
 Aviso <b>IMPORTANTE</b>:<br>
-Os códigos PHO estão no arquivo: Anotações-Curso PHP.txt<br>
+Os códigos PHP estão no arquivo: Anotações-Curso PHP.txt<br>
