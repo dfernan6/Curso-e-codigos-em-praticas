@@ -7,5 +7,5 @@ Nas linguagens: <br>
 <li><b>JavaScript</b></li>
 <li><b>PHP</b></li>
 </ul><br>
-Anoção <b>IMPORTANTE</b>:<br>
+Aviso <b>IMPORTANTE</b>:<br>
 Os códigos PHO estão no arquivo: Anotações-Curso PHP.txt<br>
