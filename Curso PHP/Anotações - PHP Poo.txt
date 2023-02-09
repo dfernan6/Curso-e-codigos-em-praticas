@@ -1,3 +1,8 @@
+Aula 3 ⟹ Visibilidade
+public
+private
+protected
+
 PHP ⏩
 
 <pre>
@@ -65,3 +70,87 @@ e destampar() como public.
 Mesmo que o atributo $tampada está como
 protected a função reconhece como true ou false.
 tampada:protected] => 1
+
+Aula 4 ⟹ Metodos
+GETTER
+SETTER
+Construct
+
+PHP ⏩
+
+<pre>
+<?php
+require_once "Caneta.php";
+
+$c1 = new Caneta();
+$c1->setModelo("BIC");
+$c1->setPonta(0.5);
+
+echo "Eu tenho uma caneta {$c1->getModelo()} de ponta {$c1->getPonta()}.";
+?>
+</pre>
+
+Obs: Colocado a chave {} para interpretar as funções adicionadas.
+
+<?php
+class Caneta {
+    public $modelo;
+    private $ponta;
+
+    public function getModelo() {
+        return $this->modelo;
+}
+
+    public function setModelo($m) {
+        $this->modelo = $m;
+        }
+
+    public function getPonta() {
+        return $this->$ponta;
+    }
+
+    public function setPonta($p) {
+        $this->ponta = $p;
+    }
+}
+?>
+
+public function __construct() {
+    $this->cor = "Azul";
+    $this->tampar();
+    $this->ponta = 0.5;
+    $this->modelo = "BIC cristal";
+}
+
+Caneta Object
+(
+    [modelo:Caneta:private] => BIC cristal
+    [cor:Caneta:private] => Azul
+    [ponta:Caneta:private] => 0.5
+    [tampada:Caneta:private] => 1
+)
+
+public function tampar(){
+    $this->tampada = true;
+}
+
+⚪ Outpost ⚪
+
+Caneta Object
+(
+    [modelo:Caneta:private] => BIC cristal
+    [cor:Caneta:private] => Azul
+    [ponta:Caneta:private] => 0.5
+    [tampada:Caneta:private] => 1
+)
+
+obs: Podemos criar a função construct somente colocando
+o nome da classe.
+
+Ex: 
+public function Caneta() {
+    $this->cor = "Azul";
+    $this->tampar();
+    $this->ponta = 0.5;
+    $this->modelo = "BIC cristal";
+}
