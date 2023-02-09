@@ -3,7 +3,7 @@
 require_once "Caneta.php";
 
 $c1 = new Caneta("BIC","Azul",0.5);
-$c2 = new Caneta("Pencil", "Vermelha", 1.0);
+$c2 = new Caneta("Pencil", "Vermelha", 1.5);
 
 print_r($c1);
 print_r($c2);
