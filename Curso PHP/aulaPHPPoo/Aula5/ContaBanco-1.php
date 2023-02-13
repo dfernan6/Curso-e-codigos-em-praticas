@@ -58,10 +58,10 @@
         echo "Abrindo Conta Poupança<br>";
     }
 }
-    public function fecharConta($s){
-        if ($s < 0){
+    public function fecharConta(){
+        if ($this->getSaldo() < 0){
             echo "Sua conta está com saldo negativo, não podemos fechá-la.<br>";
-        } else if ($s > 0) {
+        } elseif ($this->getSaldo() > 0) {
             echo "Sua conta está com saldo positivo, não podemos fechá-la.<br>";
         } else {
             $this->status = false;
@@ -69,17 +69,17 @@
         }
     }
 
-    public function depositar($s){
-        $this->saldo += $s;
+    public function depositar($v){
+        $this->saldo += $v;
 
     }
 
-    public function sacar($s){
-        $this->saldo -= $s;
+    public function sacar($v){
+        $this->saldo -= $v;
     }
 
-    public function pagarMensal($s){
-        $this->saldo -= $s;
+    public function pagarMensal($v){
+        $this->saldo -= $v;
     }
 
   }
