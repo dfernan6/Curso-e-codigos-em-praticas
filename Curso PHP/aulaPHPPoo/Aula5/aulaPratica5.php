@@ -1,21 +1,28 @@
 <pre>
 <?php
 require_once "ContaBanco.php";
-$alberto = New ContaBanco(2202, "cC", "Alberto Genuino Silva", 0, false);
+$alberto = New ContaBanco(2202,
+ "cC",
+  "Alberto Genuino Silva",
+   0, false);
 $alberto->abrirConta("cC");
+$alberto->depositar(13);
+$alberto->sacar(5);
+$alberto->pagarMensal(0);
 $alberto->fecharConta();
-$alberto->depositar(5);
-$alberto->sacar(50);
-$alberto->pagarMensal(5);
 
 print_r($alberto);
+echo "<br>";
 
-$jaque = New ContaBanco(3210, "cP", "Jaqueline Gonçalves cunha", 0, false);
+$jaque = New ContaBanco(3210,
+ "cP",
+  "Jaqueline Gonçalves cunha",
+   0, false);
 $jaque->abrirConta("cP");
+$jaque->depositar(0);
+$jaque->sacar(145);
+$jaque->pagarMensal(0);
 $jaque->fecharConta();
-$jaque->depositar(50);
-$jaque->sacar(10);
-$jaque->pagarMensal(30);
 
 print_r($jaque)
 ?>
