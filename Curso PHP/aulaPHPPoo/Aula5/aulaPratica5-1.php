@@ -8,10 +8,10 @@ $alberto->setDono("Alberto Genuino Silva");
 $alberto->setSaldo(0);
 $alberto->setStatus(false);
 $alberto->abrirConta("cC");
-$alberto->fecharConta(5);
-$alberto->depositar(0);
-$alberto->sacar(10);
-$alberto->pagarMensal(0);
+$alberto->fecharConta();
+$alberto->depositar(50);
+$alberto->sacar(60);
+$alberto->pagarMensal(40);
 
 print_r($alberto);
 
@@ -22,7 +22,7 @@ $jaque->setDono("Jaqueline Gonçalves cunha");
 $jaque->setSaldo(0);
 $jaque->setStatus(false);
 $jaque->abrirConta("cP");
-$jaque->fecharConta(-3);
+$jaque->fecharConta();
 $jaque->depositar(0);
 $jaque->sacar(0);
 $jaque->pagarMensal(0);
