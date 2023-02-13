@@ -6,7 +6,7 @@ class controleRemoto implements controlador {
     private $ligado;
     private $tocando;
 
-    function __construct(){
+    public function __construct(){
        $this->volume = 50;
        $this->ligado = false;
        $this->tocando = false;
@@ -45,7 +45,7 @@ class controleRemoto implements controlador {
         echo "<br>Esta ligado?: " . ($this->getLigado()?"SIM":"NÃO");
         echo "<br>Está tocando?: ". ($this->getTocando()?"SIM":"NÃO");
         echo "<br>Volume: " . $this->getVolume();
-        for ($i=0; $i <= $this->getVolume(); $i+=10){
+        for($i=1; $i <= $this->getVolume(); $i+=10){
             echo "|";
         }
         echo"<br";
@@ -54,12 +54,14 @@ class controleRemoto implements controlador {
         echo "<br>Fechando Menu...";
     }
     public function maisVolume(){
-        if ($this->getLigado()) {
+        if ($this->getLigado() ) {
             $this->setVolume($this->getVolume() + 5);
+        } else {
+            echo "Não posso aumentar o volume<br>";
         }
     }
     public function menosVolume(){
-        if ($this->getLigado()) {
+        if ($this->getLigado() ) {
             $this->setVolume($this->getVolume() - 5);
         }
     }
@@ -70,7 +72,7 @@ class controleRemoto implements controlador {
     }
     public function desligarMudo(){
         if ($this->getLigado() && $this->getVolume()==0){
-            $this->setVolume(5);
+            $this->setVolume(50);
         }
     }
     public function play(){
