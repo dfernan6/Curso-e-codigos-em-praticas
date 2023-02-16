@@ -107,5 +107,28 @@ class lutador {
     public function setEmpates($em){
         $this->empates = $em;
     }
+
+    public function ganharLuta($vi) {
+       $this->vitorias = ($this->getVitorias() + 1);
+    }
+
+    public function perderLuta($de) {
+        $this->derrotas = ($this->getDerrotas() + 1);
+    }
+
+    public function empatarLuta($em) {
+        $this->empates = ($this->getEmpates() + 1);
+    }
+
+    public function apresentar(){
+        echo "<br>Lutador: " . $this->getNome();
+        echo "<br>Origem: " . $this->getNacionalidade();
+        echo "<br>" . $this->getIdade() . " anos";
+        echo "<br>" . $this->getAltura() . "m de altura";
+        echo "<br>Pesando " . $this->getPeso() . "Kg";
+        echo "<br>Ganhou: " . $this->getVitorias();
+        echo "<br>Perdeu: " . $this->getDerrotas();
+        echo "<br>Empatou: " . $this->getEmpates();
+    }
 }
 ?>
