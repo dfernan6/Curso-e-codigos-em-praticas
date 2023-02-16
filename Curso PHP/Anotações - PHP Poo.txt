@@ -154,3 +154,25 @@ public function Caneta() {
     $this->ponta = 0.5;
     $this->modelo = "BIC cristal";
 }
+
+Aula7 
+PHP ⏩
+
+Obs: Para criar o SETTER com a função de outro
+SETTER dentro, eu tenho que alterar o 
+constructor
+
+    public function __construct($no, $na, $id, $al, $pe, 
+     $vi, $de, $em){
+
+        $this->nome = $no;
+        $this->nacionalidade = $na;
+        $this->idade = $id;
+        $this->altura = $al;
+        $this->setPeso($pe);
+        $this->vitorias = $vi;
+        $this->derrotas = $de;
+        $this->empates = $em;
+    }
+
+    
