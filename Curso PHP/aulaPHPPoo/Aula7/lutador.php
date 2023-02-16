@@ -121,6 +121,7 @@ class lutador {
     }
 
     public function apresentar(){
+        echo "-===-===-BEM-VINDOS ao UEC-===-===-<br>";
         echo "<br>Lutador: " . $this->getNome();
         echo "<br>Origem: " . $this->getNacionalidade();
         echo "<br>" . $this->getIdade() . " anos";
@@ -128,7 +129,16 @@ class lutador {
         echo "<br>Pesando " . $this->getPeso() . "Kg";
         echo "<br>Ganhou: " . $this->getVitorias();
         echo "<br>Perdeu: " . $this->getDerrotas();
-        echo "<br>Empatou: " . $this->getEmpates();
+        echo "<br>Empatou: " . $this->getEmpates() . "<br>";
+    }
+
+    public function status(){
+        echo "<br>Informações sobre o lutador:";
+        echo "<br>O lutador " . $this->getNome();
+        echo "<br>é um peso " . $this->getCategoria() . " com";
+        echo "<br>" . $this->getVitorias() . " vitórias";
+        echo "<br>" . $this->getDerrotas() . " derrotas";
+        echo "<br>" . $this->getEmpates() . " empates";
     }
 }
 ?>

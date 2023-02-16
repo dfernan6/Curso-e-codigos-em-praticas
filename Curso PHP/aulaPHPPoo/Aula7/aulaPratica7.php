@@ -8,6 +8,6 @@ $c->ganharLuta(0);
 $c->perderLuta(0);
 $c->empatarLuta(0);
 $c->apresentar();
-
+$c->status();
 ?>
 </pre>
