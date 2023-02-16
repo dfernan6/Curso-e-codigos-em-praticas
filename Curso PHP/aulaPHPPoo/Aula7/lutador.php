@@ -136,7 +136,7 @@ class lutador {
         echo "<br>é um peso " . $this->getCategoria() . " com";
         echo "<br>" . $this->getVitorias() . " vitórias";
         echo "<br>" . $this->getDerrotas() . " derrotas";
-        echo "<br>" . $this->getEmpates() . " empates";
+        echo "<br>" . $this->getEmpates() . " empates<br>";
     }
 }
 ?>
