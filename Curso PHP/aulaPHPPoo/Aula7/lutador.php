@@ -10,15 +10,14 @@ class lutador {
     private $derrotas;
     private $empates;
 
-    public function __construct($no, $na, $id, $al, $pe, $ca,
+    public function __construct($no, $na, $id, $al, $pe, 
      $vi, $de, $em){
 
         $this->nome = $no;
         $this->nacionalidade = $na;
         $this->idade = $id;
         $this->altura = $al;
-        $this->peso = $pe;
-        $this->categoria = $ca;
+        $this->setPeso($pe);
         $this->vitorias = $vi;
         $this->derrotas = $de;
         $this->empates = $em;
@@ -62,28 +61,27 @@ class lutador {
 
     public function setPeso($pe){
         $this->peso = $pe;
+        $this->setCategoria();
     }
 
    public function getCategoria(){
         return $this->categoria;
     }
+    
+    public function setCategoria(){
+        if($this->getPeso() <= 52.2){
+          $this->categoria = "Inválido";
+        } else if ($this->getPeso() <= 70.3) {
+          $this->categoria = "Leve";
+        } else if ($this->getPeso() <= 83.9) {
+          $this->categoria = "Médio";
+        } else if ($this->getPeso() <= 120.2) {
+          $this->categoria = "Pesado";
+        } else {
+          $this->categoria = "Inválido";
+        }
+    }
 
-      public function setCategoria($ca){
-          $this->categoria = $ca;
-
-          if($this->getPeso() <= 52.2){
-            $this->categoria = "Inválido";
-          } else if ($this->getPeso() <= 78.3) {
-            $this->categoria = "Leve";
-          } else if ($this->getPeso() <= 83.9) {
-            $this->categoria = "Médio";
-          } else if ($this->getPeso() <= 120.2) {
-            $this->categoria = "Pesado";
-          } else {
-            $this->categoria = "Inválido";
-          }
-      }
-      
     public function getVitorias(){
         return $this->vitorias;
     }
