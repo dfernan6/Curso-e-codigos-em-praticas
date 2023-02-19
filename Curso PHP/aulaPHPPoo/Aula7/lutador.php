@@ -106,16 +106,16 @@ class lutador {
         $this->empates = $em;
     }
 
-    public function ganharLuta($vi) {
-       $this->vitorias = ($this->getVitorias() + 1);
+    public function ganharLuta() {
+       $this->vitorias = $this->vitorias + 1;
     }
 
-    public function perderLuta($de) {
-        $this->derrotas = ($this->getDerrotas() + 1);
+    public function perderLuta() {
+        $this->derrotas = $this->derrotas + 1;
     }
 
-    public function empatarLuta($em) {
-        $this->empates = ($this->getEmpates() + 1);
+    public function empatarLuta() {
+        $this->empates = $this->empates + 1;
     }
 
     public function apresentar(){
