@@ -11,7 +11,7 @@ class luta {
         $this->desafiado = $dd;
         $this->desafiante = $dt;
         $this->rounds = $ro;
-        $this->aprovaca = $ap;
+        $this->aprovada = $ap;
     }
 
     public function getDesafiado(){
@@ -60,7 +60,30 @@ class luta {
     }
 
     public function lutar(){
-
+        if ($this->aprovada) {
+            $this->desafiado->apresentar();
+            $this->desafiante->apresentar();
+            $vencedor = rand(0,2);
+            switch ($vencedor){
+                case 0: //empate
+                    echo "<p>Empatou!</p>";
+                    $this->desafiado->empatarLuta();
+                    $this->desafiante->empatarLuta();
+                    break;
+                case 1: // ganhou desafiado
+                    echo "<p>Ganhou" . $this->desafiado->getNome()."</p>";
+                    $this->desafiado->ganharLuta();
+                    $this->desafiante->perderLuta();
+                    break;
+                case 2: //ganhou desafiante
+                    echo "<p>Ganhou" . $this->desafiante->getNome()."</p>" ;
+                    $this->desafiante->ganharLuta();
+                    $this->desafiado->perderLuta();
+                    break;
+            }
+        } else {
+            echo "<p>Luta não pode acontecer</p>";
+        }
     }
 }
 ?>

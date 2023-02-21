@@ -154,7 +154,7 @@ public function Caneta() {
     $this->ponta = 0.5;
     $this->modelo = "BIC cristal";
 }
-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Aula7 
 PHP ⏩
 
@@ -174,5 +174,36 @@ constructor
         $this->derrotas = $de;
         $this->empates = $em;
     }
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Aula8
+PHP ⏩
 
-    
+Obs: Pode ser adicionada a função na variável
+já criada no seguinte modo abaixo.
+
+    public function lutar(){
+        if ($this->aprovada) {
+            $this->desafiado->apresentar();
+            $this->desafiante->apresentar();
+            $vencedor = rand(0,2);
+            switch ($vencedor){
+                case 0: //empate
+                    echo "<p>Empatou!</p>";
+                    $this->desafiado->empatarLuta();
+                    $this->desafiante->empatarLuta();
+                    break;
+                case 1: // ganhou desafiado
+                    echo "<p>Ganhou" . $this->desafiado->getNome()."</p>";
+                    $this->desafiado->ganharLuta();
+                    $this->desafiante->perderLuta();
+                    break;
+                case 2: //ganhou desafiante
+                    echo "<p>Ganhou" . $this->desafiante->getNome()."</p>" ;
+                    $this->desafiante->ganharLuta();
+                    $this->desafiado->perderLuta();
+                    break;
+            }
+        } else {
+            echo "<p>Luta não pode acontecer</p>";
+        }
+    }
