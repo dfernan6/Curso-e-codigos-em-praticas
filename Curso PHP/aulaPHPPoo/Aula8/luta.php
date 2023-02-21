@@ -7,13 +7,6 @@ class luta {
     private $rounds;
     private $aprovada;
 
-    public function __construct($dd, $dt, $ro, $ap){
-        $this->desafiado = $dd;
-        $this->desafiante = $dt;
-        $this->rounds = $ro;
-        $this->aprovada = $ap;
-    }
-
     public function getDesafiado(){
         return $this->desafiado;
     }
@@ -47,7 +40,7 @@ class luta {
     }
 
     public function marcarLuta($l1, $l2){
-        if ($l1.getCategoria() == $l2.getCategoria()
+        if ($l1->getCategoria() === $l2->getCategoria()
          && ($l1 != $l2)) {
                 $this->setAprovada(true);
                 $this->setDesafiado($l1);
@@ -71,18 +64,20 @@ class luta {
                     $this->desafiante->empatarLuta();
                     break;
                 case 1: // ganhou desafiado
-                    echo "<p>Ganhou" . $this->desafiado->getNome()."</p>";
+                    echo "<p>Ganhou " . $this->desafiado->getNome()."</p>";
                     $this->desafiado->ganharLuta();
                     $this->desafiante->perderLuta();
                     break;
                 case 2: //ganhou desafiante
-                    echo "<p>Ganhou" . $this->desafiante->getNome()."</p>" ;
+                    echo "<p>Ganhou " . $this->desafiante->getNome()."</p>" ;
                     $this->desafiante->ganharLuta();
                     $this->desafiado->perderLuta();
                     break;
             }
+            $this->desafiado->status();
+            $this->desafiante->status();
         } else {
-            echo "<p>Luta não pode acontecer</p>";
+            echo "<p>A Luta não pode acontecer</p>";
         }
     }
 }
