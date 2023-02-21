@@ -14,11 +14,5 @@ $l[4] = New lutador("UFCobol", "Brasil",
 37, 1.70, 119.3, 5, 4, 3);
 $l[5] = New lutador("Nerdaart", "EUA", 
 30, 1.81, 105.7, 12, 2, 4);
-$l[3]->perderLuta();
-$l[3]->apresentar();
-$l[3]->status();
-$l[0]->ganharLuta();
-$l[0]->apresentar();
-$l[0]->status();
 ?>
 </pre>
