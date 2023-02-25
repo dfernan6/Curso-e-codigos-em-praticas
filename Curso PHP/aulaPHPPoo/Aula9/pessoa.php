@@ -1,6 +1,4 @@
 <?php
-//require_once "livro.php";
-//require_once "publicação.php";
 
 class pessoa {
     private $nome;
