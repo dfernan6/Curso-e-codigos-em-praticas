@@ -1,5 +1,6 @@
 <?php
 require_once "publicação.php";
+require_once "pessoa.php";
 
 class livro implements publicação {
     private $titulo;
@@ -8,6 +9,26 @@ class livro implements publicação {
     private $pagAtual;
     private $aberto;
     private $leitor;
+
+public function detalhes() {
+    echo "Detalhes do Livro";
+    echo "<br> Título:  ".$this->getTitulo();
+    echo "<br> Autor: ".$this->getAutor();
+    echo "<br> Total de páginas: ".$this->getTotPaginas();
+    echo "<br> Página atual: ".$this->getPagAtual();
+    echo "<br> Aberto: ".($this->getAberto()?"Sim":"Não");
+    echo "<br> Leitor: ";
+}
+
+public function __Construct($titulo, $autor, $totPaginas,
+ $leitor) {
+    $this->titulo = $titulo;
+    $this->autor = $autor;
+    $this->totPaginas = $totPaginas;
+    $this->aberto = false;
+    $this->pagAtual = $this->getAberto()?10:"Seu livro Está fechado";
+    $this->leitor = $leitor;
+}
 
 private function getTitulo() {
     return $this->titulo;
@@ -56,35 +77,26 @@ private function setLeitor($leitor) {
     $this->leitor = $leitor;
 }
 
-public function detalhes() {
-    echo "Detalhes do Livro";
-    echo "<br> Título: ".$this->setTitulo("O senhor dos anéis").$this->getTitulo();
-    echo "<br> Autor: ".$this->setAutor("J.R.R. Tolkien").$this->getAutor();
-    echo "<br> Total de páginas: ".$this->setTotPaginas(512).$this->getTotPaginas();
-    echo "<br> Página atual: ".$this->setPagAtual(rand(0,512)). $this->getPagAtual();
-    echo "<br> Aberto: ".$this->setAberto(true). $this->getAberto();
-    echo "<br> Leitor: " .$this->setLeitor("Joaquim").$this->getLeitor();
-}
-
 public function abrir() {
-    echo "<br>Abrindo";
+    $this->setAberto(true);
 }
 
 public function fechar() {
-    echo "<br>Fechando";
+    $this->setAberto(false);
 }
 
 public function folhear() {
-    echo "<br>Folheando";
+    $this->setPagAtual(rand(1,512));
 }
 
 public function avançarPag() {
-    echo "<br>Avançando";
-}
+    $this->pagAtual += 1;
+      }
 
 public function voltarPag() {
-    echo "<br>Voltando";
+    $this->pagAtual -= 1;
   }
+
 }
 
 ?>
