@@ -25,7 +25,7 @@ public function __Construct($titulo, $autor, $totPaginas,
     $this->titulo = $titulo;
     $this->autor = $autor;
     $this->totPaginas = $totPaginas;
-    $this->aberto = $this->getAberto();
+    $this->aberto = false;
     $this->pagAtual = $this->getAberto()?10:"Seu livro Está fechado";
     $this->leitor = $leitor;
 }
