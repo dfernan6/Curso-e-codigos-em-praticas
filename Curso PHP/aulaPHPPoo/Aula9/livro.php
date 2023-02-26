@@ -1,5 +1,6 @@
 <?php
 require_once "publicação.php";
+require_once "pessoa.php";
 
 class livro implements publicação {
     private $titulo;
@@ -8,6 +9,26 @@ class livro implements publicação {
     private $pagAtual;
     private $aberto;
     private $leitor;
+
+public function __Construc($titulo, $autor, $totPaginas,
+ $leitor) {
+    $this->titulo = $titulo;
+    $this->autor = $autor;
+    $this->totPaginas = $totPaginas;
+    $this->pagAtual = 10;
+    $this->aberto = false;
+    $this->leitor = $leitor;
+}
+
+public function detalhes() {
+    echo "Detalhes do Livro";
+    echo "<br> Título:  ";
+    echo "<br> Autor: ";
+    echo "<br> Total de páginas: ";
+    echo "<br> Página atual: ";
+    echo "<br> Aberto: ";
+    echo "<br> Leitor: ";
+}
 
 private function getTitulo() {
     return $this->titulo;
@@ -53,21 +74,16 @@ private function getLeitor() {
 }
 
 private function setLeitor($leitor) {
-    $this->leitor = $leitor;
-}
-
-public function detalhes() {
-    echo "Detalhes do Livro";
-    echo "<br> Título: ".$this->setTitulo("O senhor dos anéis").$this->getTitulo();
-    echo "<br> Autor: ".$this->setAutor("J.R.R. Tolkien").$this->getAutor();
-    echo "<br> Total de páginas: ".$this->setTotPaginas(512).$this->getTotPaginas();
-    echo "<br> Página atual: ".$this->setPagAtual(rand(0,512)). $this->getPagAtual();
-    echo "<br> Aberto: ".$this->setAberto(true). $this->getAberto();
-    echo "<br> Leitor: " .$this->setLeitor("Joaquim").$this->getLeitor();
+    $this->leitor = getNome();
 }
 
 public function abrir() {
-    echo "<br>Abrindo";
+    if($this->getAberto() == false){
+        $this->setAberto(true);
+        echo "<br>Abrindo";
+    } else {
+        echo "<br>O livro já está aberto";
+    }
 }
 
 public function fechar() {

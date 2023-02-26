@@ -9,7 +9,14 @@ echo "<br>";
 print_r($p1);
 
 echo "<br>";
-$l1 = New livro();
+$l1 = New livro("LOTR", "J.R.R. Tolkien", 
+512);
 $l1->detalhes();
+$l1->abrir();
+$l1->fechar();
+$l1->avançarPag();
+$l1->voltarPag();
+echo "<br>";
+print_r($l1);
 ?>
 </pre>
