@@ -36,7 +36,7 @@ class pessoa {
     }
 
     public function fazerAniver(){
-        echo "Você é aniversariante!<br>";
+        echo $this->getNome(). " é aniversariante!<br>";
     }
 }
 

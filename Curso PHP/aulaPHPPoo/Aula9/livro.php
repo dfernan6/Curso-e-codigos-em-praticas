@@ -9,17 +9,6 @@ class livro implements publicação {
     private $aberto;
     private $leitor;
 
-public function __Construc($titulo, $autor, $totPaginas,
- $pagAtual, $aberto, $leitor) {
-    $this->titulo = $titulo;
-    $this->autor = $autor;
-    $this->totPaginas = $totPaginas;
-    $this->pagAtual = $pagAtual;
-    $this->aberto = $aberto;
-    $this->leitor = $leitor;
-
-}
-
 private function getTitulo() {
     return $this->titulo;
 }
@@ -68,27 +57,33 @@ private function setLeitor($leitor) {
 }
 
 public function detalhes() {
-    echo "Testing...";
+    echo "Detalhes do Livro";
+    echo "<br> Título: ".$this->setTitulo("O senhor dos anéis").$this->getTitulo();
+    echo "<br> Autor: ".$this->setAutor("J.R.R. Tolkien").$this->getAutor();
+    echo "<br> Total de páginas: ".$this->setTotPaginas(512).$this->getTotPaginas();
+    echo "<br> Página atual: ".$this->setPagAtual(rand(0,512)). $this->getPagAtual();
+    echo "<br> Aberto: ".$this->setAberto(true). $this->getAberto();
+    echo "<br> Leitor: " .$this->setLeitor("Joaquim").$this->getLeitor();
 }
 
 public function abrir() {
-    echo "Abrindo";
+    echo "<br>Abrindo";
 }
 
 public function fechar() {
-    echo "Fechando";
+    echo "<br>Fechando";
 }
 
 public function folhear() {
-    echo "Folheando";
+    echo "<br>Folheando";
 }
 
 public function avançarPag() {
-    echo "Avançando";
+    echo "<br>Avançando";
 }
 
 public function voltarPag() {
-    echo "Voltando";
+    echo "<br>Voltando";
   }
 }
 
