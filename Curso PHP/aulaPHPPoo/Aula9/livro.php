@@ -10,24 +10,24 @@ class livro implements publicação {
     private $aberto;
     private $leitor;
 
-public function __Construc($titulo, $autor, $totPaginas,
+public function detalhes() {
+    echo "Detalhes do Livro";
+    echo "<br> Título:  ".$this->getTitulo();
+    echo "<br> Autor: ".$this->getAutor();
+    echo "<br> Total de páginas: ".$this->getTotPaginas();
+    echo "<br> Página atual: ".$this->getPagAtual();
+    echo "<br> Aberto: ".($this->getAberto()?"Sim":"Não");
+    echo "<br> Leitor: ";
+}
+
+public function __Construct($titulo, $autor, $totPaginas,
  $leitor) {
     $this->titulo = $titulo;
     $this->autor = $autor;
     $this->totPaginas = $totPaginas;
-    $this->pagAtual = 10;
-    $this->aberto = false;
+    $this->aberto = $this->getAberto();
+    $this->pagAtual = $this->getAberto()?10:"Seu livro Está fechado";
     $this->leitor = $leitor;
-}
-
-public function detalhes() {
-    echo "Detalhes do Livro";
-    echo "<br> Título:  ";
-    echo "<br> Autor: ";
-    echo "<br> Total de páginas: ";
-    echo "<br> Página atual: ";
-    echo "<br> Aberto: ";
-    echo "<br> Leitor: ";
 }
 
 private function getTitulo() {
@@ -74,33 +74,29 @@ private function getLeitor() {
 }
 
 private function setLeitor($leitor) {
-    $this->leitor = getNome();
+    $this->leitor = $leitor;
 }
 
 public function abrir() {
-    if($this->getAberto() == false){
-        $this->setAberto(true);
-        echo "<br>Abrindo";
-    } else {
-        echo "<br>O livro já está aberto";
-    }
+    $this->setAberto(true);
 }
 
 public function fechar() {
-    echo "<br>Fechando";
+    $this->setAberto(false);
 }
 
 public function folhear() {
-    echo "<br>Folheando";
+    $this->setPagAtual(rand(1,512));
 }
 
 public function avançarPag() {
-    echo "<br>Avançando";
-}
+    $this->pagAtual += 1;
+      }
 
 public function voltarPag() {
-    echo "<br>Voltando";
+    $this->pagAtual -= 1;
   }
+
 }
 
 ?>
