@@ -10,6 +10,16 @@ class livro implements publicação {
     private $aberto;
     private $leitor;
 
+public function __Construct($titulo, $autor, $totPaginas, 
+$leitor) {
+    $this->titulo = $titulo;
+    $this->autor = $autor;
+    $this->totPaginas = $totPaginas;
+    $this->aberto = false;
+    $this->pagAtual = 0;
+    $this->leitor = $leitor;
+}
+
 public function detalhes() {
     echo "Detalhes do Livro";
     echo "<br> Título:  ".$this->getTitulo();
@@ -18,16 +28,6 @@ public function detalhes() {
     echo "<br> Página atual: ".$this->getPagAtual();
     echo "<br> Aberto: ".($this->getAberto()?"Sim":"Não");
     echo "<br> Leitor: ";
-}
-
-public function __Construct($titulo, $autor, $totPaginas,
- $leitor) {
-    $this->titulo = $titulo;
-    $this->autor = $autor;
-    $this->totPaginas = $totPaginas;
-    $this->aberto = false;
-    $this->pagAtual = $this->getAberto()?10:"Seu livro Está fechado";
-    $this->leitor = $leitor;
 }
 
 private function getTitulo() {

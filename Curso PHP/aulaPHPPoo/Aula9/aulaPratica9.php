@@ -5,21 +5,27 @@ require_once "livro.php";
 
 $p1[0] = New pessoa("Danyela", 22, "Feminino");
 $p1[0]->fazerAniver();
-echo "<br>";
-print_r($p1);
+$p1[1] = New pessoa("Zé", 33, "Masculino");
+$p1[1]->fazerAniver();
 
-echo "<br>";
 $l1[1] = New livro("LOTR", "J.R.R. Tolkien", 
-512, "Zé");
+512, $p1[0]);
+$l1[2] = new livro("Escandinavia", "Podrin",
+315, $p1[1] );
 echo "<br>";
 $l1[1]->abrir();
 //$l1[1]->fechar();
-//$l1[1]->folhear();
-//$l1[1]->avançarPag();
+$l1[1]->folhear();
+//[1]->avançarPag();
 //$l1[1]->voltarPag();
 $l1[1]->detalhes();
-echo "<br>";
+echo "<hr>";
+$l1[2]->folhear();
+$l1[2]->detalhes();
+echo "<hr>";
 echo "<br>";
 print_r($l1[1]);
+echo "<br>";
+print_r($l1[2]);
 ?>
 </pre>
