@@ -6,7 +6,7 @@ class aluno extends pessoa {
     private $matricula;
     private $curso;
 
-    public function __Construct($m, $c){
+    public function __Construct($c){
         $this->matricula = true;
         $this->curso = $c;
     }

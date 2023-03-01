@@ -5,9 +5,9 @@ class funcionario extends pessoa {
     private $setor;
     private $trabalhando;
 
-    public function __Construct($s, $t){
+    public function __Construct($s){
         $this->setor = $s;
-        $this->trabalhando = $t;
+        $this->trabalhando = true;
     }
 
     public function getSetor(){
