@@ -27,7 +27,7 @@ class professor extends pessoa {
     }
 
     public function receberAumento($d){
-        $this->salario + $d;
+        $this->salario += $d;
     }
 }
 ?>
