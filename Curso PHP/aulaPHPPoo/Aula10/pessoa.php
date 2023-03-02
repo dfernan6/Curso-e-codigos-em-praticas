@@ -4,12 +4,6 @@ class pessoa{
     private $idade;
     private $sexo;
 
-public function __Construct($nome, $idade, $sexo){
-    $this->nome = $nome;
-    $this->idade = $idade;
-    $this->sexo = $sexo;
-}
-
 public function fazerAniv(){
     $this->idade += 1;
 }

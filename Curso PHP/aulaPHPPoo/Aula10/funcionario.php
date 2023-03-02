@@ -27,7 +27,7 @@ class funcionario extends pessoa {
     }
 
     public function mudarTrabalho($t){
-        $this->trabalhando = $t;
+        $this->setor = $t;
     }
 }
 ?>
