@@ -27,8 +27,8 @@ class aluno extends pessoa {
         $this->curso = $c;
     }
 
-    public function cancelarMatricula(){
-        $this->matricula = false;
+    public function pagarMensalidade(){
+        echo "<p>Pagando mensalidade do aluno ".$this->getNome()."<br>";
     }
 }
 

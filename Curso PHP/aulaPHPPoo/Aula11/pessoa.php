@@ -1,10 +1,11 @@
 <?php
-class pessoa{
-    private $nome;
-    private $idade;
-    private $sexo;
 
-public function fazerAniv(){
+abstract class pessoa{
+    protected $nome;
+    protected $idade;
+    protected $sexo;
+
+public final function fazerAniv(){
     $this->idade += 1;
 }
 
