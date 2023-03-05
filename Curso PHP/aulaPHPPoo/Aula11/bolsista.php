@@ -17,8 +17,13 @@ class bolsista extends aluno {
     public function setBolsa($m){
         $this->bolsa = $m;
     }
+
     public function renovarBolsa(){
         echo "<p>Bolsa renovada de ".$this->getNome()."<br>";
+    }
+
+    public function pagarMensalidade(){
+        echo "<p>Pagando mensalidade com desconto ".$this->getNome()."<br>";
     }
 }
 
