@@ -241,3 +241,10 @@ print_r($f);
 
 ?>
 </pre>
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+PHP ⏩
+
+Obs: A classe final não pode ter filhos 
+e as funções final, não podem ser alteradas
+pelos seus filhos.
