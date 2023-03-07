@@ -6,15 +6,15 @@ class ave extends animal {
     private $corPena;
 
     public function locomover(){
-        echo "voando";
+        echo "voando<br>";
     }
 
     public function alimentar(){
-        echo "comendo frutas";
+        echo "comendo frutas<br>";
     }
 
     public function emitirSom(){
-        echo "Som de ave";
+        echo "Som de ave<br>";
     }
 
     public function fazerNinho(){

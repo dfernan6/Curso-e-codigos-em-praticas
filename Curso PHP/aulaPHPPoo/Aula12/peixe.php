@@ -2,23 +2,23 @@
 
 require_once "animal.php";
 
-class paixe extends animal {
+class peixe extends animal {
     private $corEscama;
 
     public function locomover(){
-        echo "nadando";
+        echo "nadando<br>";
     }
 
     public function alimentar(){
-        echo "Comendo substancias";
+        echo "Comendo substancias<br>";
     }
 
     public function emitirSom(){
-        echo "peixa não faz som";
+        echo "peixa não faz som<br>";
     }
 
     public function soltarBolha(){
-        echo "Soltou uma bolha";
+        echo "Soltou uma bolha<br>";
     }
 
     public function getCorEscama(){

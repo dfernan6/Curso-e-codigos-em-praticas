@@ -6,15 +6,15 @@ class reptil extends animal {
     private $corEscama;
 
     public function locomover(){
-        echo "Rastejando";
+        echo "Rastejando<br>";
     }
 
     public function alimentar(){
-        echo "Comendo vegetais";
+        echo "Comendo vegetais<br>";
     }
 
     public function emitirSom(){
-        echo "som de reptil";
+        echo "som de reptil<br>";
     }
 
     public function getCorEscama(){

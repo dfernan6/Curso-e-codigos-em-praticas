@@ -5,15 +5,15 @@ class mamifero extends animal {
     private $corPelo;
 
     public function locomover(){
-        echo "Correndo";
+        echo "Correndo<br>";
     }
 
     public function alimentar(){
-        echo "Mamando";
+        echo "Mamando<br>";
     }
 
     public function emitirSom(){
-        echo "Som de mamifero";
+        echo "Som de mamifero<br>";
     }
 
     public function getCorPelo(){
