@@ -75,6 +75,10 @@ $ca->setMembros(4);
 $ca->setCorPelo("Caramelo");
 $ca->enterrarOsso();
 $ca->abanarRabo();
+$ca->reagirFrase("olá");
+$ca->reagirHora(12);
+$ca->reagirDono(false);
+$ca->reagirIdadePeso(11, 1);
 
 print_r($ca);
 
