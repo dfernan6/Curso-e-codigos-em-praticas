@@ -248,3 +248,14 @@ PHP ⏩
 Obs: A classe final não pode ter filhos 
 e as funções final, não podem ser alteradas
 pelos seus filhos.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+PHP ⏩
+
+Obs: Pode ser adicionado da classe pai os atributos
+na classe filho, assim como abaixo.
+
+    public function __construct($espectador, $filme) {
+        $this->espectador = $espectador;
+        $this->filme = $filme;
+        $this->filme->setViews($this->filme->getViews() + 1);
+    }
