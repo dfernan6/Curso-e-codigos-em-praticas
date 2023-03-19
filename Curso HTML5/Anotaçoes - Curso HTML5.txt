@@ -1365,3 +1365,12 @@ fieldset#pedido
 {
     background: url("../_imagens/icone-pagamento.png") no-repeat 95% 95%;
 }
+---------------------------------------------------------------
+CSS »----
+
+Seletores
+
+# = DIV
+. = Class
+: = pseudo-class
+:: = pseudo-element
