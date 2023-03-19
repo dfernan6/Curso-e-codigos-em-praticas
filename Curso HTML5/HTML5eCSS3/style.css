@@ -10,6 +10,8 @@ h1 {
         background-image: linear-gradient(45deg, #C5C3E6, #CCD4F0,#C5CFDA, #CCE7F0, #C3E6E5);
         text-shadow: 2px 2px 2px black;
         margin: 5px;
+        box-shadow: 5px 5px 5px 1px black;
+        outline: #C3E6E5 2px solid;
     }
 
  p {
@@ -23,6 +25,8 @@ h1 {
      border-color: aquamarine;
      text-align: justify;
      text-shadow: 1px 1px 2px black;
+     overflow: hidden;
+     text-overflow: ellipsis;
  }
 
  h2 {
@@ -46,6 +50,8 @@ div{
     padding: 10px;
     border-radius: 5px;
     margin: 5px;
+    outline: #C3E6E5 2px solid;
+    box-shadow: 5px 5px 5px 1px black;
 }
 
 .Text:hover {
@@ -54,9 +60,15 @@ div{
 
 .Text:hover > .hidden {
     display: block;
+    margin-top: -13px;
 }
 .hidden {
     display: none;
     font-size: 10px;
     color: aliceblue;
+}
+
+section {
+    display: inline;
+    margin: 10px;
 }
