@@ -1,21 +1,14 @@
 @charset "UTF-8";
 @font-face {
-    font-family: 'idroid';
-    src: url('fontes/idroid.otf') format('opentype');
+    font-family: 'android';
+    src: url('fontes/idroid.otf') format('opentype'),
+    url('fontes/Quicksand-VariableFont_wght.ttf') format('truetype');
 }
 
 h1 {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font: normal;
-        color: rgb(144, 144, 175);
-        border-radius: 5px;
-        border: solid;
-        border-color: rgba(0, 0, 0, 0.74);
-        background-image: linear-gradient(45deg, #C5C3E6, #CCD4F0,#C5CFDA, #CCE7F0, #C3E6E5);
-        text-shadow: 2px 2px 2px black;
-        margin: 5px;
-        box-shadow: 5px 5px 5px 1px black;
-        outline: #C3E6E5 2px solid;
+        font-family:'Quicksand-VariableFont_wght';
+        color: #ffffff;
+        text-align: center;
     }
 
  p {
@@ -26,19 +19,19 @@ h1 {
  }
 
  h2 {
-    font-family: 'idroid';
+    font-family: 'android';
     color: #3a853c;
  }
 
  h3 {
-    font-family: 'idroid';
+    font-family: 'android';
     color: #ffffff;
     font-size: 12px;
     background-color: #3a853c;
  }
 
  header{
-    background-color: #C3E6E5;
+    background-image: linear-gradient(to bottom, rgb(170, 243, 170), rgb(43, 105, 48));
  }
 
 body {
@@ -47,4 +40,31 @@ body {
 
 div#pai{
     background-color: white;
+    padding: 10px;
+    width: 600px;
+    justify-content: center;
+    display: inline-block;
+}
+
+div#especial {
+    display: inline-block;
+    background-image: linear-gradient(to bottom, rgb(43, 105, 48) ,rgb(170, 243, 170) ,rgb(170, 243, 170) , rgb(170, 243, 170));
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.itens {
+    list-style-type: none;
+}
+
+h4 {
+    color: white;
+}
+
+div#list{
+    display: flex;
+}
+
+img {
+    width: 100%;
 }
