@@ -1374,3 +1374,23 @@ Seletores
 . = Class
 : = pseudo-class
 :: = pseudo-element
+
+Variaveis CSS
+
+exemplos:
+
+  :root {
+  --color-text-desktop: red;
+  --color-text-mobile: blue
+}
+
+h1 {
+  color: var(--color-text-desktop)
+}
+
+@media (max-width: 640px) {
+
+  h1 {
+    color: var(--color-text-mobile)
+  }
+}
