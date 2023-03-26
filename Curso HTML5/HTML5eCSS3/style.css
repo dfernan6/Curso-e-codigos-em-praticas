@@ -21,6 +21,7 @@ h1 {
      font: normal;
      color: black;
      text-align: justify;
+     margin: 15px 0px;
  }
 
  h2 {
@@ -51,12 +52,12 @@ body {
 .container{
     background-color: white;
     padding: 10px;
-    width: 700px;
+    min-width: 320px;
+    max-width: 1000px;
     display: flexbox;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
     border-radius: 5px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     outline: #0808088c 1px solid;
 }
 
@@ -103,14 +104,17 @@ img {
 
 .textTop {
     color: #ffffff;
+    text-shadow: 2px 2px 2px black;
 }
 
 ul {
     font-family: 'heebo', sans-serif;
+    font-weight: bold;
 }
 
 a {
     text-decoration: none;
+    margin: 10px;
 }
 
 a:link {
@@ -122,9 +126,9 @@ a:hover {
  }
 
 img#bugDroid{
-    height: 200px;
-    width: 300px;
-    margin-left: 150px;
+    width: 50%;
+    display: block;
+    margin: auto;
 }
 
 footer {
@@ -134,5 +138,12 @@ footer {
 }
 
 iframe {
-    margin-left: 70px;
+    margin: auto;
+    width: 100%;
 } 
+
+div#video{
+    margin:auto;
+    max-width: 61%;
+    background-color: #ffffff;
+}
