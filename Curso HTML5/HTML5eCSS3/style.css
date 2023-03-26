@@ -1,18 +1,23 @@
 @charset "UTF-8";
 @font-face {
     font-family: 'android';
-    src: url('fontes/idroid.otf') format('opentype'),
-    url('fontes/Quicksand-VariableFont_wght.ttf') format('truetype');
+    src: url('fontes/idroid.otf') format('opentype');
 }
 
+@font-face {
+    font-family: 'variable';
+    src: url('fontes/Quicksand-VariableFont_wght.ttf') format('truetype');
+}
 h1 {
-        font-family:'Quicksand-VariableFont_wght';
+        font-family:'variable';
+        text-shadow: 2px 2px 2px black;
         color: #ffffff;
         text-align: center;
     }
 
  p {
-    font-family: 'Times New Roman', Times, serif;
+     display: inline;
+     font-family: 'Heebo', sans-serif;
      font: normal;
      color: black;
      text-align: justify;
@@ -21,36 +26,48 @@ h1 {
  h2 {
     font-family: 'android';
     color: #3a853c;
+
  }
 
  h3 {
     font-family: 'android';
     color: #ffffff;
     font-size: 12px;
-    background-color: #3a853c;
+    background-image: linear-gradient(to right, rgb(43, 105, 48) ,rgb(170, 243, 170) ,rgb(170, 243, 170) , rgb(255, 255, 255));
  }
 
  header{
     background-image: linear-gradient(to bottom, rgb(170, 243, 170), rgb(43, 105, 48));
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
  }
 
 body {
     background-color: #a1f7a3;
 }
 
-div#pai{
+.container{
     background-color: white;
     padding: 10px;
-    width: 600px;
-    justify-content: center;
-    display: inline-block;
+    width: 700px;
+    display: flexbox;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    outline: #0808088c 1px solid;
 }
 
 div#especial {
     display: inline-block;
     background-image: linear-gradient(to bottom, rgb(43, 105, 48) ,rgb(170, 243, 170) ,rgb(170, 243, 170) , rgb(170, 243, 170));
-    border-radius: 30px;
+    border-radius: 10px;
     padding: 10px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
+    margin-bottom: 10px;
+    outline: #0808088c 1px solid;
 }
 
 .itens {
@@ -67,4 +84,55 @@ div#list{
 
 img {
     width: 100%;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    margin-left: -50px;
+    margin-bottom: -10px;
+}
+
+.menu > li {
+    margin-right: 5px;
+}
+
+.menu > li:hover{
+    background-color: white;
+}
+
+.textTop {
+    color: #ffffff;
+}
+
+ul {
+    font-family: 'heebo', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: white;
+ }
+
+a:hover {
+     color: green;
+ }
+
+img#bugDroid{
+    height: 200px;
+    width: 300px;
+    margin-left: 150px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #3a853c;
+}
+
+iframe {
+    margin-left: 70px;
 }
