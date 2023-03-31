@@ -1,74 +1,149 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'android';
+    src: url('fontes/idroid.otf') format('opentype');
+}
 
+@font-face {
+    font-family: 'variable';
+    src: url('fontes/Quicksand-VariableFont_wght.ttf') format('truetype');
+}
 h1 {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font: normal;
-        color: rgb(144, 144, 175);
-        border-radius: 5px;
-        border: solid;
-        border-color: rgba(0, 0, 0, 0.74);
-        background-image: linear-gradient(45deg, #C5C3E6, #CCD4F0,#C5CFDA, #CCE7F0, #C3E6E5);
+        font-family:'variable';
         text-shadow: 2px 2px 2px black;
-        margin: 5px;
-        box-shadow: 5px 5px 5px 1px black;
-        outline: #C3E6E5 2px solid;
+        color: #ffffff;
+        text-align: center;
     }
 
  p {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+     display: inline;
+     font-family: 'Heebo', sans-serif;
      font: normal;
-     background-image: linear-gradient(180deg, rgba(145, 133, 212, 0.938),rgba(18, 0, 184, 0.993), grey);
-     background-clip: text;
-     font-size: 18px;
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
-     border-color: aquamarine;
+     color: black;
      text-align: justify;
-     text-shadow: 1px 1px 2px black;
-     overflow: hidden;
-     text-overflow: ellipsis;
+     margin: 15px 0px;
  }
 
  h2 {
-    font-family: Arial, Helvetica, sans-serif;
-    color:grey;
-    text-shadow: 1px 1px 2px rgb(255, 255, 255);;
+    font-family: 'android';
+    color: #3a853c;
+
+ }
+
+ h3 {
+    font-family: 'android';
+    color: #ffffff;
+    font-size: 12px;
+    background-image: linear-gradient(to right, rgb(43, 105, 48) ,rgb(170, 243, 170) ,rgb(170, 243, 170) , rgb(255, 255, 255));
+ }
+
+ header{
+    background-image: linear-gradient(to bottom, rgb(170, 243, 170), rgb(43, 105, 48));
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
  }
 
 body {
-    background-color: rgb(252, 252, 252);
+    background-color: #a1f7a3;
 }
 
-div{
+.container{
+    background-color: white;
+    padding: 10px;
+    min-width: 320px;
+    max-width: 1000px;
+    display: flexbox;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
+    border-radius: 5px;
+    margin: auto;
+    outline: #0808088c 1px solid;
+}
+
+div#especial {
+    display: inline-block;
+    background-image: linear-gradient(to bottom, rgb(43, 105, 48) ,rgb(170, 243, 170) ,rgb(170, 243, 170) , rgb(170, 243, 170));
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
+    margin-bottom: 10px;
+    outline: #0808088c 1px solid;
+}
+
+.itens {
+    list-style-type: none;
+}
+
+h4 {
+    color: white;
+}
+
+div#list{
     display: flex;
 }
 
-.Text {
-    display: inline;
-    background-image: linear-gradient(45deg, #C5C3E6, #CCD4F0,#C5CFDA, #CCE7F0, #C3E6E5);
-    border: solid rgba(0, 0, 0, 0.74);
-    padding: 10px;
-    border-radius: 5px;
-    margin: 5px;
-    outline: #C3E6E5 2px solid;
-    box-shadow: 5px 5px 5px 1px black;
+img {
+    width: 100%;
 }
 
-.Text:hover {
-    background-image: linear-gradient(45deg, #636274, #8f94a7,#707d8b, #6c8992, #719291);
+.menu {
+    display: flex;
+    list-style: none;
+    margin-left: -50px;
+    margin-bottom: -10px;
 }
 
-.Text:hover > .hidden {
-    display: block;
-    margin-top: -13px;
-}
-.hidden {
-    display: none;
-    font-size: 10px;
-    color: aliceblue;
+.menu > li {
+    margin-right: 5px;
 }
 
-section {
-    display: inline;
+.menu > li:hover{
+    background-color: white;
+}
+
+.textTop {
+    color: #ffffff;
+    text-shadow: 2px 2px 2px black;
+}
+
+ul {
+    font-family: 'heebo', sans-serif;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
     margin: 10px;
+}
+
+a:link {
+    color: white;
+ }
+
+a:hover {
+     color: green;
+ }
+
+img#bugDroid{
+    width: 50%;
+    display: block;
+    margin: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #3a853c;
+}
+
+iframe {
+    margin: auto;
+    width: 100%;
+} 
+
+div#video{
+    margin:auto;
+    max-width: 61%;
+    background-color: #ffffff;
 }
