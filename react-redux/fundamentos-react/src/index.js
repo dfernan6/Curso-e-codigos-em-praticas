@@ -1,14 +1,9 @@
 import './index.css'
-import ReactDOM from 'react-dom'
 import React from 'react'
-import Primeiro from './components/basicos/Primeiro'
-
-const tag = <strong>'Olá React!!'</strong>
+import ReactDOM from 'react-dom'
+import App from './App'
 
 ReactDOM.render(
-    <div>
-     { tag }
-     <p><Primeiro></Primeiro></p>
-    </div>,
+    <App />,
     document.getElementById('root')
 )
