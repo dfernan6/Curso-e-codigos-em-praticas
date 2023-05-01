@@ -4,11 +4,17 @@ import ComParametro from './components/basicos/ComParametro'
 import Fragmento from './components/basicos/Fragmento'
 import RandomNumber from './components/basicos/RandomNumber'
 import Aleatorio from "./components/basicos/Aleatorio";
+import Card from "./components/layout/Card";
 
 export default function App(){ 
   return (
 <div id="app">
  <h1>Fundamentos React</h1>
+ <Card 
+ titulo="Exemplo de Card"
+ content="Doidera!"
+ >
+  </Card> 
  <Primeiro />
 <ComParametro
   titulo="Situação do aluno"

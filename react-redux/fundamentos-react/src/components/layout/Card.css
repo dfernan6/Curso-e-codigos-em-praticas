@@ -1,0 +1,8 @@
+.Card {
+    background-color: brown;
+}
+
+.Card .content {
+    color: black;
+    background-color: aliceblue;
+}
