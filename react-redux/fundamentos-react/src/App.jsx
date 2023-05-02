@@ -13,22 +13,22 @@ export default function App(){
 <h1>FUNDAMENTOS REACT</h1>
  <div className="Cards">
  <Card 
- titulo="#5 - Aleatório"
+ titulo="#5 - Aleatório" color="#FA5A41"
  >
   <Aleatorio min={1} max={60}/>
   </Card> 
   <Card 
- titulo="#4 - Primeiro"
+ titulo="#4 - Primeiro" color="#1C1DFA"
  >
    <Primeiro />
   </Card> 
   <Card 
- titulo="#3 - Fragmento"
+ titulo="#3 - Fragmento" color="#48D5FA"
  >
    <Fragmento />
   </Card> 
   <Card 
- titulo="#2 - Aprovações"
+ titulo="#2 - Aprovações" color="#FFE142"
  >
  <ComParametro
   titulo="Situação do aluno"
@@ -41,7 +41,7 @@ export default function App(){
   />
   </Card> 
   <Card 
- titulo="#1 - Randomizado"
+ titulo="#1 - Randomizado" color="#F50B00"
  >
    <RandomNumber />
   </Card>
