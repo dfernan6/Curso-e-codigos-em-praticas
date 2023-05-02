@@ -1,8 +1,26 @@
+
 .Card {
     background-color: brown;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid grey;
+    margin-bottom: 10px;
+    display: flexbox;
+}
+
+.Card .title{
+    color: rgb(224, 224, 224);
+    padding: 15px 15px 15px;
+    justify-content: center;
+    display: flex;
 }
 
 .Card .content {
     color: black;
     background-color: aliceblue;
+    padding: 15px 20px 15px;
+}
+
+h1 {
+    text-align: center;
 }
