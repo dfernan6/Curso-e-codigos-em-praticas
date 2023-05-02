@@ -9,7 +9,7 @@ import Card from "./components/layout/Card";
 export default function App(){ 
   return (
 <div id="app">
- <h1>Fundamentos React</h1>
+ <h1>FUNDAMENTOS REACT</h1>
  <Card 
  titulo="Desafio Aleatório"
  >
