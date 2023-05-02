@@ -9,11 +9,11 @@
     margin: 5px;
     width: 200px;
     height: 300px;
+    border: 3px solid;
 }
 
 .Card .title{
     padding: 5px;
-    background-color: rgb(139, 39, 39);
     color: rgb(224, 224, 224);
     outline: #000000 2px solid;
     display: flex;
