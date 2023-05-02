@@ -1,26 +1,31 @@
 @charset "UTF-8";
 
 .Card {
-    background-color: brown;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
     border-radius: 10px;
     overflow: hidden;
-    border: 2px solid rgb(0, 0, 0);
-    margin-bottom: 10px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
+    margin: 5px;
+    width: 200px;
+    height: 300px;
 }
 
 .Card .title{
+    padding: 5px;
+    background-color: rgb(139, 39, 39);
     color: rgb(224, 224, 224);
-    padding: 15px 15px 15px;
-    justify-content: center;
-    display: flex;
     outline: #000000 2px solid;
+    display: flex;
+    justify-content: center;
 }
 
 .Card .content {
     color: rgb(73, 70, 70);
     background-color: aliceblue;
-    padding: 15px 20px 15px;
+    justify-content: center;
+    padding: 5px;
+    flex-grow: 1;
 }
 
 h1 {
@@ -28,11 +33,7 @@ h1 {
     font-weight: bold;
 }
 
-h2 {
-    font-size: 26px;
-}
 
 .title {
-    font-size: 30px;
     font-weight: bold;
 }

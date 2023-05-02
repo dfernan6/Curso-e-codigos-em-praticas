@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+.App .Cards {
+    display: flex;
+    min-height: 300px;
+    flex-wrap: wrap;
+    margin: auto;
+}

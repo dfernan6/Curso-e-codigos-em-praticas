@@ -5,28 +5,30 @@ import Fragmento from './components/basicos/Fragmento'
 import RandomNumber from './components/basicos/RandomNumber'
 import Aleatorio from "./components/basicos/Aleatorio";
 import Card from "./components/layout/Card";
+import './App.css'
 
 export default function App(){ 
   return (
-<div id="app">
- <h1>FUNDAMENTOS REACT</h1>
+<div className="App">
+<h1>FUNDAMENTOS REACT</h1>
+ <div className="Cards">
  <Card 
- titulo="Desafio Aleatório"
+ titulo="#5 - Aleatório"
  >
   <Aleatorio min={1} max={60}/>
   </Card> 
   <Card 
- titulo="Primeiro"
+ titulo="#4 - Primeiro"
  >
    <Primeiro />
   </Card> 
   <Card 
- titulo="Fragmento"
+ titulo="#3 - Fragmento"
  >
    <Fragmento />
   </Card> 
   <Card 
- titulo="Aprovações"
+ titulo="#2 - Aprovações"
  >
  <ComParametro
   titulo="Situação do aluno"
@@ -37,17 +39,13 @@ export default function App(){
   aluno="Maria"
   nota=" 7" 
   />
-  <ComParametro
-  titulo="Situação do aluno"
-  aluno="Lucia"
-  nota=" 6.3" 
-  />
   </Card> 
   <Card 
- titulo="Número randomizado"
+ titulo="#1 - Randomizado"
  >
    <RandomNumber />
-  </Card> 
+  </Card>
+  </div> 
 </div>
 )
 };
