@@ -7,14 +7,26 @@ import Aleatorio from "./components/basicos/Aleatorio";
 import Card from "./components/layout/Card";
 import './App.css'
 import Familia from "./components/basicos/Familia";
+import FamiliaMembro from "./components/basicos/FamiliaMembro";
+import ListaAlunos from "./components/repetição/ListaAlunos";
+
 
 export default function App(){ 
   return (
 <div className="App">
 <h1>FUNDAMENTOS REACT</h1>
  <div className="Cards">
+ <Card titulo="#7 - Repetição" color="#498505">
+  <ListaAlunos></ListaAlunos>
+ </Card>
  <Card titulo="#6 - Familia" color="#2D068F">
-  <Familia sobrenome="Silva"/>   
+  <Familia sobrenome="Silva">
+  <FamiliaMembro nome="Eduardo" />
+  <FamiliaMembro nome="Camila" />
+  <FamiliaMembro nome="Jorge" />
+  <FamiliaMembro nome="Claudio" />
+  <FamiliaMembro nome="Anderson" /> 
+  </Familia>  
 </Card>
  <Card 
  titulo="#5 - Aleatório" color="#FA5A41"

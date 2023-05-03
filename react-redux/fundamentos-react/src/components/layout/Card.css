@@ -23,7 +23,7 @@
 
 .Card .content {
     color: rgb(0, 0, 0);
-    background-color: aliceblue;
+    background-color: rgba(222, 225, 228, 0.514);
     justify-content: center;
     padding: 5px;
     flex-grow: 1;
