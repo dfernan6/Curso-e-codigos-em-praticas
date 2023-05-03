@@ -6,12 +6,16 @@ import RandomNumber from './components/basicos/RandomNumber'
 import Aleatorio from "./components/basicos/Aleatorio";
 import Card from "./components/layout/Card";
 import './App.css'
+import Familia from "./components/basicos/Familia";
 
 export default function App(){ 
   return (
 <div className="App">
 <h1>FUNDAMENTOS REACT</h1>
  <div className="Cards">
+ <Card titulo="#6 - Familia" color="#2D068F">
+  <Familia sobrenome="Silva"/>   
+</Card>
  <Card 
  titulo="#5 - Aleatório" color="#FA5A41"
  >
