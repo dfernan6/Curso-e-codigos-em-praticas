@@ -1,0 +1,13 @@
+.TabelaProduto table{
+    margin-left: 30px;
+    color: aliceblue;
+}
+
+.TabelaProduto tr {
+    background-color: rgb(117, 94, 117);
+}
+
+.TabelaProduto th {
+    color: rgba(82, 79, 79, 0.904);
+    background-color: rgb(244, 217, 245);
+}
