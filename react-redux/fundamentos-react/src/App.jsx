@@ -9,6 +9,7 @@ import './App.css'
 import Familia from "./components/basicos/Familia";
 import FamiliaMembro from "./components/basicos/FamiliaMembro";
 import ListaAlunos from "./components/repetição/ListaAlunos";
+import TabelaProdutos from "./components/repetição/TabelaProdutos";
 
 
 export default function App(){ 
@@ -16,6 +17,9 @@ export default function App(){
 <div className="App">
 <h1>FUNDAMENTOS REACT</h1>
  <div className="Cards">
+  <Card titulo ="#8 - Produtos" color="#DB0D90">
+    <TabelaProdutos></TabelaProdutos>
+  </Card>
  <Card titulo="#7 - Repetição" color="#498505">
   <ListaAlunos></ListaAlunos>
  </Card>
