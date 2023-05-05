@@ -11,7 +11,7 @@ import FamiliaMembro from "./components/basicos/FamiliaMembro";
 import ListaAlunos from "./components/repetição/ListaAlunos";
 import TabelaProdutos from "./components/repetição/TabelaProdutos";
 import ParOuImpar from "./components/condicional/ParOuImpar";
-//import parOuImpar from "./data/parOuImpar";
+import UsuárioInfo from "./components/repetição/UsuárioInfo";
 
 export default function App(){ 
   return (
@@ -19,7 +19,10 @@ export default function App(){
 <h1>FUNDAMENTOS REACT</h1>
  <div className="Cards">
   <Card titulo="#9 Condicional" color="#FAC837">
-  <ParOuImpar numero={2}></ParOuImpar>
+  <ParOuImpar numero={2} />
+  <ParOuImpar numero={3} />
+  <UsuárioInfo usuario={{nome: "Marcel"}}/>
+  <UsuárioInfo usuario={{nome: "Dani"}}/>
   </Card>
   <Card titulo ="#8 - Produtos" color="#DB0D90">
     <TabelaProdutos></TabelaProdutos>
