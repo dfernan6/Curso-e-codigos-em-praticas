@@ -1,5 +1,5 @@
 import React from "react";
-import parOuImpar from "../../data/parOuImpar";
+import parOuImpar from "../../data/If";
 
 export default (props) => {
     const isPar = props.numero % 2 === 0
