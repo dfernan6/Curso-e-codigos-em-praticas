@@ -10,13 +10,17 @@ import Familia from "./components/basicos/Familia";
 import FamiliaMembro from "./components/basicos/FamiliaMembro";
 import ListaAlunos from "./components/repetição/ListaAlunos";
 import TabelaProdutos from "./components/repetição/TabelaProdutos";
-
+import ParOuImpar from "./components/condicional/ParOuImpar";
+//import parOuImpar from "./data/parOuImpar";
 
 export default function App(){ 
   return (
 <div className="App">
 <h1>FUNDAMENTOS REACT</h1>
  <div className="Cards">
+  <Card titulo="#9 Condicional" color="#FAC837">
+  <ParOuImpar numero={2}></ParOuImpar>
+  </Card>
   <Card titulo ="#8 - Produtos" color="#DB0D90">
     <TabelaProdutos></TabelaProdutos>
   </Card>
