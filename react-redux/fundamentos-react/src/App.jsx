@@ -12,13 +12,21 @@ import ListaAlunos from "./components/repetição/ListaAlunos";
 import TabelaProdutos from "./components/repetição/TabelaProdutos";
 import ParOuImpar from "./components/condicional/ParOuImpar";
 import UsuárioInfo from "./components/repetição/UsuárioInfo";
+import DiretaPai from "./components/comunicação/DiretaPai";
+import IndiretaPai from "./components/comunicação/IndiretaPai";
 
 export default function App(){ 
   return (
 <div className="App">
 <h1>FUNDAMENTOS REACT</h1>
  <div className="Cards">
-  <Card titulo="#9 Condicional" color="#FAC837">
+ <Card titulo="#11 - Comunicação Indireta" color="#5C6B5C">
+  <IndiretaPai/>
+  </Card>
+  <Card titulo="#10 - Comunicação Direta" color="#02F3F7">
+  <DiretaPai/>
+  </Card>
+  <Card titulo="#9 - Condicional" color="#FAC837">
   <ParOuImpar numero={2} />
   <ParOuImpar numero={3} />
   <UsuárioInfo usuario={{nome: "Marcel"}}/>
