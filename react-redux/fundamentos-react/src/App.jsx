@@ -23,6 +23,7 @@ export default function App(){
   <ParOuImpar numero={3} />
   <UsuárioInfo usuario={{nome: "Marcel"}}/>
   <UsuárioInfo usuario={{nome: "Dani"}}/>
+  <UsuárioInfo/>
   </Card>
   <Card titulo ="#8 - Produtos" color="#DB0D90">
     <TabelaProdutos></TabelaProdutos>
