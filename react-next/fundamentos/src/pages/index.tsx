@@ -7,6 +7,7 @@ import Linha from "@/components/layout/Linha"
 export default function Home() {
   return (
 <Pagina>
+  <div className={`p-2`}>
   <Menu>
     <Linha>
     <MenuItem 
@@ -99,6 +100,7 @@ export default function Home() {
     </MenuItem>
     </Linha>
   </Menu>
+  </div>
 </Pagina>
   )
 }
