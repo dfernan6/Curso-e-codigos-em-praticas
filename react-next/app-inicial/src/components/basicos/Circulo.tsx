@@ -7,8 +7,7 @@ export default function Circulo(props: CirculoProps) {
     return (
         <div className={`
         flex justify-center items-center
-        flex gap-7 
-        p-7
+        gap-7 p-7
         h-32 w-32 bg-cyan-500
         ${props.quasePerfeito? 'rounded-md' : 'rounded-full'}
         `}>
