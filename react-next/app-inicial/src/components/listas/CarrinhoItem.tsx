@@ -7,7 +7,7 @@ export default function CarrinhoItem(props: ItemCarrinho) {
         px-4 
         `}>
             <span className={`
-            w-7 h-7 p-2 bg-slate-200
+            w-7 h-7 m-1 bg-slate-200 m-3 p-1
             `}>{props.produto.nome}</span>
             {props.quantidade}
         </div>

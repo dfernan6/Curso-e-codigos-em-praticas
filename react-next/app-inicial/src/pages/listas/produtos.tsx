@@ -6,7 +6,7 @@ import Produto from "@/model/Produto";
 import { useState } from "react";
 
 export default function PaginaProdutos() {
-    
+   
     const [itens, setItens] = useState<ItemCarrinho[]>([])
     
     function adicionarProduto(produto: Produto) {

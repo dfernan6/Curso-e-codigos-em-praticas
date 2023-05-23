@@ -7,8 +7,10 @@ interface CarrinhoProps {
 
 export default function Carrinho(props: CarrinhoProps) {
     return (
-        <div className="flex flex-col w-full">
-            <div className="bg-zinc-200 p-1 mt-20">
+        <div className="flex flex-col w-full mt-20">
+            <div className={`
+            bg-slate-200 p-1 mt-10
+            `}>
                 Carrinho
             </div>
             {props.itens.map((item, i) => {
