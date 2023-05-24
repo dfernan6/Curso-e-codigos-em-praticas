@@ -31,7 +31,7 @@ export default function ProdutoItem(props: ProdutoItemProps) {
         <div>
             <button className={`flex
             justify-center p-1
-            border border-white
+            border border-slate-500
             rounded-md bg-slate-400
             hover:bg-slate-300 w-full gap-1
             m-1

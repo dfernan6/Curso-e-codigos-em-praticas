@@ -1,15 +1,16 @@
 import ItemCarrinho from "@/model/ItemCarrinho";
+import Moeda from "@/utils/moeda";
 
 export default function CarrinhoItem(props: ItemCarrinho) {
-    return (
+  return (
         <div className={`
-        flex rounded-full bg-slate-200
-        px-4 
+        flex gap-10 bg-blue-500
+        border border-white m-1
         `}>
-            <span className={`
-            w-7 h-7 m-1 bg-slate-200 m-3 p-1
-            `}>{props.produto.nome}</span>
-            {props.quantidade}
+            <span className={` inline-flex
+            w-50 h-7 mt-20 bg-blue-200 px-2
+            mr-2`}>{props.quantidade} {props.produto.nome} -  <strong>{Moeda.formatar(props.produto.preco * props.quantidade)}</strong>
+        </span>
         </div>
     )
 }
