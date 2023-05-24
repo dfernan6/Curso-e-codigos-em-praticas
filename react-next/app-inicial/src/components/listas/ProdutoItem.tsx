@@ -1,4 +1,3 @@
-import produtos from "@/constants/produtos"
 import Produto from "@/model/Produto"
 import { IconShoppingCart } from "@tabler/icons-react"
 import Image from "next/image"
@@ -9,10 +8,11 @@ interface ProdutoItemProps {
 }
 
 export default function ProdutoItem(props: ProdutoItemProps) {
+    const { produto } = props
     return (
         <div className={`items-center
         flex flex-col border border-zinc-800
-       rounded-md
+       rounded-md bg-white
         `}>
             <div className={`
             font-bold
@@ -23,10 +23,6 @@ export default function ProdutoItem(props: ProdutoItemProps) {
             alt="Imagem do Produto"
             className="rounded-md border border-zinc-600 m-2" 
             />
-            
-            <div className={`
-            text-
-        `}></div>
             <div className={`
             text-green-500 font-bold
         `}>Valor R${props.produto.preco}</div>
@@ -35,11 +31,12 @@ export default function ProdutoItem(props: ProdutoItemProps) {
         <div>
             <button className={`flex
             justify-center p-1
-            border border-white
+            border border-slate-500
             rounded-md bg-slate-400
-            hover:bg-slate-300
+            hover:bg-slate-300 w-full gap-1
+            m-1
             `}
-            onClick={() => props.comprar(produtos)}
+            onClick={() => props.comprar(produto)}
             >
                 Comprar
                 <IconShoppingCart />

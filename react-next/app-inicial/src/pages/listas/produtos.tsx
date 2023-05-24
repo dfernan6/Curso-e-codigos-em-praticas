@@ -6,7 +6,7 @@ import Produto from "@/model/Produto";
 import { useState } from "react";
 
 export default function PaginaProdutos() {
-    
+   
     const [itens, setItens] = useState<ItemCarrinho[]>([])
     
     function adicionarProduto(produto: Produto) {
@@ -18,7 +18,7 @@ export default function PaginaProdutos() {
     return (
         <div className={`
         flex flex-col justify-center items-center
-        h-screen p-2 gap-10
+        h-screen p-2 gap-2
         `}>
             <Carrinho itens={itens} />
             <ListaProdutos produtos={produtos} comprar={adicionarProduto} />
