@@ -13,6 +13,11 @@ export default function Grid(props: GridProps) {
     return (
         <div className={`
         grid grid-cols-${props.cols ?? 1}
+        ${props.sm ? `sm:grid-cols-${props.sm}` : ''}
+        ${props.md ? `md:grid-cols-${props.md}` : ''}
+        ${props.lg ? `lg:grid-cols-${props.lg}` : ''}
+        ${props.xl ? `xl:grid-cols-${props.sm}` : ''}
+        ${props.xl2 ? `xl2:grid-cols-${props.sm}` : ''}
         lg:grid-cols-4 w-full gap-4 
         `}>
             {props.children}
