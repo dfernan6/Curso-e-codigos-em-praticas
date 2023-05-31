@@ -14,12 +14,16 @@ import ParOuImpar from "./components/condicional/ParOuImpar";
 import UsuárioInfo from "./components/repetição/UsuárioInfo";
 import DiretaPai from "./components/comunicação/DiretaPai";
 import IndiretaPai from "./components/comunicação/IndiretaPai";
+import Input from "./components/formulario/Input";
 
 export default function App(){ 
   return (
 <div className="App">
 <h1>FUNDAMENTOS REACT</h1>
  <div className="Cards">
+ <Card titulo="#12 - Componente controlado" color="#CFE6E2">
+  <Input/>
+  </Card>
  <Card titulo="#11 - Comunicação Indireta" color="#5C6B5C">
   <IndiretaPai/>
   </Card>
