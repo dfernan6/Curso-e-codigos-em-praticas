@@ -1,0 +1,149 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'android';
+    src: url('fontes/idroid.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'variable';
+    src: url('fontes/Quicksand-VariableFont_wght.ttf') format('truetype');
+}
+h1 {
+        font-family:'variable';
+        text-shadow: 2px 2px 2px black;
+        color: #ffffff;
+        text-align: center;
+    }
+
+ p {
+     display: inline;
+     font-family: 'Heebo', sans-serif;
+     font: normal;
+     color: black;
+     text-align: justify;
+     margin: 15px 0px;
+ }
+
+ h2 {
+    font-family: 'android';
+    color: #3a853c;
+
+ }
+
+ h3 {
+    font-family: 'android';
+    color: #ffffff;
+    font-size: 12px;
+    background-image: linear-gradient(to right, rgb(43, 105, 48) ,rgb(170, 243, 170) ,rgb(170, 243, 170) , rgb(255, 255, 255));
+ }
+
+ header{
+    background-image: linear-gradient(to bottom, rgb(170, 243, 170), rgb(43, 105, 48));
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+ }
+
+body {
+    background-color: #a1f7a3;
+}
+
+.container{
+    background-color: white;
+    padding: 10px;
+    min-width: 320px;
+    max-width: 1000px;
+    display: flexbox;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
+    border-radius: 5px;
+    margin: auto;
+    outline: #0808088c 1px solid;
+}
+
+div#especial {
+    display: inline-block;
+    background-image: linear-gradient(to bottom, rgb(43, 105, 48) ,rgb(170, 243, 170) ,rgb(170, 243, 170) , rgb(170, 243, 170));
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
+    margin-bottom: 10px;
+    outline: #0808088c 1px solid;
+}
+
+.itens {
+    list-style-type: none;
+}
+
+h4 {
+    color: white;
+}
+
+div#list{
+    display: flex;
+}
+
+img {
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    margin-left: -50px;
+    margin-bottom: -10px;
+}
+
+.menu > li {
+    margin-right: 5px;
+}
+
+.menu > li:hover{
+    background-color: white;
+}
+
+.textTop {
+    color: #ffffff;
+    text-shadow: 2px 2px 2px black;
+}
+
+ul {
+    font-family: 'heebo', sans-serif;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    margin: 10px;
+}
+
+a:link {
+    color: white;
+ }
+
+a:hover {
+     color: green;
+ }
+
+img#bugDroid{
+    width: 50%;
+    display: block;
+    margin: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #3a853c;
+}
+
+iframe {
+    margin: auto;
+    width: 100%;
+} 
+
+div#video{
+    margin:auto;
+    max-width: 61%;
+    background-color: #ffffff;
+}

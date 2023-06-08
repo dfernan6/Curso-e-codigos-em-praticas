@@ -1,0 +1,1396 @@
+Aula 4 – Primeiro Exemplo em HTML5
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olá mundo!</title>
+</head>
+<style>
+    h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font: normal;
+        color: blue;
+        background-color: burlywood;
+        text-shadow: 2px 2px 2px black;
+    }
+ p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+     font: normal;
+     color: blue;
+     background-color: burlywood;
+     text-shadow: 0.5px 0.5px 0.5px black;
+ }
+body {
+    background-color: cadetblue;
+}
+</style>
+<body>
+    <h1>Olá Mundo!</h1>
+    <p>Sejam bem vindos a mais um curso do Guanabara :).</p>
+</body>
+</html>
+---------------------------------------------------------------
+Aula 6 – Parágrafos, Quebras e Símbolos Especiais
+
+&nbsp; = espaço na linha
+<wbr/> = quebra de linha
+&shy; = quebra de linha
+&lt; = <
+&gt; = >
+&le; = ≥ 
+&ge; = ≤
+&poun; = £  Alt 0163
+&yen; = ¥   Alt 0165
+&euro; = €    Alt 0128  
+&copy, = ©      Alt 0169
+&reg; = ®     Alt 0174
+&trade; = ™   Alt 0153
+&permil; = ‰ Alt 0137
+&sum; = Σ Alt 228
+&infin; = ∞
+&times; = × Alt 0215
+&plusmn; = ± Alt 241 
+&oplus;
+&radic =  √
+&ne; 
+&Delta; ou &delta; 
+&Lambda; 
+&omega; = Ω
+&phi; = Φ
+&larr; = ← Alt 27
+&rarr; = → Alt 26
+&uarr; = ↑ Alt 24
+&darr; = ↓ Alt 25
+&harr; = ↔ Alt 29
+&spades; = ♠ Alt 6
+&clubs; = ♣ Alt 5
+&hearts; = ♥ Alt 3
+%diams; =  ♦ Alt 4
+&#9787; = ☻ Alt 2
+&#8226; = • Alt 7	
+&#9632; = ■ Alt 254
+&#9786; = ☺ Alt 1
+&#9675; =  ○ Alt 9
+---------------------------------------------------------------
+Aula 7 – Formatação de Texto com HTML5 e CSS3
+
+<s> - foi substituido pela <del> no HTML5
+<u> _ <span style="text-decoration: underline;"> no HTML5
+<i> italic
+<b> negrito <span style="font-weight: bold;">
+
+No HTML5 ficou possivel formatar textos pelo CSS, assim como
+exemplos abaixo:
+
+<h2 style="text-align: center;">O que é</h2>
+<p style="text-align: justify;">
+<sup> = sobreescrito
+<sub> = subscrito
+
+<pre>
+<code>
+#include &lt;iostream&gt;
+int main() {
+    cout << "Olá mundo!";
+    return 0;
+}
+    
+</code>
+</pre>
+
+Acionado a tag <code> para mostrar como um codigo criado na pagina.
+E a pro mostra como foi criado na plataforma.
+---------------------------------------------------------------
+Aula 8 – Códigos de Cores em HTML5 e CSS3
+
+CSS3
+background-image: url("matanza.jpg") ;
+transparecencia das letras
+color: rgba(0,0,0,0);
+a = alfa
+0 = minimo   1 = maximo
+hsl = luminosidade
+color: hsla(165, 81%, 93%, 0,5);
+---------------------------------------------------------------
+Aula 9 – Imagens em HTML5
+
+<figure>
+<img src="C:\Users\danil\OneDrive\Documents\Curso HTML5\Projeto\curso-html5-
+pacote01\
+projeto-glass-html5\_imagens\glass-quadro-homem-mulher.jpg">
+<figcaption>
+    aqui você digita o texto em baixo da imagem
+</figcaption>
+</figure
+---------------------------------------------------------------
+Aula 10 – Formatação de Imagens com CSS3
+
+figure#foto-legenda img {
+
+width: 100%;
+height: 100%;    
+border-radius: 5px;
+box-shadow: 5px 5px 5px black;
+border-style: solid;
+border-width: 1px;
+align-items: left;
+position: relative;
+
+obs: width: 100%;
+height: 100%;   
+Fazem a imagem ficar 100% da tela
+imagem definida pelo "img" = figure#foto-legenda img {
+
+Com essa outra configuração eu fiz no formato original da imagem
+figure#foto-legenda img {
+width: 600px;
+height: 338px;   
+
+obs: Legendas na imagem
+figcaption {
+opacity: 0;
+figcaption:hover {
+    opacity: 1;
+transition: 1s; = tempo para desaparecer a imagem novamente
+---------------------------------------------------------------
+Aula 11 – Listas em HTML5 com OL e UL
+
+obs: <ol type="a" start="3"> type= define o tipo da contagem,
+start= defino o inicio, somente numeros pra informar qual a letra
+de inicio.
+<ul> é lista nao ordenada = •
+<ul type="square"> = ■
+type="circle" = ○
+
+<ul>
+<li>Home</li>
+<li>Especificações</li>
+<li>Fotos</li>
+<li>Multimídia</li>
+<ol type="i">
+    <li>Músicas</li>
+    <li>Videos</li>
+</ol>
+<li>Fale conosco</li>
+</ul>
+---------------------------------------------------------------
+Aula 12 – Links em HTML5
+<a href="https://www.google.com/glass/start/" target="_blank"></a> = Colocar o link
+
+---------------------------------------------------------------
+Aula 13 – Menu com CSS3
+
+nav#menu
+{
+    display: block;
+}
+nav#menu ul
+ {
+list-style: none;
+text-transform: uppercase;
+position: absolute;
+top: -20px;
+left: -37.5px;
+
+}
+nav#menu li 
+{
+    display: inline-block;
+    background-color: rgba(106, 56, 56, 0.3);
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(29, 29, 29);
+    box-shadow: 5px 5px 5px black;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    
+}
+nav#menu h1
+{
+    display: none;
+}
+---------------------------------------------------------------
+Aula 14 – Efeitos visuais em CSS3
+
+Obs:Adicionado o comando transition: 1s, tempo para surgir e sair o
+efeito no botão.
+
+nav#menu li:hover
+{
+    opacity: 1;
+}
+nav#menu a 
+{
+    color: black;
+    text-decoration: none; 
+}
+---------------------------------------------------------------
+Aula 15 – Formatação de Interfaces com HTML5
+
+div#interface
+{
+    background-color: rgba(179, 179, 179, 0.3);
+    width: 1000px;
+    margin: 50px auto 0px auto;
+    padding: 10px;
+}
+---------------------------------------------------------------
+Aula 16 – Cabeçalho em CSS3
+
+header#cabecalho
+{
+    border-bottom: 1px #606060 solid;
+    height: 120px;
+    background: url("../_imagens/glass-logo-peq.jpg") no-repeat 0px 70px;
+}
+header#cabecalho h1
+{
+    font-size: 35px;
+    text-shadow: 1px 1px 1px rgba(0,0,0, .6);
+    padding: 0px;
+    margin-bottom: 0px;
+}
+header#cabecalho h2
+{
+    font-size: 20px;
+    text-shadow: 1px 1px 1px rgba(0,0,0, .6);  
+    padding: 0px;
+    margin-top: 0px;
+}
+---------------------------------------------------------------
+Aula 18 – Semântica em HTML5
+
+Foram colocados marcadores
+<footer id="rodape">
+<aside id="lateral">
+<section id="corpo">  
+para colocar mais efeitos na página.
+
+a linha de borda
+border-right: 1px solid;
+ou left = esquerda
+dotted = de pontos
+dashed = tracejada
+
+section#corpo
+{ 
+    display: block;
+    width: 550px;
+    float: left;
+    border-right: 1px solid;
+    padding-right: 50px;
+}
+aside#lateral
+{
+    display: block;
+    width: 350px;
+    float: right;
+
+}
+footer#rodape
+{
+    clear: both;
+    border-top: 1px solid;
+    text-align: center;
+
+}
+---------------------------------------------------------------
+Aula 19 – Tabelas em HTML
+
+<table>
+<caption>Técnica do Google Glass Mar/2013</caption>
+<p3>
+<tr><td><b>Tela:</b></td><td> Resolução equivalente a tela de 25"</td></tr><br>
+<tr><td><b>Camera:</b></td><td> 5MP para fotos / 720p para vídeos"</td></tr><br>
+<tr><td><b>Conectividade:</b></td><td> Wi-Fi/ Bluetooth"</td></tr><br>
+<tr><td><b>Memória Interna:</b></td><td> 12GB"</td></tr><br>
+</p3>
+</table>
+
+obs: colocado barra "/" para informar que eram dois elementos na mesma linda
+da tabela... eu adicionei rowspan="2" na tag <td>.
+E para colocar uma linha extra e tirar a separação foi colocado colspan="2" na tag <td>.
+
+
+EM CSS »-----
+
+obs: border-spacing: = ajuda no tamanho dos traços da borda interna.
+
+table#tabelaspec
+{
+    border: 5px solid rgb(50, 50, 53);
+    background-color: rgba(255, 255, 255, 1);
+    border-spacing: 1px;
+    border-radius: 5px;
+}
+td#right
+{
+
+    font-family: Arial, sans-serif;
+    background-color: rgb(149, 149, 150);
+   border: 2px solid rgb(50, 50, 53);
+  text-align: left;
+}
+td#left
+{
+
+    font-size: 22px;
+    background-color: rgb(78, 78, 87);
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+   text-align: right;
+
+}
+caption
+{
+    font-size: 20px;
+    font-style: normal;
+    font-family: Arial, sans-serif;
+    color: rgb(78, 78, 87);
+}
+---------------------------------------------------------------
+Aula 20 – Estilos CSS para Tabelas em HTML5
+
+caption span
+{
+    display: block;
+    font-size: 13px;
+    float: right;
+  margin-top: 8px;
+}
+---------------------------------------------------------------
+Aula 21 – Interfaces em HTML5
+
+obs: Uma mesma <section> por ter vários <article>.
+
+CSS »----
+
+article#noticia-principal h2
+{
+    font-size: 12pt;
+    color: #606060;
+    background-color: #dddddd;
+    padding: 5px 0px 5px 10px;
+    margin: 10px 0px 10px 0px;
+}
+a
+{
+    color: rgb(68, 68, 68);
+    text-decoration: none;
+}
+a:hover
+{
+    color: grey;
+    text-decoration: underline;
+}
+aside#lateral h1
+{
+    font-family: 'FonteLogo';
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+
+}
+aside#lateral h2
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #606060;
+    font-size: 10pt;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    color: rgb(255, 255, 255);
+}
+aside#lateral
+{
+    display: block;
+    width: 350px;
+    float: right;
+    background-color: rgba(149, 149, 150, 0.3);
+    padding: 10px 32px 25px 17px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+    border-radius: 5px;
+
+}
+---------------------------------------------------------------
+Aula 22 – Introdução ao JavaScript
+
+Obs: JS editado no HTML
+
+    <script>
+document.write("Olá! Hoje é dia " + Date());
+    </script>
+---------------------------------------------------------------
+Aula 23 - JavaScript com Objetos
+
+<!DOCTYPE html>
+<html lang="pt-=BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test JS 02</title>
+    <script>
+        function acendeLampada()
+        {
+   document.getElementById("luz").src = "_imagens/lampada-acesa.jpg";
+           
+        }
+function apagaLampada()
+{
+    document.getElementById("luz").src = "_imagens/lampada-apagada.jpg";
+
+}
+function quebrarLampada()
+{
+    document.getElementById("luz").src = "_imagens/lampada-quebrada.jpg";
+}
+    </script>
+</head>
+<body >
+    <h1>Acenda a lâmpada</h1>
+    <img src="_imagens\lampada-apagada.jpg" id="luz" 
+onmouseover="acendeLampada()" onmouseout="apagaLampada()" onclick="quebrarLampada()">
+</body>
+</html>
+---------------------------------------------------------------
+Aula 24 – Funções JavaScript
+
+Feito uma Var para atribuição da imagem no if
+arquivo = "C:/Users/danil/OneDrive/Documents/Curso HTML5/Projeto/
+curso-html5-pacote01/projeto-glass-html5/_imagens/lampada-acesa.jpg";
+ou seja, não deu resultado utilizando essa marcação:  
+arquivo = document.getElementById("luz").src = "C:/Users/danil
+/OneDrive/Documents/Curso HTML5/Projeto/curso-html5-pacote01
+/projeto-glass-html5/_imagens/
+lampada-quebrada.jpg";
+
+    <script>
+         var quebrada = false;
+        function mudaLampada(tipo)
+        {
+            if ( tipo == 1)
+            {
+                arquivo = "C:/Users/danil/OneDrive/Documents/Curso
+ HTML5/Projeto/curso-html5-pacote01/projeto-glass-html5/_imagens/
+lampada-acesa.jpg";
+            }
+            if ( tipo == 2)
+            {
+                arquivo = "C:/Users/danil/OneDrive/Documents/Curso
+ HTML5/Projeto/curso-html5-pacote01/projeto-glass-html5/_imagens/
+lampada-apagada.jpg";
+            }
+               
+            if ( tipo == 3)
+                { 
+                 arquivo = "C:/Users/danil/OneDrive/Documents/Curso
+ HTML5/Projeto/curso-html5-pacote01/projeto-glass-html5/_imagens/
+lampada-quebrada.jpg";
+            }
+            if (!quebrada)
+             {
+             document.getElementById("luz").src = arquivo;
+            if (tipo == 3)
+            {
+             quebrada = true;
+            }  
+        }       
+    }
+    </script>
+
+Logo após foi feito o comando de um modo mais simples utilizando
+ concatenações.
+
+    <script>
+         var quebrada = false;
+        function mudaLampada(tipo)
+        {
+            if (!quebrada)
+             {
+             document.getElementById("luz").src = 
+"C:/Users/danil/OneDrive/Documents/Curso HTML5/Projeto/curso-html5
+-pacote01/projeto-glass-html5/_imagens/" + tipo + ".jpg";
+            if (tipo == 'lampada-quebrada')
+            {
+             quebrada = true;
+            }  
+        }       
+    }
+    </script>
+</head>
+<body >
+    <h1>Acenda a lâmpada</h1>
+    <img src="C:\Users\danil\OneDrive\Documents\Curso HTML5\Projeto\
+curso-html5-pacote01\projeto-glass-html5\_imagens\lampada-apagada.jpg" 
+id="luz" onmouseover="mudaLampada('lampada-acesa')" 
+onmouseout="mudaLampada('lampada-apagada')" 
+onclick="mudaLampada('lampada-quebrada')">
+</body>
+</html>
+---------------------------------------------------------------
+Aula 25 – Integrando JavaScript e HTML5
+
+HTML »----
+
+<body>
+    <nav id="menu">
+        <h1>Menu Principal</h1>
+        <ul>
+        <li onmouseover="mudaFoto('_imagens/home.png')"
+ onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="index.html" target="_blank">Home</a></li>
+        <li onmouseover="mudaFoto('_imagens/especificacoes.png')" 
+onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="specs.html" target="_blank">Especificações</a></li>
+        <li onmouseover="mudaFoto('_imagens/fotos.png')" 
+onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="fotos.html" target="_blank">Fotos</a></li>
+        <li onmouseover="mudaFoto('_imagens/multimidia.png')" 
+onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="multimidia.html" target="_blank">Multimídia</a></li>
+        <li onmouseover="mudaFoto('_imagens/contato.png')" 
+onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="fale-conosco.html"target="_blank">Fale conosco</a></li>
+        </ul>
+        </nav>
+
+JS »------ Feito a função no JS e criado a tag para o comando externo
+<script src="_javascript/funcoes.js"></script>
+
+function mudaFoto(foto)
+{
+document.getElementById("icone").src = foto;
+}
+---------------------------------------------------------------
+Aula 26 – Documentos Adicionais
+
+obs: Foi colocado Alt= dentro da  tag <img src="_imagens/mao.png" 
+alt="Mão apontando para a esquerda">, no qual somente da indicação
+da função do artigo.
+
+Foi editado o doc google-glass.html
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações sobre Google Glass</title>
+    <style>
+    body 
+    {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 10pt;
+    }
+    p
+    {
+        text-align: justify;
+        text-indent: 20px;
+    }
+    article h1
+    {
+        font-size: 15pt;
+        color: rgba(255, 255, 255, 1);
+        background-color: rgb(149, 149, 150);
+        padding: 5px;
+        margin: 0px;
+    }
+    article h2
+    {
+        font-size: 13px;
+        color: rgb(149, 149, 150);
+        margin: 0px;
+    }
+    article
+    {
+        margin-bottom: 800px;
+    }
+    img.img-dir
+    {
+        display: block;
+        float: right;
+        margin-left: 5px;
+    }
+    </style>
+</head>
+
+<body>   
+
+<article id="topo">
+    <header>
+        <h2>Clique sobre as áreas destacadas em vermelho</h2>
+    </header>
+ <img src="_imagens/mao.png" alt="Mão apontando para a esquerda">
+</article>
+
+<article id="tela">
+    <header>
+        <h1>Tela</h1>
+        <h2>Como o mundo vai aparecer</h2>
+</header>
+<p>De acordo com fontes próximas do Google, 
+    os óculos vão contar com uma pequena tela de LCD ou 
+    AMOLED na parte superior e em frente aos olhos do usuário.
+     Com o uso de uma câmera e GPS, você pode se situar, 
+     assim como selecionar opções com o movimento da cabeça.</p>
+<img src="_imagens/det-tela.jpg" alt="Tela do Google Glass">
+</article>
+<article id="camera">
+<header>
+    <h1>Câmera</h1>
+<h2>Filme e fotografe a qualquer momento</h2>
+</header>
+<img src="_imagens/det-camera.jpg" class="img-dir" alt="Câmera do Google Glass">
+<p>Com o Google Glass será possível tirar fotos com até 5 megapixels
+     e gravar vídeos com 720 linhas de resolução. Os primeiros
+      vídeos e fotos capturados com o aparelho já começaram a 
+      circular pela rede, mas até agora ninguém tem muitas 
+      informações técnicas.</p>
+</article>
+<article id="sensores">
+    <header>
+<h1>Sensores</h1>
+<h2>A sensibilidade de um simples óculos</h2>
+</header>
+<p>Quem pensa que para comandar o Google Glass vai precisar de teclado e mouse,
+     se engana redondamente. O dispositivo vem com vários tipos de sensores e
+      microfones embutidos. Assim, para dar um comando, basta falar ou passar o
+       dedo na lateral do óculos.</p>
+<img src="_imagens/det-touch.jpg" alt="Sensores do Google Glass">
+</article>
+<article id="bateria">
+    <header>
+<h1>Bateria e Gadgets</h1>
+<h2>Quais são os dispositivos que complementam o Glass</h2>
+</header>
+<img src="_imagens/det-bateria.jpg" class="img-dir" alt="Bateria do Google Glass">
+<p>Segundo a própria Google, o Glass virá com uma bateria que tem autonomia
+     suficiente para durar um dia inteiro. Apenas algumas atividades como 
+     videoconferências e longas filmagens vão exigir um pouco mais. 
+     Além disso ele vem com WiFi, Bluetooth, 3G/4G e muito mais.</p>
+</article>
+</body>
+</html>
+---------------------------------------------------------------
+Aula 27 – IFRAME em HTML5
+
+Foi editado o doc specs.html
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Google Glass</title>
+        <link rel="stylesheet" type="text/css" href="C:\Users\danil\OneDrive
+\Documents\Curso HTML5\Projeto\curso-html5-pacote01\projeto-glass-html5\_css\
+estilo.css">
+<link rel="stylesheet" type="text/css" href="_css/specs.css">
+    </head>
+<script src="_javascript/funcoes.js"></script>
+<body>
+    <nav id="menu">
+        <h1>Menu Principal</h1>
+        <ul>       
+             <li onmouseover="mudaFoto('_imagens/home.png')" 
+onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="index.html" >Home</a></li>
+            <li onmouseover="mudaFoto('_imagens/especificacoes.png')"
+ onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="specs.html">Especificações</a></li>
+            <li onmouseover="mudaFoto('_imagens/fotos.png')" 
+onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="fotos.html" >Fotos</a></li>
+            <li onmouseover="mudaFoto('_imagens/multimidia.png')"
+ onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="multimidia.html">Multimídia</a></li>
+            <li onmouseover="mudaFoto('_imagens/contato.png')"
+ onmouseout="mudaFoto('_imagens/glass-oculos-preto-peq.png')">
+<a href="fale-conosco.html">Fale conosco</a></li> </ul>
+        </nav>
+    <div id="interface">
+        <header id="cabecalho">
+            <hgroup>
+                <h1>Google Glass</h1>
+                <h2>A revolução do Google está chegando</h2>
+                </hgroup>
+<figure id="foto-legenda">
+<img id="icone" src="C:\Users\danil\OneDrive\Documents\Curso HTML5\Projeto\
+curso-html5-pacote01\projeto-glass-html5\_imagens\glass-oculos-preto-peq.png">
+</figure>
+</header>
+<section id="corpo-full">
+    <article id="noticia-principal">
+        <header id="cabecalho-artigo">
+            <hgroup>
+        <h3>Glass > &nbsp;&nbsp;&nbsp;&nbsp; Especificações</h3>
+        <h1>Raio-X no Google Glass</h1>
+        <h2>por Gustavo Guanabara</h2>
+        <h3>Atualizado em 21/Junho/2021</h3>
+        </hgroup>
+        </header>
+ 
+<p>Clique em qualquer área destacada da imagem para ter mais informações sobre os 
+recursos do Google Glass. Qualquer ponto vermelho vai te levar a um lugar cheio 
+de novas informações.</p>
+
+<section id="conteudo">
+<img src="_imagens/glass-esquema-marcado.jpg">
+<iframe src="google-glass.html" name="janela" id="frame-spec"></iframe>
+</section>
+</article>
+</section>
+<footer id="rodape">
+    <p1>
+    &copy; Copyright 2013 - by Gustavo Guanabara <br>
+    <a href="http://facebook.com/cursoemvideo" target="_blank">Facebook </a>|
+    <a href="http://twitter.com/cursoemvideo" target="_blank"> Twitter</a>
+    </p1>
+    </footer>
+</div>
+</body>
+</html>
+
+CSS »--- 
+
+@charset "UTF-8";
+section#conteudo
+{
+    width: 1000px;
+    margin: auto;
+}
+iframe#frame-spec
+{
+    width: 450px;
+    height: 280px;
+    border: none;
+    overflow: hidden;
+}
+
+iframe#frame-spec::-webkit-scrollbar
+{
+    display: none;
+}
+
+---------------------------------------------------------------
+Aula 28 – Mapas de Imagem
+
+Obs: O <map> pode ser colocado em quarquer parte da pagina.
+No shape="poly" que é inserido na <area> os pontos da coords= são no
+sentido horario.
+
+<img src="_imagens/glass-esquema-marcado.jpg" usemap="#meumapa">
+<map name="meumapa">
+<area shape="rect" coords="179,202,270,260" href="google-glass.html#tela" target="janela">
+<area shape="circle" coords="158,243,12" href="google-glass.html#camera" target="janela">
+<area shape="circle" coords="73,52,12" href="google-glass.html#bateria" target="janela">
+<area shape="poly" coords="28,143,83,216,84,249,27,169" href="google-glass.html#sensores" target="janela">
+</map>
+
+---------------------------------------------------------------
+Aula 29 – Álbum de Fotos em HTML5 – Parte 1
+
+HTML »-----
+
+Obs: Quando colocar o comando background: url('../_imagens/galeria-01.jpg') no-repeat; não
+pode haver espaçom entre url().
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Google Glass</title>
+        <link rel="stylesheet" type="text/css" href="_css\estilo.css">
+<link rel="stylesheet" type="text/css" href="_css/fotos.css">
+    </head>
+<script src="_javascript/funcoes.js"></script>
+<body>
+    <nav id="menu">
+        <h1>Menu Principal</h1>
+        <ul>       
+             <li onmouseover="mudaFoto('_imagens/home.png')" 
+             onmouseout="mudaFoto('_imagens/fotos.png')">
+             <a href="index.html" >Home</a></li>
+            <li onmouseover="mudaFoto('_imagens/especificacoes.png')"
+             onmouseout="mudaFoto('_imagens/fotos.png')">
+             <a href="specs.html">Especificações</a></li>
+            <li onmouseover="mudaFoto('_imagens/fotos.png')" 
+            onmouseout="mudaFoto('_imagens/fotos.png')">
+            <a href="fotos.html" >Fotos</a></li>
+            <li onmouseover="mudaFoto('_imagens/multimidia.png')"
+             onmouseout="mudaFoto('_imagens/fotos.png')">
+             <a href="multimidia.html">Multimídia</a></li>
+            <li onmouseover="mudaFoto('_imagens/contato.png')"
+             onmouseout="mudaFoto('_imagens/fotos.png')">
+             <a href="fale-conosco.html">Fale conosco</a></li> </ul>
+        </nav>
+    <div id="interface">
+        <header id="cabecalho">
+            <hgroup>
+                <h1>Google Glass</h1>
+                <h2>A revolução do Google está chegando</h2>
+                </hgroup>
+<figure id="foto-legenda">
+<img id="icone" src="_imagens/fotos.png">
+</figure>
+</header>
+<section id="corpo-full">
+    <article id="noticia-principal">
+        <header id="cabecalho-artigo">
+            <hgroup>
+        <h3>Glass > &nbsp;&nbsp;&nbsp;&nbsp; Fotos</h3>
+        <h1>Galeria de Imagens do Google Glass</h1>
+        <h2>por Gustavo Guanabara</h2>
+        <h3>Atualizado em 21/Junho/2021</h3>
+        </hgroup>
+        </header>
+
+Glass > Fotos
+Galeria de Imagens do Google Glass
+por Gustavo Guanabara
+Atualizado em 01/Maio/2013
+
+<p>Veja na nossa galeria de fotos várias belas imagens que mostram algumas das principais
+     características do Google Glass, como recursos e propriedades que estão impressionando 
+     o mundo inteiro. Basta passar o mouse sobre uma das fotos para ver uma versão ampliada 
+     e com uma breve descrição.</p>
+<ul id="album-fotos">
+    <li id="foto01"><span>Agenda e lembretes</li></span>
+<li id="foto02"><span> Sergey Brin usando o Glass</span></li>
+<li id="foto03"><span>Leve e compacto</span></li>
+    <li id="foto04"><span>Sensação de uma tela de 50"</span></li>
+        <li id="foto05"><span>Vários tipos de lente</span></li>
+            <li id="foto06"><span>Informações importantes</span></li>
+</ul>
+
+    </article>
+    </section>
+
+CSS »---
+
+@charset "TF-8";
+ul#album-fotos
+{
+    width: 700px;
+    margin: 0 auto;
+    padding: 50px;
+    overflow: hidden;
+    list-style: none;
+}
+ul#album-fotos li
+{
+
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border-style: solid;
+    border-color: rgb(29, 29, 29);
+    border-width: 1px;
+    background-color: rgba(123, 123, 123, .3 );
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+    border-radius: 5px;
+}
+ul#album-fotos li span
+{
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+    
+}
+ul#album-fotos li span:hover
+{
+    opacity: 100;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(123, 123, 123, .3 )
+}
+ul#album-fotos li#foto01
+{
+    background: url('../_imagens/galeria-01.jpg') no-repeat;
+}
+ul#album-fotos li#foto02
+{
+    background: url('../_imagens/galeria-02.jpg') no-repeat;
+}
+ul#album-fotos li#foto03
+{
+    background: url('../_imagens/galeria-03.jpg') no-repeat;
+}
+ul#album-fotos li#foto04
+{
+    background: url('../_imagens/galeria-04.jpg') no-repeat;
+}
+ul#album-fotos li#foto05
+{
+    background: url('../_imagens/galeria-05.jpg') no-repeat;
+}
+ul#album-fotos li#foto06
+{
+    background: url('../_imagens/galeria-06.jpg') no-repeat;
+}
+---------------------------------------------------------------
+Aula 30 – Álbum de Fotos em HTML5 – Parte 2
+
+Feito uma correção nesse comando:
+ul#album-fotos li span:hover
+{
+    opacity: 100;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(123, 123, 123, .3 )
+}
+Nesse modo ele somente deu hover sobre o span
+
+Alterado para:
+ul#album-fotos li:hover span
+{
+    opacity: 1;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+    background-color: rgba(123, 123, 123, .3 );
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 9pt;
+    line-height: 370px;
+    padding: 5px;
+}
+Onde ele deu o comando pra todo o li.
+
+Obs: Foram adicionados os:
+    background-position: 50% 50%; ---- informa o nucleo da img onde
+sera o zoom
+    background-size: 400px 400px; ------ tamanho original da img
+    background-color: #ffffff;
+em todas as fotos.
+
+ul#album-fotos li#foto01:hover
+{
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+colocado esse efeito onde ele valoriza o spaço mostrando a imagen 
+inteira = zoom out.
+
+CSS »---
+
+ul#album-fotos li
+{
+color: #ffffff;
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border-style: solid;
+    border-color: rgb(29, 29, 29);
+    border-width: 1px;
+    background-color: rgba(123, 123, 123, .3 );
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+    border-radius: 5px;
+    -webkit-transition: all 0.2s ease-in;
+}
+ul#album-fotos li span
+{
+    opacity: 0;
+text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+    background-color: rgba(123, 123, 123, .3 );
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 9pt;
+    line-height: 370px;
+    padding: 5px;
+}
+ul#album-fotos li:hover
+{
+    -webkit-transform: scale(1.5);
+}
+ul#album-fotos li:hover span
+{
+    opacity: 1;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+    background-color: rgba(123, 123, 123, .3 );
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 9pt;
+    line-height: 370px;
+    padding: 5px;
+}
+ul#album-fotos li#foto01
+{
+    background: url('../_imagens/galeria-01.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: #ffffff;
+}
+ul#album-fotos li#foto01:hover
+{
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+ul#album-fotos li#foto02
+{
+    background: url('../_imagens/galeria-02.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: #ffffff;
+}
+ul#album-fotos li#foto02:hover
+{
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+ul#album-fotos li#foto03
+{
+    background: url('../_imagens/galeria-03.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: #ffffff;
+}
+ul#album-fotos li#foto03:hover
+{
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+ul#album-fotos li#foto04
+{
+    background: url('../_imagens/galeria-04.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: #ffffff;
+}
+ul#album-fotos li#foto04:hover
+{
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+ul#album-fotos li#foto05
+{
+    background: url('../_imagens/galeria-05.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: #ffffff;
+}
+ul#album-fotos li#foto05:hover
+{
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+ul#album-fotos li#foto06
+{
+    background: url('../_imagens/galeria-06.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: #ffffff;
+}
+ul#album-fotos li#foto06:hover
+{
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+---------------------------------------------------------------
+Aula 31 – Áudio e Vídeo em HTML5
+
+Obs: foi montado o comando <audio id="musica">, mas o navegador
+não deu resultado, foi adiciado controls="controls" dentro da TAG
+e deu resultado.
+
+HTML »-----
+
+<div id="tv-radio">
+    <audio id="musica" controls="controls">
+<source src="_media\07 Lovers' Carvings.mp3" type="audio/mpeg">
+<source src="_media/07 Lovers' Carvings.m4a" type="audio/x-acc">
+<source src="_media/2009-lovers-carvings-bibio.oggvorbis.ogg" type="audio/ogg">
+Desculpe mas não foi possivel carregar o video.
+    </audio>
+ <video id="filme" controls="controls" poster="_imagens/video-mini03.jpg">
+<source src="_media/getting-started.mp4" type="video/mp4">
+<source src="_media/getting-started.webmsd.webm" type="video/webm">
+<source src="_media/getting-started.oggtheora.ogv" type="video/ogg">
+Desculpe mas não foi possivel carregar o video.
+ </video>
+</div>
+---------------------------------------------------------------
+Aula 32 – Áudio e Vídeo Avançados
+
+CSS »------
+
+@charset "UTF-8";
+div#tv-radio
+{
+    width: 900px;
+    height: 580px;
+    margin: auto;
+    background: url("../_imagens/radio-tv.png") no-repeat;
+    border: unset;
+    box-shadow: unset;
+}
+audio#musica
+{
+display: block;
+position: relative;
+left: 562px;
+top: 480px;
+width: 300px;
+}
+video#filme
+{
+    display: block;
+    position: relative;
+    left: 70px;
+    top: 50px;
+    width: 450px; 
+}
+
+Anotações »----
+
+Como colocar um link do youtube na página.
+Vou até a pagina,clico no Compartilhar > Incorporar.
+Onde é enviado um link como esse:
+<iframe width="560" height="315"
+ src="https://www.youtube.com/embed/4EvNxWhskf8"
+ title="YouTube video player" frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; 
+encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+---------------------------------------------------------------
+Aula 33 – Formulários em HTML5 (parte 1)
+
+Obs: Na caixa de texto criada com o size=
+<input type="text" name="nnome" id="inome" size="50">
+e ela feita com o maxlength=""
+Ele não deixa passar do limite das letras.
+
+HTML »----
+
+<form>
+<fieldset id="usuario">
+    <legend>Identificação do Usuário</legend>
+    <p><label for="nnome">Nome:</label>&nbsp;&nbsp;<input type="text"
+         name="nnome" id="inome" size="30" maxlength="35" placeholder="Nome Completo"></p>
+    <p><label for="nsenha">Senha:</label>&nbsp;&nbsp;<input type="password"
+         name="nsenha" id="isenha" size="12" maxlength="12" placeholder="12 Dígitos"></p>
+    <p><label for="nmail">E-mail:</label>&nbsp;&nbsp;<input type="email" 
+        name="nmail" id="imail" size="30" maxlength="30" placeholder="Digite seu e-mail"></p>
+   <fieldset id="sexo"> <legend>Sexo:</legend>
+    <input type="radio" name="sexo" id="imasc" checked><label for="imasc">
+         Masculino </label><br>
+    <input type="radio" name="sexo" id="ifem"><label for="ifem"> Feminino </label>
+    </fieldset>
+        <p>Data de Nascimento:&nbsp;&nbsp;<input type="date" name="nNasc" id="iNasc"></p>
+    </fieldset>
+    <fieldset id="endereco">
+        <legend>Endereço do Usuário</legend>
+        <p><label for="nLog">Logradouro:</label>&nbsp;&nbsp;<input type="text" 
+            name="nLog" id="iLog" min="20" maxlength="80" placeholder="Rua, Avenida, Etc..."></p>
+            <p><label for="nNumer">Número:</label>&nbsp;&nbsp;<input type="number" 
+                name="nNumer" id="iNumer" min="0" max="999999" placeholder="nº"></p>
+                <p><label for="nEstado">Estado:</label>&nbsp;&nbsp;
+                    <input type="text" name="nEstado" id="iEstado" min="10"
+                     maxlength="30" placeholder="Digite seu Estado"></p>
+                    <p><label for="nCidade">Cidade:</label>&nbsp;&nbsp;
+                        <input type="text" name="nCidade" id="iCidade"
+                 min="2" maxlength="30" placeholder="Em qual cidade você vive?"></p>
+</fieldset>
+    <fieldset id="mensagem">
+        <legend>Mensagem do Usuário</legend>
+        <p>Grau de Urgência:</p>
+            <p>Mensagem:</p>
+</fieldset>
+    <fieldset id="mensagem">
+        <legend>Quero um Google Glass</legend>
+        <p>Gostaria de adquirir um Google Glass quando disponível</p>
+            <p>Cor:</p>
+                <p>Quantidade:</p>
+                    <p>Preço Total:</p> <p>R$</p>
+</fieldset>
+
+[BOTÃO ENVIAR]
+</form>
+---------------------------------------------------------------
+Aula 34 – Formulários em HTML5 (parte 2)
+
+HTML »----
+
+
+
+Anotações » dentro do <form> foi adicionado method="", onde
+"Get" é o modo rapido e menos seguro, marca no URL
+"Post" é mais lento mas é mais seguro.
+
+<p><label for="nEstado">Estado:</label>&nbsp;&nbsp;
+                    <select name="nEstado" id="iEstado">
+                    <optgroup label="Regiao Sudeste">
+                    <option value="rj">RJ</option>
+                    <option value="sp" selected>SP</option>
+                    <option value="mg">MG</option>
+                    <option value="es">ES</option>
+                </optgroup>
+                <optgroup label="Regiao Sul">
+                    <option value="rs">RS</option>
+                    <option value="pr">PR</option>
+                    <option value="sc">SC</option>
+                </optgroup>
+            </select>
+                </p>
+                    <p><label for="nCidade">Cidade:</label>&nbsp;&nbsp;
+                      <input type="text" name="nCidade" id="iCidade" 
+                   maxlength="30" placeholder="Sua cidade" list="cidades"></p>
+                      <datalist id="cidades">
+                           <option value="Rio de Janeiro"></option>
+                           <option value="Belo Horizonte"></option>
+                            <option value="Curitiba"></option>
+                           <option value="São Paulo"></option>
+                           <option value="Rio Grande do Sul"></option>
+                            <option value="Florianopolis"></option>
+                           <option value="Vitória"></option>
+                            <option value="Campinas"></option>
+                            <option value="Uberada"></option>
+                        </datalist>
+</fieldset>
+
+    <fieldset id="mensagem">
+        <legend>Mensagem do Usuário</legend>
+        <p><label for="nUrg">Grau de Urgência:</label>
+        Min.<input type="range" name="nUrg" id="iUrg" min="0" max="10" step="2">Max.</p>
+            <p><label for="nMsg">Mensagem:</label>
+            <textarea name="nMag" id="iMSG" cols="45" rows="5"
+             placeholder="Deixe sua mensagem aqui">
+</textarea>
+</p>
+</fieldset>
+Anotação »---
+Dentro do <input type="range" name="nUrg" id="iUrg" min="0" max="10">
+pode colocar o step="" para definiar o alcance de cada nível.
+---------------------------------------------------------------
+Aula 35 – Como Hospedar um Site
+
+Foram dadas dicas de como hospedar a pagina no hostnet.
+
+---------------------------------------------------------------
+Aula 36 – Formulários com JavaScript
+
+Anotação »----
+Dentro do <input type="number" name="nTot" id="iTot" placeholder="Total a pagar">
+foi adicionado um comando readonly, onde ele somente deixa que o usuário
+possa ler e ver o resultado, não pode escrever nada na caixa.
+
+Foi criado o botao enviar estilo do navegador
+<input type="submit" value="Enviar">
+
+HTML »----
+
+<form method="post" id="fContato" action="mailto: danilo.afernandes@outlook.com"
+ oninput="calc_total();">
+
+    <fieldset id="mensagem">
+        <legend>Quero um Google Glass</legend>
+        <p><input type="checkbox" name="nPed" id="iPed" checked>
+            <label for="nPed">Gostaria de adquirir um Google Glass quando disponível</label></p>
+            <p><label for="nCor">Cor:</label>
+            <input type="color" name="nCor" id="iCor" value="#0000FF"></p>
+                <p><label for="nQtd">Quantidade:</label>
+                <input type="number" name="nQtd" id="iQtd" min="1" max="999" value="1"></p>
+                    <p><label for="nTot">Preço Total:</label></p> <p>R$
+                    <input type="number" name="nTot" id="iTot" placeholder="Total a pagar"
+                readonly></p>
+</fieldset>
+<input type="image" name="nBotao" src="_imagens/botao-enviar.png">
+
+JS »-------
+
+        <script>
+            function calc_total()
+            {
+                var qtd = Number(document.getElementById("iQtd").value)
+               var tot = qtd * 1500;
+                document.getElementById("iTot").value = tot;
+                
+            }
+        </script>
+
+
+CSS »----
+@charset "UTF-8";
+form
+{
+    width: 500px;
+    margin: 50px 300px 0px 300px;
+}
+input, textarea
+{
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 13pt;
+background-color: rgba(211, 211, 211, .5);
+}
+input:hover, textarea:hover
+{
+    background-color: rgba(168, 166, 166, 0.5);
+}
+legend
+{
+    color: rgba(22, 22, 22, 0.5);
+    font-weight: bold;
+    font-size: 13pt;
+    font-family: sans-serif;
+}
+fieldset
+{
+    border-color: #cecece;
+    margin: 20px;
+}
+fieldset#sexo 
+{
+    width: 150px;
+}
+fieldset#usuario
+{
+    background: url('../_imagens/icone-contato.png') no-repeat 95% 95%;
+}
+fieldset#endereco
+{
+    background: url("../_imagens/icone-endereco.png") no-repeat 95% 95%;
+}
+fieldset#mensagem
+{
+    background: url("../_imagens/icone-mensagem.png") no-repeat 95% 95%;
+}
+fieldset#pedido
+{
+    background: url("../_imagens/icone-pagamento.png") no-repeat 95% 95%;
+}
+---------------------------------------------------------------
+CSS »----
+
+Seletores
+
+# = DIV
+. = Class
+: = pseudo-class
+:: = pseudo-element
+
+Variaveis CSS
+
+exemplos:
+
+  :root {
+  --color-text-desktop: red;
+  --color-text-mobile: blue
+}
+
+h1 {
+  color: var(--color-text-desktop)
+}
+
+@media (max-width: 640px) {
+
+  h1 {
+    color: var(--color-text-mobile)
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naturalidade</title>
+</head>
+<body>
+    <h1>Desejamos saber sobre sua Naturalidade.</h1>
+    <p>Qual país que você nasceu?</p>
+    <input type="text" name="txtnac" id="txtnac"> 
+<input type="button" value="conf" onclick="conf()">
+<div id="msg">Clique no botão para confirmar a sua nacionalidade.</div>
+<script>
+
+function conf() {
+
+var nac = document.getElementById("txtnac")
+var rnac = nac.value
+var res = window.document.getElementById("msg")
+if ( nac.value === "EUA")  { res.innerHTML = `Então você é norte-americano, nasceu nos <b>${rnac}</b>.`}
+else if ( nac.value === "Brasil") { res.innerHTML = `Então você é brasileiro, nasceu no <b>${rnac}</b>.`}
+else { res.innerHTML = `Você não é brasileiro e nem norte-americano! Nasceu no <b>${rnac}</b>. 
+Desculpe mas não temos vaga pra você!! 8===========D~~<br>
+    CHUPA MEU PAU`}
+
+}
+
+
+</script>
+</body>
+</html>
