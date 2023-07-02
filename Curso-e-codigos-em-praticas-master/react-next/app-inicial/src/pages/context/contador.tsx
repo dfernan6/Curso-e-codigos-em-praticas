@@ -1,5 +1,4 @@
 import Contador from "@/components/context/Contador";
-import { ContadorProvider } from "@/data/ContadorContext";
 
 export default function PaginaContador() {
    
@@ -9,9 +8,7 @@ export default function PaginaContador() {
         flex flex-col gap-5 justify-center 
         items-center h-screen
         `}>
-            <ContadorProvider>
-                <Contador />
-            </ContadorProvider>
+            <Contador />
         </div>
     )
 }
