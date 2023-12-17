@@ -1,0 +1,83 @@
+PARA ACESSAR MONGODB COM O COMPASS
+~$ mongosh "mongodb+srv://Dfernan6:Hatebreede@1987@cluster0.eq41cux.mongodb.net/" --apiVersion 1 --username Dfernan6
+
+
+In MongoDB, the save method was used in earlier versions to either insert a new document or update an existing document based on its _id field.
+However, it has been deprecated and removed from the MongoDB server as of version 3.2. The preferred method for inserting or updating documents is to use insertOne,
+insertMany, updateOne, or updateMany methods, depending on your use case.
+
+Here's an example of how you might rewrite your query using insertOne to insert a new document into the "billingCycle" collection:
+
+javascript
+Copy code
+db.billingCycle.insertOne({
+  name: 'Fevereiro/17',
+  month: 2,
+  year: 2017
+});
+This assumes that the "billingCycle" collection already exists in your database. If it doesn't, you can create it using the createCollection method:
+
+javascript
+Copy code
+db.createCollection('billingCycle');
+After creating the collection, you can use the insertOne method as shown above. If you are working with multiple documents, you may consider using insertMany for  efficiency.
+
+Remember to adapt the code according to the MongoDB Node.js driver version you are using. The syntax may vary slightly between versions.
+
+
+db.billingCycle.find({credits: {$exists: false}}).pretty()
+db.billingCycle.find({year:2017}).skip(1).limit(1)
+db.billingCycle.find({year:2017})
+db.billingCycle.find({credits: {$exists: true}}).pretty()
+
+db_finance> db.billingCycle.update(
+... {$and:[{month: 1},{year:2017}]},
+... {$set:{credits:[{name:"Salário", value:5000}]}}
+... )
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db_finance> db.billingCycle.update(
+... {$and:[{month: 1},{year:2017}]},
+... {$set:{credits:[{name:"Salário", value:5000}]}}
+... )
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+ db.billingCycle.find({credits: {$exists: true}},{_id:0, name:1}).pretty()
+[ { name: 'Janeiro/17' }, { name: 'Março' } ]
+
+db.billingCycle.count()
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+3
+
+db.billingCycles.remove({month:2})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 0 }
+
+db_finance> db.billingCycles.countDocuments()
+0
+db.billingCycles.estimatedDocumentCount()
+0
+db.billingCycle.count()
+3
+db.billingCycle.deleteOne({month:2})
+{ acknowledged: true, deletedCount: 1 }
+db.billingCycle.count()
+2
+db.billingCycle.deleteOne({year:2017}, 1)
+{ acknowledged: true, deletedCount: 1 }
+db_finance> db.dropDatabase()

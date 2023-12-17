@@ -1,0 +1,396 @@
+Dia 1.3: Unix & Bash - Parte 1
+
+⟷ Anotações
+
+Kernel é o responsável por ligar os softwares aos hardwares.
+Shell é a interface entre o SO usuário e o núcleo do Sistema(Kernel) 
+Aplicativos são a terceira camada.
+PID = Proccess identifier
+
+/ = Raiz
+BOOT = Arquivo de configuração para inicialização
+BIN = Binarios
+DEV = Do dispositivo
+ETC = Scripts de inicialização
+HOME = Diretórios para diferentes usuários
+PROC = Dinamico e especial contendo informações sobre o estado do sistema incluindo processos atualmente executados
+ROOT = Diretório home do usuário root
+SBIN = Binários importantes do sistema
+TMP = Arquivos temporários
+USR = Na maioria das vezes acessos de todos usuários
+VAR = Variáveis, assim como log e banco de dados
+
+ls ~/Documentos/Trybe/trybe-exercicios
+
+back-end ciencia-da-computacao front-end fundamentos
+CLI = comand line interface
+GI = Graphic interface
+cd / = Leva para a pasta raiz
+~ = home
+. = diretorio atual
+.. = diretorio anterior
+touch = cria novo do arquivo
+rm -rf = remove a pasta
+rm -r = remove o diretório
+head -5 ou -n 5 informa os primeiros 5 nomes da lista
+tail faz o inverso
+% = linha final vazia
+rm *.txt = apaga todos os arquivos que terminem em .txt .
+
+--------------------------------
+Dia 1.4: Unix & Bash - Parte 2
+
+cat = recebe valores como inputs
+ctrl + d =  Sai do comando cat
+cat nArquivo abre as informações sobre o arquivo
+> nArquivo = arquivo será criado
+>> nArquivo = para adicionar mais informações no arquivo
+nArquivo1 nArquivo2 > nArquivo3 = Enviando as informações ao nArquivo3
+sort < nArquivo = ordena os arquivos para vizualização
+sort < nArquivo > nArquivo2 = ordenando os arquivos para outro arquivo.
+who = mostra usuário que esta utilizando o sistema
+| = passa outputs de um comando para outro
+ls -l = para informações mais detalhadas dos arquivos
+
+⏣ CHMOD
+
+⏩ Voce diz qual o tipo de permissão q vai colocar
+
+u = usuario
+g = grupo todo
+o = outros usuario
+a = a todos
+- = Retira
++ = acrescenta permissao
+= = manter do msm jeito
+
+  Permissões | Links  | Proprietário | Grupo | Tamanho | Data e Hora   | Nome
+  -----------|--------|--------------|-------|---------|---------------|---------
+  drwxr-xr-x | 2      | root         | root  | 4096    | Out 19 09:10  | composer/
+
+Leitura r - 4
+Escrita w - 2
+Execução x - 1
+
+rwx = 111 ( 7 | Acesso Total )
+r-- = 100 ( 4 | Somente Leitura )
+-w- = 010 ( 2 | Somente Escrita )
+--x = 001 ( 1 | Somente Execução )
+rw- = 110 ( 6 | Somente Leitura e Escrita )
+r-x = 101 ( 5 | Somente Leitura e Execução )
+-wx = 011 ( 3 | Somente Escrita e Execução )
+--- = 000 ( 0 | Todos Acessos Negados )
+
+ps = lista de processos sendo executados
+sleep = pausa o sistema se voce precisar para fazer sua atividades
+& = para deixar o processo em background
+bg = coloca o processo no background
+^Z = Suspende o processo
+jobs = exibe todos os processos executados
+fg = colca o processo no foreground
+% = Escolhe o processo pelo numero
+^C = Faz o processo parar de executar
+kill = matar o arquivo
+
+⟹ Anotações
+
+find . -name 'nomes.txt'- procura documento
+find . -type d = procura diretorio 
+- type f = arquivo
+
+Pode utilizar kill -9 quando o arquivo não aceitar ser matado.
+-=====-=====-===== Duvidas -=====-=====-=====-=====
+1.4/parte I/Ex5 - Crie um arquivo chamado top_skills.txt usando o skills2.txt , contendo as 3 primeiras skills em ordem alfabética
+
+1.4/parte I/Ex8 - Conte o número de linhas que não contêm as letras br .
+-=======-=======-=======-=======-=======-=======-=======-=======-=======
+BLOCO 02
+2.1 Git, GitHub e Internet
+
+git init = acesso o aplic
+Adicionar ( add )
+Comitar ( commit -m "mensagem" )
+
+# Adicionar todos os arquivos modificados
+git add .
+
+# Ou você também pode adicionar arquivos específicos
+git add meu_arquivo.txt
+
+# Então você comita a alteração
+# Ao comitar você deve adicionar também uma mensagem que descreve o que aquela alteração faz
+
+git commit -m "Mensagem sobre a alteração feita"
+git log = historico das branchs
+q = pra sair do log
+git branch = mostra a lista das brenchs
+git checkout -b nomeUsuario = cria o branch e já acessa o nomeUsuario definido
+git branch -d nomeUsuario = deleta a branch
+-c = cancela
+
+Caso tenha alguma alteração que não foi comitada, faça o commit para depois enviar as alterações.
+Com tudo comitado é hora de enviar essas alterações para o respositório remoto utilizando o seguinte comando:
+
+git push origin master
+
+⟹ Configurações GIT
+
+git config --global user.name "Seu nome"
+git config --global user.email seuemail@exemplo.br
+
+Configuração para rodar o Visual Studio
+git config --global core.editor "code --wait"
+
+code .gitconfig
+
+Gerando uma chave SSH
+
+ssh-keygen -t rsa -b 4096 -C "seuemail@gmail.com"
+
+Enter a file in which to save the key (/home/you/.ssh/id_rsa): [Press enter]
+
+Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]
+
+eval "$(ssh-agent -s)"
+
+ssh-add ~/.ssh/id_rsa
+
+Adicionando a chave SSH na sua conta do GitHub
+
+# Como o xclip não vem instalado por padrão na maioria das distribuições,
+# precisaremos instalá-lo usando o comando a seguir:
+sudo apt-get install xclip
+
+# Agora utilize o comando abaixo para copiar o conteúdo da sua chave id_rsa.pub
+# Para garantir que o conteúdo foi copiado dê Ctrl + V em um editor de texto
+xclip -sel clip < ~/.ssh/id_rsa.pub
+
+cat ~/.ssh/id_rsa.pub
+-----------------------------------------------------------
+2.2 Git, GitHub e Internet
+
+git clone urlDoSeuRepositórioTrybeExercises = Você irá perceber que é exatamente um "clone" do que você subiu para o GitHub
+
+code . = abre o VS CODE
+git status = mostra os arquivos que foram criados
+
+git log --diff-filter=D --summary
+mostra o ultimo commit
+
+git checkout quatroPrimeirosDigitos~1 nomeArquivo
+Ele restora o arquivo que foi removido
+
+nomeArquivo.gitignore = cria arquivo oculto
+ls -la mostra os arquivos ocultos no diretório
+ 
+cat > .gitignore
+*.txt
+Ele passa a ignorar os .txt que estavam para ser adicionados
+ 
+cat >> .gitignore
+nomeArquivo.txt
+Ele passa a ignorar somento aquele arquivo mencionado
+
+Ignorar diretorios = Relatorios/
+git pull = traz todas as informações para maquina
+git fetch = não traz todas as informações, somente algumas informações
+git push = finaliza o atualização do arquivo clone
+git checkout = cria a brench
+git init e git clone é para novos repositorios
+
+-----------------------------------------------------------
+2.3 Git, GitHub e Internet
+
+⟹ Anotações
+
+MTR = My traceroute
+MAC address = faz parte do seu hardware e é conhecido por endereço de controle de acesso à mídia
+-O = Opção de download para uma URL especifica.
+
+
+https://pt.wikipedia.org/wiki/Lista_de_portas_dos_protocolos_TCP_e_UDP
+⏩ Lista de portas dos protocolos TCP e UDP
+
+CDN = Content Delivery Network
+
+Métodos HTTP ⏩
+
+Codes ⏣
+
+200 = Ok                 GET PUT DELETE
+201 = CREATED            POST
+304 = not modified
+404 = not found          GET PUT DELETE
+
+Intruções Geral para adicionar as pastas e arquivos diariamente no GITHUB
+
+git checkout main
+git pull
+git branch nomeDaBranch
+git checkout -b nomeDaBranch  
+mkdir nomeDiretorio
+cd nomeDiretorio
+git add
+git commit -m "Mensagem descrevendo alterações"
+git push -u origin nomeDaBranch   
+git push
+Se ainda não sincronizou git pull
+
+PEgar documento SSL da Trybe
+
+git clone LinkSSL
+   Movendo a pasta de uma para a outra
+mv nomeDaPasta nomeDaOutraPasta
+acessar o repositorio github
+git remote set-head -a nomeDoRepositorio
+-=======-=======-=======-=======-=======-=======-=======-=======-=======
+BLOCO 03
+3.1 Introdução à HTML e CSS
+
+<button> adiciona botão
+negrito em CSS: font-weight: bold
+
+-----------------------------------------------------------
+3.2 Introdução à HTML e CSS
+
+#8287
+
+.nomeDaClasse = ele cria a classe no CSS para editar as tags com essa classe no HTML
+obs: bastante utilizado a classe no CSS
+-----------------------------------------------------------
+3.3 Introdução à HTML e CSS
+
+* = escolhe todos os elementos no CSS
+background-position-y  ou x= define a direção a distancia do backgorund
+.nomeDaClasse p = edita as tags p dessa classe
+-----------------------------------------------------------
+3.4 Introdução à HTML e CSS
+
+CSS
+
+float: faz com que as tags <section> e <aside> fiquem lado a lado na pagina.
+-----------------------------------------------------------
+4.1 Introdução à JavaScript e Lógica de Programação
+
+não é possivel atribuir outros valores em const
+-----------------------------------------------------------
+4.2 Introdução à JavaScript e Lógica de Programação
+
+nomeArray.sort() = organiza os elementos em ordem alfabetica
+
+let nomeArray = ['Tomar café','Reunião','Brincar com o cachorro'];
+console.log(nomeArray.length)
+
+
+let nomeArray = nomeArray[0]
+console.log(nomeArray);
+// Tomar café
+
+let nomeArray = [nomeArray.length -1]
+console.log(nomeArray);
+//Brincar com o cachorro
+
+nomeArray.pop();  // remove a última tarefa
+console.log(nomeArray); // exclui o primeiro elemento
+let nomeArray = nomeArray.indexOf('Reunião');// para procurar a posição do elemento
+
+For/of
+
+let numeros = [1,2,3,4,5];
+for(let numero of numeros) {
+  console.log(numero);
+}
+
+// resultado: 
+//1
+//2
+//3
+//4
+//5
+
+let word = 'Hello';
+for (let letter of word) {
+  console.log(letter);
+}
+// resultado:
+// "H"
+// "e"
+// "l"
+// "l"
+// "o"
+
+let arrOfNumbers = [10, 20, 30];
+for (let sum of arrOfNumbers) {
+  sum += 1;
+  console.log(sum);
+}
+// 11
+// 21
+// 31
+console.log(arrOfNumbers);
+// Resultado: [10, 20, 30]
+
+let names = ['João', 'Maria', 'Antônio', 'Margarida'];
+for ( let element of names){
+console.log(element) // of para apresentar os elementos
+}
+
+math.random() // gera numeros compretos como 0.111111 ao 0.999999
+inserindo numeros dentro ex: math.random(60 - 1) + 1 // inclui no valor maximo, pois ultrapassa fazendo o 59 +1, ou seja, chega no valor max 60
+
+math.round() // retorna o valor de um numero arredondado
+math.ceil() // arredonda o valor acima do numero
+math.floor() // arredonda o valor abaixo do numero
+
+let firstNumber = Math.floor(Math.random() * (60 - 1)) +1;
+let secondNumber = Math.floor(Math.random() * (60 - 1)) +1;
+let thirdNumber = Math.floor(Math.random() * (60 - 1)) +1;
+let forthNumber = Math.floor(Math.random() * (60 - 1)) +1;
+let fifthNumber = Math.floor(Math.random() * (60 - 1)) +1;
+let sixthNumber = Math.floor(Math.random() * (60 - 1)) +1;
+
+criado 2 for e um if pra imprimir o resultado >:D
+
+.forEach()
+Caso você precise executar algum código para cada elemento do Array, executar um forEach é muito mais simples do que criar um for ou while, já que não precisamos declarar variáveis de controle.
+-----------------------------------------------------------
+Problemas com a versao NodeJs
+
+Digitado >> which node >> Para ver a localização e versão do Node
+Digitado >> which npm >> Para ver a localização e versão do Node
+nvm install node >> Instalação do novo pacote Node e npm
+
+Maneira de atualizar o create-react-app >> npx create-react-app@5.0.0 my-app
+
+-------------
+git rebase --abort
+Ajuda a resolver conflitos entre atualização das branchs
+
+------------
+Unzip the binary archive to any directory you wanna install Node, I use /usr/local/lib/nodejs
+
+sudo mkdir /usr/local/lib/node
+
+sudo tar -xJvf node-v8.9.4-linux-x64.tar.xz
+
+sudo mv /usr/local/lib/node/node-v8.9.4-linux-x64 /usr/local/lib/node/nodejs
+
+Set the environment variable ~/.profile, add below to the end
+
+# Nodejs
+export NODEJS_HOME=/usr/local/lib/node/nodejs
+export PATH=$NODEJS_HOME/bin:$PATH
+
+Refresh profile
+
+. ~/.profile
+
+Test installation using
+
+$ node --version
+
+$ npm --version
+
+
+
