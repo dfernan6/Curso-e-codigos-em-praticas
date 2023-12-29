@@ -843,6 +843,7 @@ The $match stage filters for documents that match specified conditions. Here's t
      "field_name": "value"
   }
 }
+
 $group
 The $group stage groups documents by a group key.
 
@@ -853,6 +854,7 @@ The $group stage groups documents by a group key.
       <field>: { <accumulator> : <expression> }
     }
  }
+
 $match and $group in an Aggregation Pipeline
 The following aggregation pipeline finds the documents with a field named "state" that matches a value "CA" and then groups those documents by the group 
 key "$city" and shows the total number of zip codes in the state of California.
@@ -907,3 +909,385 @@ db.zips.aggregate([
   $limit:  5
 }
 ])
+
+Using $project, $count, and $set Stages in a MongoDB Aggregation Pipeline
+Review the following sections, which show the code for the $project, $set, and $count aggregation stages.
+
+$project
+The $project stage specifies the fields of the output documents. 1 means that the field should be included, and 0 means that the field should be supressed.
+The field can also be assigned a new value.
+
+{
+    $project: {
+        state:1, 
+        zip:1,
+        population:"$pop",
+        _id:0
+    }
+}
+
+$set
+The $set stage creates new fields or changes the value of existing fields, and then outputs the documents with the new fields.
+
+{
+    $set: {
+        place: {
+            $concat:["$city",",","$state"]
+        },
+        pop:10000
+     }
+  }
+
+$count
+The $count stage creates a new document, with the number of documents at that stage in the aggregation pipeline assigned to the specified field name.
+
+{
+  $count: "total_zips"
+}
+
+
+$out
+The $out stage outputs the documents to the authors collection in the reporting database.
+db.sightings.aggregate([
+  {
+    $match: {
+      date: {
+        $gte: ISODate('2022-01-01T00:00:00.0Z'),
+        $lt: ISODate('2023-01-01T00:00:00.0Z')
+      }
+    }
+  },
+  {
+    $out: 'sightings_2022'
+  }
+])
+db.sightings_2022.findOne()
+
+
+Using MongoDB Aggregation Stages with Node.js: $match and $group
+Review the following code, which demonstrates how to build the $match and $group stages of an aggregation pipeline in MongoDB with Node.js.
+
+
+Using $match
+Aggregation gives you a way to transform data from your collection by passing documents from one stage to another. These stages can consist of operators 
+that transform or organize your data in a specific way. In this lesson, we used $match and $group.
+
+The $match stage filters documents by using a simple equality match, like $match: { author: "Dave"}, or aggregation expressions using comparison 
+operators, like $match: { likes: { $gt: 100 } }. This operator accepts a query document and passes the resulting documents to the next stage. $match should
+ be placed early in your pipeline to reduce the number of documents to process.
+
+
+Using $group
+The $group stage separates documents according to a group key and returns one document for every unique group key. The group key is usually a field in the
+document, but it can also be an expression that resolves to a field. The $group stage can be used with aggregation expressions to perform calculations on 
+the grouped documents. An example of this is adding up the total number of movie tickets sold by using the $sum operator:
+
+$group: { _id: "$movie", totalTickets: { $sum: "$tickets" } }
+
+The "$movie" is the group key, and the totalTickets field is the result of the $sum operator.
+
+In the following code, we assign our collection name to a variable for convenience. First, we declare some variables to hold the database connection and 
+the collection we'll use:
+
+const client = new MongoClient(uri)
+const dbname = "bank";
+const collection_name = "accounts";
+const accountsCollection = client.db(dbname).collection(collection_name);
+Next, we build an aggregation pipeline that uses $match and $group and that will find accounts with a balance of less than $1,000. Then we group the 
+results by the account_type, and calculate the total_balance and avg_balance for each type.
+
+const pipeline = [
+  // Stage 1: match the accounts with a balance less than $1,000
+  { $match: { balance: { $lt: 1000 } } },
+  // Stage 2: Calculate average balance and total balance
+  {
+    $group: {
+      _id: "$account_type",
+      total_balance: { $sum: "$balance" },
+      avg_balance: { $avg: "$balance" },
+    },
+  },
+]
+To run an aggregation pipeline, we append the aggregate method to the collection. The aggregate method takes an array of stages as an argument, which is
+ stored in a variable. The aggregate method returns a cursor that we can iterate over to get the results.
+
+const main = async () => {
+  try {
+    await client.connect()
+    console.log(`Connected to the database 🌍. \nFull connection string: ${safeURI}`)
+    let result = await accountsCollection.aggregate(pipeline)
+    for await (const doc of result) {
+      console.log(doc)
+    }
+  } catch (err) {
+    console.error(`Error connecting to the database: ${err}`)
+  } finally {
+    await client.close()
+  }
+}
+
+main()
+
+Using MongoDB Aggregation Stages with Node.js: $sort and $project
+Review the following code, which demonstrates how to build the $sort and $project stages of an aggregation pipeline in MongoDB with Node.js.
+
+$sort
+Aggregation is a powerful tool that gives us the ability to compute and transform our data. In this lesson, we focused on the $sort and $project stages.
+
+The $sort stage takes all the input documents and sorts them in a specific order. The documents can be sorted in numerical, alphabetical, ascending, or 
+descending order.
+
+The $sort stage accepts a sort key that specifies the field to sort on. The sort key can be 1 for ascending order or -1 for descending order. For example:
+
+{ $sort: { balance: 1 } } sorts the documents in ascending order by the balance field.
+
+{ $sort: { balance: -1 } } sorts the documents in descending order by the balance field.
+
+$project
+The $project stage takes all the input documents and passes along only a subset of the fields in those documents by specifying the fields to include or 
+exclude.
+
+For example, if we want our resulting documents to include only the account_id, we write { $project: { _id: 0, account_id: 1 } }. The _id field is excluded
+ by setting it to 0, and the account_id field is included by setting it to 1.
+
+The $project stage can also create new computed fields based on data from the original documents. An example of this is creating a projected field that 
+contains someone's full name, where only the first and last names are stored in the original document.
+
+In the following example, we build an aggregation pipeline that uses $match, $sort, and $project, and that will find checking accounts with a balance of 
+greater than or equal to $1,500. Then, we sort the results by the balance in descending order and return only the account_id, account_type, balance, and 
+a new computed field named gbp_balance, which stands for Great British Pounds (GBP) balance.
+
+const pipeline = [
+  // Stage 1: $match - filter the documents (checking, balance >= 1500)
+  { $match: { account_type: "checking", balance: { $gte: 1500 } } },
+
+  // Stage 2: $sort - sorts the documents in descending order (balance)
+  { $sort: { balance: -1 } },
+
+  // Stage 3: $project - project only the requested fields and one computed field (account_type, account_id, balance, gbp_balance)
+  {
+    $project: {
+      _id: 0,
+      account_id: 1,
+      account_type: 1,
+      balance: 1,
+      // GBP stands for Great British Pound
+      gbp_balance: { $divide: ["$balance", 1.3] },
+    },
+  },
+]
+To run an aggregation pipeline, we append the aggregate method to the collection. The aggregate method takes an array of stages as an argument, which is 
+stored here as a variable. The aggregate method returns a cursor that we can iterate over to get the results.
+
+const main = async () => {
+  try {
+    await client.connect()
+    console.log(`Connected to the database 🌍\n ${uri}`)
+    let accounts = client.db("bank").collection("accounts")
+    let result = await accounts.aggregate(pipeline)
+    for await (const doc of result) {
+      console.log(doc)
+    }
+  } catch (err) {
+    console.error(`Error connecting to the database: ${err}`)
+  } finally {
+    await client.close()
+  }
+}
+
+main()
+
+Creating a Single Field Index
+Review the code below, which demonstrates how to create a single field index in a collection.
+
+
+Create a Single Field Index
+Use createIndex() to create a new index in a collection. Within the parentheses of createIndex(), include an object that contains the field and sort order.
+
+db.customers.createIndex({
+  birthdate: 1
+})
+
+Create a Unique Single Field Index
+Add {unique:true} as a second, optional, parameter in createIndex() to force uniqueness in the index field values. Once the unique index is created, any 
+inserts or updates including duplicated values in the collection for the index field/s will fail.
+
+db.customers.createIndex({
+  email: 1
+},
+{
+  unique:true
+})
+MongoDB only creates the unique index if there is no duplication in the field values for the index field/s.
+
+
+View the Indexes used in a Collection
+Use getIndexes() to see all the indexes created in a collection.
+
+db.customers.getIndexes()
+
+Check if an index is being used on a query
+Use explain() in a collection when running a query to see the Execution plan. This plan provides the details of the execution stages (IXSCAN , COLLSCAN, 
+FETCH, SORT, etc.).
+
+The IXSCAN stage indicates the query is using an index and what index is being selected.
+The COLLSCAN stage indicates a collection scan is perform, not using any indexes.
+The FETCH stage indicates documents are being read from the collection.
+The SORT stage indicates documents are being sorted in memory.
+db.customers.explain().find({
+  birthdate: {
+    $gt:ISODate("1995-08-01")
+    }
+  })
+db.customers.explain().find({
+  birthdate: {
+    $gt:ISODate("1995-08-01")
+    }
+  }).sort({
+    email:1
+    })
+
+Understanding Multikey Indexes
+Review the code below, which demonstrates how multikey indexes work. If a single field or compound index includes an array field, then the index is a multikey index.
+
+
+Create a Single field Multikey Index
+Use createIndex() to create a new index in a collection. Include an object as parameter that contains the array field and sort order. In this example accounts is an array field.
+
+db.customers.createIndex({
+  accounts: 1
+})
+
+View the Indexes used in a Collection
+Use getIndexes() to see all the indexes created in a collection.
+
+db.customers.getIndexes()
+
+Check if an index is being used on a query
+Use explain() in a collection when running a query to see the Execution plan. This plan provides the details of the execution stages (IXSCAN , COLLSCAN, FETCH, SORT, etc.).
+
+The IXSCAN stage indicates the query is using an index and what index is being selected.
+The COLLSCAN stage indicates a collection scan is perform, not using any indexes.
+The FETCH stage indicates documents are being read from the collection.
+The SORT stage indicates documents are being sorted in memory.
+db.customers.explain().find({
+  accounts: 627788
+  })
+  
+Working with Compound Indexes
+Review the code below, which demonstrates how to create a compound index in a collection.
+
+
+Create a Compound Index
+Use createIndex() to create a new index in a collection. Within the parentheses of createIndex(), include an object that contains two or more fields and their sort order.
+
+db.customers.createIndex({
+  active:1, 
+  birthdate:-1,
+  name:1
+})
+
+Order of Fields in a Compound Index
+The order of the fields matters when creating the index and the sort order. It is recommended to list the fields in the following order: Equality, Sort, and Range.
+
+Equality: field/s that matches on a single field value in a query
+Sort: field/s that orders the results by in a query
+Range: field/s that the query filter in a range of valid values
+The following query includes an equality match on the active field, a sort on birthday (descending) and name (ascending), and a range query on birthday too.
+
+db.customers.find({
+  birthdate: {
+    $gte:ISODate("1977-01-01")
+    },
+    active:true
+    }).sort({
+      birthdate:-1, 
+      name:1
+      })
+Here's an example of an efficient index for this query:
+
+db.customers.createIndex({
+  active:1, 
+  birthdate:-1,
+  name:1
+})
+
+View the Indexes used in a Collection
+Use getIndexes() to see all the indexes created in a collection.
+
+db.customers.getIndexes()
+
+Check if an index is being used on a query
+Use explain() in a collection when running a query to see the Execution plan. This plan provides the details of the execution stages (IXSCAN , COLLSCAN, FETCH, SORT, etc.). Some of these are:
+
+The IXSCAN stage indicates the query is using an index and what index is being selected.
+The COLLSCAN stage indicates a collection scan is perform, not using any indexes.
+The FETCH stage indicates documents are being read from the collection.
+The SORT stage indicates documents are being sorted in memory.
+db.customers.explain().find({
+  birthdate: {
+    $gte:ISODate("1977-01-01")
+    },
+  active:true
+  }).sort({
+    birthdate:-1,
+    name:1
+    })
+
+Cover a query by the Index
+An Index covers a query when MongoDB does not need to fetch the data from memory since all the required data is already returned by the index.
+
+In most cases, we can use projections to return only the required fields and cover the query. Make sure those fields in the projection are in the index.
+
+By adding the projection {name:1,birthdate:1,_id:0} in the previous query, we can limit the returned fields to only name and birthdate. These fields are part of the index and when we run the explain() command, the execution plan shows only two stages:
+
+IXSCAN - Index scan using the compound index
+PROJECTION_COVERED - All the information needed is returned by the index, no need to fetch from memory
+db.customers.explain().find({
+  birthdate: {
+    $gte:ISODate("1977-01-01")
+    },
+  active:true
+  },
+  {name:1,
+    birthdate:1, 
+    _id:0
+  }).sort({
+    birthdate:-1,
+    name:1
+    })
+	
+Deleting an Index
+Review the code below, which demonstrates how to delete indexes in a collection.
+
+
+View the Indexes used in a Collection
+Use getIndexes() to see all the indexes created in a collection. There is always a default index in every collection on _id field. This index is used by MongoDB internally and cannot be deleted.
+
+db.customers.getIndexes()
+
+Delete an Index
+Use dropIndex() to delete an existing index from a collection. Within the parentheses of dropIndex(), include an object representing the index key or provide the index name as a string.
+
+Delete index by name:
+
+db.customers.dropIndex(
+  'active_1_birthdate_-1_name_1'
+)
+Delete index by key:
+
+db.customers.dropIndex({
+  active:1,
+  birthdate:-1, 
+  name:1
+})
+
+Delete Indexes
+Use dropIndexes() to delete all the indexes from a collection, with the exception of the default index on _id.
+
+db.customers.dropIndexes()
+The dropIndexes() command also can accept an array of index names as a parameter to delete a specific list of indexes.
+
+db.collection.dropIndexes([
+  'index1name', 'index2name', 'index3name'
+  ])
