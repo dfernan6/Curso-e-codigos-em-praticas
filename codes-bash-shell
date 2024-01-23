@@ -1,7 +1,3 @@
-Passwords
-
-
-
  Blender, GIMP (GNU Image Manipulation Program), and Audacity
 
 sysadmin@localhost:~$ date
@@ -122,9 +118,38 @@ sysadmin@localhost:~$ type -a ls
 ls is aliased to `ls --color=auto'
 ls is /bin/ls 
 
+sysadmin@localhost:~$ my_report () {                                            
+> ls Documents                                                                  
+> date                                                                          
+> echo "Document directory report"                                              
+> }   
 
+sysadmin@localhost:~$ my_report                                                 
+School            alpha-third.txt  hidden.txt    numbers.txt  spelling.txt      
+Work              alpha.txt        letters.txt   os.csv       words             
+adjectives.txt    animals.txt      linux.txt     people.csv                     
+alpha-first.txt   food.txt         longfile.txt  profile.txt                    
+alpha-second.txt  hello.sh         newhome.txt   red.txt                        
+Wed Oct 13 06:54:04 UTC 2021                                                    
+Document directory report                                                       
+sysadmin@localhost:~$ 
 
+sysadmin@localhost:~$ echo "The glob characters are *, ? and [ ]"      
+The glob characters are *, ? and [ ]
 
+sysadmin@localhost:~$ echo "The path is $PATH"                          
+The path is /usr/bin/custom:/home/sysadmin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+sysadmin@localhost:~$ echo The car costs $100                           
+The car costs 00                                                        
+sysadmin@localhost:~$ echo 'The car costs $100'                        
+The car costs $100
+
+sysadmin@localhost:~$ echo "The service costs $1 and the path is $PATH"
+‌⁠​​⁠​The service costs  and the path is /usr/bin/custom:/home/sysadmin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games 
+
+sysadmin@localhost:~$ echo 'The service costs $1 and the path is $PATH' 
+The service costs $1 and the path is $PATH
 
 
 
