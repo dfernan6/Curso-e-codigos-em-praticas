@@ -163,8 +163,8 @@ Today is date
 sysadmin@localhost:~$ echo Today is `date`                         
 Today is Mon Nov 4 03:40:04 UTC 2018
 
-echo Today is `date`                         
-Today is Mon Nov 4 03:40:04 UTC 2018
+echo Today is $(date)                                     
+Today is Mon Dec 3 21:33:41 UTC 2018
 
 sysadmin@localhost:~$ cal 1 2030; cal 2 2030; cal 3 2030               
     January 2030                                                       
@@ -209,6 +209,68 @@ ip-down.d  ip-up.d
 sysadmin@localhost:~$ ls /etc/junk || echo failed                  
 ls: cannot access /etc/junk: No such file or directory             
 failed
+
+sysadmin@localhost:~$ uname                             
+Linux
+
+sysadmin@localhost:~$ uname -n                          
+localhost  
+
+sysadmin@localhost:~$ uname --nodename                  
+localhost
+
+sysadmin@localhost:~$ pwd                                            
+/home/sysadmin  
+sysadmin@localhost:~$
+
+sysadmin@localhost:~$ type vi 
+vi is /usr/bin/vi
+sysadmin@localhost:~$ cd /bin
+sysadmin@localhost:/bin$ type vlc                                               
+-bash: type: vlc: not found
+sysadmin@localhost:/bin$ cd
+sysadmin@localhost:~$
+
+sysadmin@localhost:~$ echo D*                                        
+Desktop Documents Downloads                                          
+sysadmin@localhost:~$ echo "D*"                                      
+D*                                                                   
+sysadmin@localhost:~$
+
+sysadmin@localhost:~$ echo Start && echo Going && echo Gone          
+Start                                                                
+Going                                                                
+Gone                                                                 
+sysadmin@localhost:~$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
