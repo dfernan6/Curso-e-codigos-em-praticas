@@ -243,17 +243,98 @@ Going
 Gone                                                                 
 sysadmin@localhost:~$
 
+sysadmin@localhost:~$ man -k copy || apropos copy                                              
+cp (1)               - copy files and directories                               
+cpgr (8)             - copy with locking the given file to the password or gr...
+cpio (1)             - copy files to and from archives                          
+cppw (8)             - copy with locking the given file to the password or gr...
+dd (1)               - convert and copy a file                                  
+debconf-copydb (1)   - copy a debconf database                                  
+install (1)          - copy files and set attributes                            
+scp (1)              - secure copy (remote file copy program)                   
+ssh-copy-id (1)      - use locally available keys to authorize logins on a re...
 
+sysadmin@localhost:~$ man -f passwd || whatis passwd                                        
+passwd (5)           - the password file                                      
+passwd (1)           - change user password                                   
+passwd (1ssl)        - compute password hashes                                
+sysadmin@localhost:~$
 
+sysadmin@localhost:~$ whereis ls 
+ls: /bin/ls /usr/share/man/man1p/ls.1.gz /usr/share/man/man1/ls.1.gz
 
+sysadmin@localhost:~$ locate gshadow                                   
+/etc/gshadow                                                           
+/etc/gshadow-                                                          
+/usr/include/gshadow.h                                                
+/usr/share/man/cs/man5/gshadow.5.gz                                   
+/usr/share/man/da/man5/gshadow.5.gz                                    
+/usr/share/man/de/man5/gshadow.5.gz                                    
+/usr/share/man/fr/man5/gshadow.5.gz                                    
+/usr/share/man/it/man5/gshadow.5.gz                                    
+/usr/share/man/man5/gshadow.5.gz                                       
+/usr/share/man/ru/man5/gshadow.5.gz                                   
+/usr/share/man/sv/man5/gshadow.5.gz                                    
+/usr/share/man/zh_CN/man5/gshadow.5.gz        
 
+sysadmin@localhost:~$ locate -c passwd                                 
+98
 
+sysadmin@localhost:~$ locate -c -b passwd                              
+83    
 
+sysadmin@localhost:~$ locate -b "\passwd"                              
+/etc/passwd                                                                     
+/etc/pam.d/passwd                                                               
+/usr/bin/passwd                                                                 
+/usr/share/doc/passwd                                                           
+/usr/share/lintian/overrides/passwd
 
+sysadmin@localhost:~$ info  
 
+6.4.2 Navigating Info Documents
+Like the man command, a listing of movement commands is available by hitting the Shift+H key while reading the info documentation:
+Note that to close the help screen type the L key, which brings back the current document. To quit entirely, use the Q key.
 
+sysadmin@localhost:~$  cat --help                                                
+Usage: cat [OPTION]... [FILE]...                                                
+Concatenate FILE(s) to standard output.                                         
+                                                                                
+With no FILE, or when FILE is -, read standard input.                           
+                                                                                
+  -A, --show-all           equivalent to -vET                                   
+  -b, --number-nonblank    number nonempty output lines, overrides -n           
+  -e                       equivalent to -vE                                    
+  -E, --show-ends          display $ at end of each line                        
+  -n, --number             number all output lines                              
+  -s, --squeeze-blank      suppress repeated empty output lines                 
+  -t                       equivalent to -vT                                    
+  -T, --show-tabs          display TAB characters as ^I                         
+  -u                       (ignored)                                            
+  -v, --show-nonprinting   use ^ and M- notation, except for LFD and TAB        
+      --help     display this help and exit                                     
+      --version  output version information and exit                            
+                                                                                
+Examples:                                                                       
+  cat f - g  Output f's contents, then standard input, then g's contents.       
+  cat        Copy standard input to standard output.                            
+                                                                                
+GNU coreutils online help: <http://www.gnu.org/software/coreutils/>             
+Report cat translation bugs to <http://translationproject.org/team/>            
+Full documentation at: <http://www.gnu.org/software/coreutils/cat>              
+or available locally via: info '(coreutils) cat invocation'  
 
-
+Key	Purpose
+H or h	Display the help
+Q or q	Quit the help or manual page
+Spacebar or f or PageDown	Move a screen forward
+b or PageUp	Move a screen backward
+Enter or down arrow	Move down one line
+Up arrow	Move up one line
+/ followed by text to search	Start searching forward
+? followed by text to search	Start searching backward
+n	Move to next text that matches search
+N	Move to previous matching text
 
 
 
