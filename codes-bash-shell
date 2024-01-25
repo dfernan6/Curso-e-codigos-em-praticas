@@ -336,23 +336,178 @@ Up arrow	Move up one line
 n	Move to next text that matches search
 N	Move to previous matching text
 
+sysadmin@localhost:~/Documents/School/Art$ pwd
+/home/sysadmin/Documents/School/Art
 
+sysadmin@localhost:~/Documents/School$ cd ../../Downloads
+sysadmin@localhost:~/Downloads$
 
+sysadmin@localhost:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos 
+sysadmin@localhost:~$ \ls
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
 
+sysadmin@localhost:~$ ls -a                                            
+.             .bashrc   .selected_editor  Downloads  Public           
+..            .cache    Desktop           Music      Templates         
+.bash_logout  .profile  Documents         Pictures   Videos
 
+sysadmin@localhost:~$ ls -l /var/log/
+total 900                                                                       
+-rw-r--r-- 1 root   root  15322 Dec 10 21:33 alternatives.log
+drwxr-xr-x 1 root   root   4096 Jul 19 06:52 apt
+-rw-r----- 1 syslog adm     371 Dec 15 16:38 auth.log
+-rw-r--r-- 1 root   root  35330 May 26  2018 bootstrap.log
+-rw-rw---- 1 root   utmp      0 May 26  2018 btmp
+-rw-r----- 1 syslog adm     197 Dec 15 16:38 cron.log
+-rw-r--r-- 1 root   adm   85083 Dec 10 21:33 dmesg
+-rw-r--r-- 1 root   root 351960 Jul 19 06:52 dpkg.log
+-rw-r--r-- 1 root   root  32064 Dec 10 21:33 faillog
+drwxr-xr-x 2 root   root   4096 Jul 19 06:51 journal
+-rw-rw-r-- 1 root   utmp 292584 Dec 15 16:38 lastlog
+-rw-r----- 1 syslog adm   14185 Dec 15 16:38 syslog
+-rw------- 1 root   root  64128 Dec 10 21:33 tallylog
+-rw-rw-r-- 1 root   utmp    384 Dec 15 16:38 wtmp
 
+Symbol	File Type	Description
+d	directory	A file used to store other files.
+-	regular file	Includes readable files, images files, binary files, and compressed files.
+l	symbolic link	Points to another file.
+s	socket	Allows for communication between processes.
+p	pipe	Allows for communication between processes.
+b	block file	Used to communicate with hardware.
+c	character file	Used to communicate with hardware.
 
+sysadmin@localhost:~$ ls -l /var/log/lastlog                                    
+-rw-rw-r-- 1 root utmp 292584 Dec 15 16:38 /var/log/lastlog
 
+sysadmin@localhost:~$ ls -lh /var/log/lastlog                                   
+-rw-rw-r-- 1 root utmp 286K Dec 15 16:38 /var/log/lastlog
 
+sysadmin@localhost:~$ ls -d                                            
+.  
 
+sysadmin@localhost:~$ ls -ld                                           
+drwxr-xr-x 1 sysadmin sysadmin 224 Nov  7 17:07 .
 
+sysadmin@localhost:~$ ls -R /etc/ppp
+/etc/ppp:
+ip-down.d  ip-up.d         
 
+/etc/ppp/ip-down.d:
+bind9
 
+/etc/ppp/ip-up.d:
+bind9
 
+sysadmin@localhost:~$ ls /etc/ssh
+moduli              ssh_host_ecdsa_key.pub    ssh_host_rsa_key      sshd_config
+ssh_config          ssh_host_ed25519_key      ssh_host_rsa_key.pub
+ssh_host_ecdsa_key  ssh_host_ed25519_key.pub  ssh_import_id
+sysadmin@localhost:~$ ls -S /etc/ssh
+moduli            ssh_host_ed25519_key  ssh_host_ecdsa_key.pub
+sshd_config       ssh_host_rsa_key.pub  ssh_host_ed25519_key.pub
+ssh_host_rsa_key  ssh_import_id
+ssh_config        ssh_host_ecdsa_key
 
+sysadmin@localhost:~$ ls -lS /etc/ssh
+total 580
+-rw-r--r-- 1 root root 553122 Feb 10  2018 moduli
+-rw-r--r-- 1 root root   3264 Feb 10  2018 sshd_config
+-rw------- 1 root root   1679 Jul 19 06:52 ssh_host_rsa_key
+-rw-r--r-- 1 root root   1580 Feb 10  2018 ssh_config
+-rw------- 1 root root    411 Jul 19 06:52 ssh_host_ed25519_key
+-rw-r--r-- 1 root root    399 Jul 19 06:52 ssh_host_rsa_key.pub
+-rw-r--r-- 1 root root    338 Jul 19 06:52 ssh_import_id
+-rw------- 1 root root    227 Jul 19 06:52 ssh_host_ecdsa_key
+-rw-r--r-- 1 root root    179 Jul 19 06:52 ssh_host_ecdsa_key.pub
+-rw-r--r-- 1 root root     99 Jul 19 06:52 ssh_host_ed25519_key.pub
 
+sysadmin@localhost:~$ ls -lSh /etc/ssh                                
+total 580K                                                                      
+-rw-r--r-- 1 root root 541K Feb 10  2018 moduli
+-rw-r--r-- 1 root root 3.2K Feb 10  2018 sshd_config
+-rw------- 1 root root 1.7K Jul 19 06:52 ssh_host_rsa_key
+-rw-r--r-- 1 root root 1.6K Feb 10  2018 ssh_config
+-rw------- 1 root root  411 Jul 19 06:52 ssh_host_ed25519_key
+-rw-r--r-- 1 root root  399 Jul 19 06:52 ssh_host_rsa_key.pub
+-rw-r--r-- 1 root root  338 Jul 19 06:52 ssh_import_id
+-rw------- 1 root root  227 Jul 19 06:52 ssh_host_ecdsa_key
+-rw-r--r-- 1 root root  179 Jul 19 06:52 ssh_host_ecdsa_key.pub
+-rw-r--r-- 1 root root   99 Jul 19 06:52 ssh_host_ed25519_key.pub
 
+sysadmin@localhost:~$ ls -tl /etc/ssh                                 
+total 580
+-rw------- 1 root root    227 Jul 19 06:52 ssh_host_ecdsa_key
+-rw-r--r-- 1 root root    179 Jul 19 06:52 ssh_host_ecdsa_key.pub
+-rw------- 1 root root    411 Jul 19 06:52 ssh_host_ed25519_key
+-rw-r--r-- 1 root root     99 Jul 19 06:52 ssh_host_ed25519_key.pub
+-rw------- 1 root root   1679 Jul 19 06:52 ssh_host_rsa_key
+-rw-r--r-- 1 root root    399 Jul 19 06:52 ssh_host_rsa_key.pub
+-rw-r--r-- 1 root root    338 Jul 19 06:52 ssh_import_id
+-rw-r--r-- 1 root root 553122 Feb 10  2018 moduli
+-rw-r--r-- 1 root root   1580 Feb 10  2018 ssh_config
+-rw-r--r-- 1 root root   3264 Feb 10  2018 sshd_config
 
+sysadmin@localhost:~$ ls -t --full-time /etc/ssh
+total 580
+-rw------- 1 root root    227 2018-07-19 06:52:16.000000000 +0000 ssh_host_ecdsa_key
+-rw-r--r-- 1 root root    179 2018-07-19 06:52:16.000000000 +0000 ssh_host_ecdsa_key.pub
+-rw------- 1 root root    411 2018-07-19 06:52:16.000000000 +0000 ssh_host_ed25519_key
+-rw-r--r-- 1 root root     99 2018-07-19 06:52:16.000000000 +0000 ssh_host_ed25519_key.pub
+-rw------- 1 root root   1679 2018-07-19 06:52:16.000000000 +0000 ssh_host_rsa_key
+-rw-r--r-- 1 root root    399 2018-07-19 06:52:16.000000000 +0000 ssh_host_rsa_key.pub
+-rw-r--r-- 1 root root    338 2018-07-19 06:52:16.000000000 +0000 ssh_import_id
+-rw-r--r-- 1 root root 553122 2018-02-10 02:31:46.000000000 +0000 moduli
+-rw-r--r-- 1 root root   1580 2018-02-10 02:31:46.000000000 +0000 ssh_config
+-rw-r--r-- 1 root root   3264 2018-02-10 02:31:46.000000000 +0000 sshd_config
+
+sysadmin@localhost:~$ ls -lrS /etc/ssh
+total 580
+-rw-r--r-- 1 root root     99 Jul 19 06:52 ssh_host_ed25519_key.pub
+-rw-r--r-- 1 root root    179 Jul 19 06:52 ssh_host_ecdsa_key.pub
+-rw------- 1 root root    227 Jul 19 06:52 ssh_host_ecdsa_key
+-rw-r--r-- 1 root root    338 Jul 19 06:52 ssh_import_id
+-rw-r--r-- 1 root root    399 Jul 19 06:52 ssh_host_rsa_key.pub
+-rw------- 1 root root    411 Jul 19 06:52 ssh_host_ed25519_key
+-rw-r--r-- 1 root root   1580 Feb 10  2018 ssh_config
+-rw------- 1 root root   1679 Jul 19 06:52 ssh_host_rsa_key
+-rw-r--r-- 1 root root   3264 Feb 10  2018 sshd_config
+-rw-r--r-- 1 root root 553122 Feb 10  2018 moduli 
+
+sysadmin@localhost:~$ ls -lrt /etc/ssh                                 
+total 580
+-rw-r--r-- 1 root root   3264 Feb 10  2018 sshd_config
+-rw-r--r-- 1 root root   1580 Feb 10  2018 ssh_config
+-rw-r--r-- 1 root root 553122 Feb 10  2018 moduli
+-rw-r--r-- 1 root root    338 Jul 19 06:52 ssh_import_id
+-rw-r--r-- 1 root root    399 Jul 19 06:52 ssh_host_rsa_key.pub
+-rw------- 1 root root   1679 Jul 19 06:52 ssh_host_rsa_key
+-rw-r--r-- 1 root root     99 Jul 19 06:52 ssh_host_ed25519_key.pub
+-rw------- 1 root root    411 Jul 19 06:52 ssh_host_ed25519_key
+-rw-r--r-- 1 root root    179 Jul 19 06:52 ssh_host_ecdsa_key.pub
+-rw------- 1 root root    227 Jul 19 06:52 ssh_host_ecdsa_key
+
+sysadmin@localhost:~$ echo ~ ~sysadmin ~root ~mail ~nobody                     
+/home/sysadmin /home/sysadmin /root /var/mail /nonexistent                    
+sysadmin@localhost:~$
+
+sysadmin@localhost:~$ ls -d /etc/????                                         
+/etc/bind  /etc/init  /etc/motd  /etc/perl  /etc/skel                         
+/etc/dpkg  /etc/ldap  /etc/mtab  /etc/sgml  /etc/udev                         
+sysadmin@localhost:~$
+
+sysadmin@localhost:~$ ls -d /etc/[abcd]*                                      
+/etc/adduser.conf            /etc/blkid.conf            /etc/cron.weekly      
+/etc/adjtime                 /etc/blkid.tab             /etc/crontab          
+/etc/alternatives            /etc/ca-certificates       /etc/dbus-1           
+/etc/apparmor.d              /etc/ca-certificates.conf  /etc/debconf.conf     
+/etc/apt                     /etc/calendar              /etc/debian_version   
+/etc/bash.bashrc             /etc/cron.d                /etc/default          
+/etc/bash_completion.d       /etc/cron.daily            /etc/deluser.conf     
+/etc/bind                    /etc/cron.hourly           /etc/depmod.d         
+/etc/bindresvport.blacklist  /etc/cron.monthly          /etc/dpkg             
+sysadmin@localhost:~$
 
 
 
