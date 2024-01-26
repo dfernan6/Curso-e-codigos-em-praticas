@@ -630,33 +630,202 @@ sysadmin@localhost:~$ echo D*n*s
 Documents Downloads                                                  
 sysadmin@localhost:~$
 
+sysadmin@localhost:~$ cd Documents
+sysadmin@localhost:~/Documents$ ls -l longfile*
+-rw-r--r-- 1 sysadmin sysadmin 66540 Dec 20  2017 longfile.txt
+sysadmin@localhost:~/Documents$ gzip longfile.txt
+sysadmin@localhost:~/Documents$ ls -l longfile*
+-rw-r--r-- 1 sysadmin sysadmin 341 Dec 20  2017 longfile.txt.gz
+
+sysadmin@localhost:~/Documents$ gzip -l longfile.txt.gz
+         compressed        uncompressed  ratio uncompressed_name
+                341               66540  99.5% longfile.txt
 
 
+sysadmin@localhost:~/Documents$ gunzip longfile.txt.gz
+sysadmin@localhost:~/Documents$ ls -l longfile*
+-rw-r--r-- 1 sysadmin sysadmin 66540 Dec 20  2017 longfile.txt
+
+sysadmin@localhost:~/Documents$ tar -cf alpha_files.tar alpha*
+sysadmin@localhost:~/Documents$ ls -l alpha_files.tar
+-rw-rw-r-- 1 sysadmin sysadmin 10240 Oct 31 17:07 alpha_files.tar
+
+Option	Function
+-c	Create an archive.
+-f ARCHIVE	
+Use archive file.
+
+The argument ARCHIVE will be the name of the resulting archive file.
 
 
+Option	Function
+-z	Compress (or decompress) an archive using the gzip command.
 
+sysadmin@localhost:~/Documents$ tar -czf alpha_files.tar.gz alpha*
+sysadmin@localhost:~/Documents$ ls -l alpha_files.tar.gz
+-rw-rw-r-- 1 sysadmin sysadmin 417 Oct 31 17:15 alpha_files.tar.gz
 
+sysadmin@localhost:~/Documents$ gzip -l alpha_files.tar.gz
+         compressed        uncompressed  ratio uncompressed_name
+                417               10240  96.1% alpha_files.tar
 
+Option	Function
+-j	Compress (or decompress) an archive using the bzip2 command
 
+Option	Function
+-t	List the files in an archive.
+-j	Decompress with an bzip2 command.
+-f ARCHIVE	Operate on the given archive.
 
+sysadmin@localhost:~/Documents$ tar -tjf folders.tbz
+School/
+School/Engineering/
+School/Engineering/hello.sh
+School/Art/
+School/Art/linux.txt
+School/Math/
+School/Math/numbers.txt
 
+Option	Function
+-t	List the files in an archive.
+-j	Decompress with an bzip2 command.
+-f ARCHIVE	Operate on the given archive.
 
+sysadmin@localhost:~/Documents$ tar -tjf folders.tbz
+School/
+School/Engineering/
+School/Engineering/hello.sh
+School/Art/
+School/Art/linux.txt
+School/Math/
+School/Math/numbers.txt
 
+sysadmin@localhost:~/Documents$ bunzip2 -c folders.tbz | tar -t
+School/
+School/Engineering/
+School/Engineering/hello.sh
+School/Art/
+School/Art/linux.txt
+School/Math/
+School/Math/numbers.txt
 
+sysadmin@localhost:~/Documents$ cd ~
+sysadmin@localhost:~$ cp Documents/folders.tbz Downloads/folders.tbz
+sysadmin@localhost:~$ cd Downloads
 
+Option	Function
+-x	Extract files from an archive.
+-j	Decompress with the bzip2 command.
+-f ARCHIVE	Operate on the given archive.
 
+sysadmin@localhost:~/Downloads$ tar -xjf folders.tbz
+sysadmin@localhost:~/Downloads$ ls -l
+total 8
+drwx------ 5 sysadmin sysadmin 4096 Dec 20  2017 School
+-rw-rw-r-- 1 sysadmin sysadmin  413 Oct 31 18:37 folders.tbz
 
+sysadmin@localhost:~/Downloads$ cd School
+sysadmin@localhost:~/Downloads/School$ ls -l
+total 12
+drwx------ 2 sysadmin sysadmin 4096 Oct 31 17:45 Art
+drwx------ 2 sysadmin sysadmin 4096 Oct 31 17:47 Engineering
+drwx------ 2 sysadmin sysadmin 4096 Oct 31 17:46 Math
 
+sysadmin@localhost:~/Downloads$ tar -xjvf folders.tbz
+School/
+School/Engineering/
+School/Engineering/hello.sh
+School/Art/
+School/Art/linux.txt
+School/Math/
+School/Math/numbers.txt
 
+sysadmin@localhost:~/Documents$ zip alpha_files.zip alpha*
+  adding: alpha-first.txt (deflated 32%)
+  adding: alpha-second.txt (deflated 36%)
+  adding: alpha-third.txt (deflated 48%)
+  adding: alpha.txt (deflated 53%)
+  adding: alpha_files.tar.gz (stored 0%)
 
+sysadmin@localhost:~/Documents$ zip -r School.zip School
+updating: School/ (stored 0%)
+updating: School/Engineering/ (stored 0%)
+updating: School/Engineering/hello.sh (deflated 88%)
+updating: School/Art/ (stored 0%)
+updating: School/Art/linux.txt (deflated 49%)
+updating: School/Math/ (stored 0%)
+updating: School/Math/numbers.txt (stored 0%)
+  adding: School/Art/red.txt (deflated 33%)
+  adding: School/Art/hidden.txt (deflated 1%)
+  adding: School/Art/animals.txt (deflated 2%)
 
+sysadmin@localhost:~/Documents$ unzip -l School.zip
+Archive:  School.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+        0  2017-12-20 16:46   School/
+        0  2018-10-31 17:47   School/Engineering/
+      647  2018-10-31 17:47   School/Engineering/hello.sh
+        0  2018-10-31 19:31   School/Art/
+       83  2018-10-31 17:45   School/Art/linux.txt
+        0  2018-10-31 17:46   School/Math/
+       10  2018-10-31 17:46   School/Math/numbers.txt
+       51  2018-10-31 19:31   School/Art/red.txt
+       67  2018-10-31 19:30   School/Art/hidden.txt
+       42  2018-10-31 19:31   School/Art/animals.txt
+---------                     -------
+      900                     10 files
+        0  2018-10-31 17:46   School/Math/
+       10  2018-10-31 17:46   School/Math/numbers.txt
+---------                     -------
+      740                     7 files
 
+sysadmin@localhost:~/Documents$ unzip School.zip
+Archive:  School.zip
+replace School/Engineering/hello.sh? [y]es, [n]o, [A]ll, [N]one, [r]ename: n
+replace School/Art/linux.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: n
+replace School/Math/numbers.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: n
+replace School/Art/red.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: n
+replace School/Art/hidden.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: n
+replace School/Art/animals.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: n
 
+sysadmin@localhost:~/Documents$ mkdir tmp
+sysadmin@localhost:~/Documents$ cp School.zip tmp/School.zip
+sysadmin@localhost:~/Documents$ cd tmp
+sysadmin@localhost:~/Documents/tmp$ unzip School.zip
+Archive:  School.zip
+   creating: School/
+   creating: School/Engineering/
+  inflating: School/Engineering/hello.sh
+   creating: School/Art/
+  inflating: School/Art/linux.txt
+   creating: School/Math/
+ extracting: School/Math/numbers.txt
+  inflating: School/Art/red.txt
+  inflating: School/Art/hidden.txt
+  inflating: School/Art/animals.txt
 
+sysadmin@localhost:~/Documents/tmp$ unzip School.zip linux.txt
+Archive:  School.zip
+caution: filename not matched:  linux.txt
 
+sysadmin@localhost:~/Documents/tmp$ unzip School.zip School/Math/numbers.txt
+Archive:  School.zip
+ extracting: School/Math/numbers.txt
 
+sysadmin@localhost:~/Documents/tmp$ unzip School.zip School/Art/*t
+Archive:  School.zip
+  inflating: School/Art/linux.txt
+  inflating: School/Art/red.txt
+  inflating: School/Art/hidden.txt
+  inflating: School/Art/animals.txt
 
-
+sysadmin@localhost:~/mybackups$ ls -l words.gz                                  
+-rw-r--r-- 1 sysadmin sysadmin 259983 Dec 10 18:18 words.gz               
+sysadmin@localhost:~/mybackups$ gunzip words.gz                                 
+sysadmin@localhost:~/mybackups$ ls -l words                                     
+-rw-r--r-- 1 sysadmin sysadmin 971578 Dec 10 18:18 words         
+sysadmin@localhost:~/mybackups$
 
 
 
