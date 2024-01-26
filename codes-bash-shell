@@ -509,6 +509,170 @@ sysadmin@localhost:~$ ls -d /etc/[abcd]*
 /etc/bindresvport.blacklist  /etc/cron.monthly          /etc/dpkg             
 sysadmin@localhost:~$
 
+sysadmin@localhost:~$ echo /etc/t*                              
+/etc/terminfo /etc/timezone /etc/tmpfiles.d
+
+sysadmin@localhost:~$ echo /etc/*.d                                 
+/etc/apparmor.d /etc/binfmt.d /etc/cron.d /etc/depmod.d /etc/init.d /etc/insserv
+.conf.d /etc/ld.so.conf.d /etc/logrotate.d /etc/modprobe.d /etc/modules-load.d /
+etc/pam.d /etc/profile.d /etc/rc0.d /etc/rc1.d /etc/rc2.d /etc/rc3.d /etc/rc4.d 
+/etc/rc5.d /etc/rc6.d /etc/rcS.d /etc/rsyslog.d /etc/sudoers.d /etc/sysctl.d /et
+c/tmpfiles.d /etc/update-motd.d
+
+sysadmin@localhost:~$ echo /etc/r*.conf                             
+/etc/resolv.conf /etc/rsyslog.conf
+
+sysadmin@localhost:~$ echo /etc/t???????      
+/etc/terminfo /etc/timezone
+
+sysadmin@localhost:~$ echo /etc/*????????????????????            
+/etc/bindresvport.blacklist /etc/ca-certificates.conf
+
+sysadmin@localhost:~$ echo /etc/*.???                
+/etc/issue.net /etc/locale.gen
+
+sysadmin@localhost:~$ echo /etc/[gu]*                              
+/etc/gai.conf /etc/groff /etc/group /etc/group- /etc/gshadow /etc/gshadow- /etc/
+gss /etc/ucf.conf /etc/udev /etc/ufw /etc/update-motd.d /etc/updatedb.conf           
+
+sysadmin@localhost:~$ echo /etc/[a-d]*
+/etc/adduser.conf /etc/alternatives /etc/apparmor /etc/apparmor.d /etc/apt /etc/
+bash.bashrc /etc/bind /etc/bindresvport.blacklist /etc/binfmt.d /etc/ca-certific
+ates /etc/ca-certificates.conf /etc/calendar /etc/console-setup /etc/cron.d /etc
+/cron.daily /etc/cron.hourly /etc/cron.monthly /etc/cron.weekly /etc/crontab /et
+c/dbus-1 /etc/debconf.conf /etc/debian_version /etc/default /etc/deluser.conf /e
+tc/depmod.d /etc/dhcp /etc/dpkg 
+
+sysadmin@localhost:~$ echo /etc/*[0-9]*                            
+/etc/X11 /etc/dbus-1 /etc/iproute2 /etc/mke2fs.conf /etc/python3 /etc/python3.6 
+/etc/rc0.d /etc/rc1.d /etc/rc2.d /etc/rc3.d /etc/rc4.d /etc/rc5.d /etc/rc6.d  
+
+echo /etc/[!a-t]*
+/etc/X11 /etc/ucf.conf /etc/udev /etc/ufw /etc/update-motd.d /etc/updatedb.conf 
+/etc/vim /etc/vtrgb /etc/wgetrc /etc/xdg
+
+sysadmin@localhost:~$ ls /etc/x*                                                
+autostart  systemd  user-dirs.conf  user-dirs.defaults
+
+sysadmin@localhost:~$ls -d /etc/x*                                             
+/etc/xdg
+
+sysadmin@localhost:~$ cp -v /etc/hosts ~                              
+`/etc/hosts' -> `/home/sysadmin/hosts'
+
+sysadmin@localhost:~$ cp /etc/hosts ~/hosts.copy                      
+sysadmin@localhost:~$ ls                                               
+Desktop    Downloads  Pictures  Templates  hosts                       
+Documents  Music      Public    Videos     hosts.copy 
+
+sysadmin@localhost:~$ cp -i /etc/hosts example.txt                   
+cp: overwrite `/home/sysadmin/example.txt'? n
+
+sysadmin@localhost:~$ cp -i /etc/skel/.* ~                             
+cp: -r not specified; omitting directory '/etc/skel/.'                          
+cp: -r not specified; omitting directory '/etc/skel/..'                                   
+cp: overwrite `/home/sysadmin/.bash_logout'? n                         
+cp: overwrite `/home/sysadmin/.bashrc'? n                              
+cp: overwrite `/home/sysadmin/.profile'? n                            
+cp: overwrite `/home/sysadmin/.selected_editor'? n
+
+sysadmin@localhost:~$ cp -n /etc/skel/.* ~                                      
+cp: -r not specified; omitting directory '/etc/skel/.'                          
+cp: -r not specified; omitting directory '/etc/skel/..'
+
+sysadmin@localhost:~$ ls                                               
+Desktop    Downloads  Pictures  Templates  example.txt  hosts.copy     
+Documents  Music      Public    Videos     hosts                       
+sysadmin@localhost:~$ mv hosts Videos                                  
+sysadmin@localhost:~$ ls                                               
+Desktop    Downloads  Pictures  Templates  example.txt                 
+Documents  Music      Public    Videos     hosts.copy                 
+sysadmin@localhost:~$ ls Videos                                        
+hosts   
+
+sysadmin@localhost:~$ ls                                               
+Desktop    Downloads  Pictures  Templates  example.txt                          
+Documents  Music      Public    Videos     hosts.copy                 
+sysadmin@localhost:~$ mv example.txt Videos/newexample.txt             
+sysadmin@localhost:~$ ls
+Desktop    Downloads  Pictures  Templates  hosts.copy                           
+Documents  Music      Public    Videos                               
+sysadmin@localhost:~$ ls Videos                                       
+hosts  newexample.txt   
+
+sysadmin@localhost:~$ cd Videos                                        
+sysadmin@localhost:~/Videos$ ls                                        
+hosts  newexample.txt                                                  
+sysadmin@localhost:~/Videos$ mv newexample.txt myfile.txt           
+sysadmin@localhost:~/Videos$ ls
+hosts  myfile.txt
+
+Option	Meaning
+-i	Interactive: Ask if a file is to be overwritten.
+-n	No Clobber: Do not overwrite a destination file's contents.
+-v	Verbose: Show the resulting move.
+Important
+
+There is no -r option as the mv command moves directories by default.
+
+sysadmin@localhost:~$ touch sample                                     
+sysadmin@localhost:~$ ls -l sample                                     
+-rw-rw-r-- 1 sysadmin sysadmin 0 Nov  9 16:48 sample
+
+sysadmin@localhost:~$ ls                                               
+Desktop    Downloads  Pictures  Templates  sample.txt                  
+Documents  Music      Public    Videos                                 
+sysadmin@localhost:~$ rm -r Videos                                     
+sysadmin@localhost:~$ ls                                               
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  sample.txt
+
+sysadmin@localhost:~$ echo D*n*s                                     
+Documents Downloads                                                  
+sysadmin@localhost:~$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
