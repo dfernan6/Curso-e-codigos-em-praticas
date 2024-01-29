@@ -852,25 +852,95 @@ sysadmin@localhost:~$ head -n 3 /etc/sysctl.conf
 # /etc/sysctl.conf - Configuration file for setting system variables
 # See /etc/sysctl.d/ for additional system variables
 
+sysadmin@localhost:~$ nl /etc/passwd | tail -n +25
+    25  sshd:x:103:65534::/var/run/sshd:/usr/sbin/nologin
+    26  operator:x:1000:37::/root:/bin/sh
+    27  sysadmin:x:1001:1001:System Administrator,,,,:/home/sysadmin:/bin/bash
 
+sysadmin@localhost:~$ ls /etc | head
+X11
+adduser.conf
+alternatives
+apparmor
+apparmor.d
+apt
+bash.bashrc
+bind
+bindresvport.blacklist
+binfmt.d
 
+sysadmin@localhost:~$ ls /etc/ssh | nl
+     1  moduli
+     2  ssh_config
+     3  ssh_host_ecdsa_key
+     4  ssh_host_ecdsa_key.pub
+     5  ssh_host_ed25519_key
+     6  ssh_host_ed25519_key.pub
+     7  ssh_host_rsa_key
+     8  ssh_host_rsa_key.pub
+     9  ssh_import_id
+    10  sshd_config
 
+sysadmin@localhost:~$ ls /etc/ssh | nl | tail -5
+     6  ssh_host_ed25519_key.pub
+     7  ssh_host_rsa_key
+     8  ssh_host_rsa_key.pub
+     9  ssh_import_id
+    10  sshd_config
 
+sysadmin@localhost:~$ echo "Line 1" > example.txt
 
+sysadmin@localhost:~$ cat example.txt
+New line 1
+sysadmin@localhost:~$ echo "Another line" >> example.txt
+sysadmin@localhost:~$ cat example.txt
+New line 1
+Another line
 
+sysadmin@localhost:~$ ls /fake > output.txt
+ls: cannot access /fake: No such file or directory
 
+sysadmin@localhost:~$ ls /fake 2> error.txt
+sysadmin@localhost:~$ cat error.txt
+ls: cannot access /fake: No such file or directory
 
+sysadmin@localhost:~$ ls /fake /etc/ppp
+ls: cannot access /fake: No such file or directory
+/etc/ppp:
+ip-down.d  ip-up.d
 
+sysadmin@localhost:~$ ls /fake /etc/ppp &> all.txt
+sysadmin@localhost:~$ cat all.txt
+ls: cannot access /fake: No such file or directory
+/etc/ppp:
+ip-down.d
+ip-up.d
 
+sysadmin@localhost:~$ ls /fake /etc/ppp /junk /etc/sound &> all.txt
+sysadmin@localhost:~$ cat all.txt
+ls: cannot access '/fake': No such file or directory
+ls: cannot access '/junk': No such file or directory
+ls: cannot access '/etc/sound': No such file or directory
+/etc/ppp:
+ip-down.d
+ip-up.d
 
+sysadmin@localhost:~$ ls /fake /etc/ppp /junk /etc/sound &> all.txt
+sysadmin@localhost:~$ cat all.txt
+ls: cannot access '/fake': No such file or directory
+ls: cannot access '/junk': No such file or directory
+ls: cannot access '/etc/sound': No such file or directory
+/etc/ppp:
+ip-down.d
+ip-up.d
 
-
-
-
-
-
-
-
+sysadmin@localhost:~$ ls /fake /etc/ppp > example.txt 2> error.txt
+sysadmin@localhost:~$ cat error.txt
+ls: cannot access /fake: No such file or directory
+sysadmin@localhost:~$ cat example.txt
+/etc/ppp:
+ip-down.d
+ip-up.d
 
 
 
