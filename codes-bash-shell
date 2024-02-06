@@ -942,6 +942,13 @@ sysadmin@localhost:~$ cat example.txt
 ip-down.d
 ip-up.d
 
-
+How to set root password in root?
+Here are the steps to follow:
+Log in to root to access the command line.
+Type in:
+$ sudo passwd root
+and enter your password.
+Create and verify your root password.
+Restart your computer for the password to take effect.
 
         
