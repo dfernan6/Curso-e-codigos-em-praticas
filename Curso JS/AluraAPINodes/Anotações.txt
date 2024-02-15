@@ -1,0 +1,18 @@
+5432 Is used to connect to PostgreSQL database services.
+3306/3307 are used in connections to the MySQL database.
+587 Used for SMTP connections (Simple Mail Transfer Protocol, the protocol for sending and receiving emails).
+80 Is the default HTTP connection port used by browsers.
+
+Respostas Informativas (100 – 199)
+Respostas bem-sucedidas (200 – 299)
+Mensagens de redirecionamento (300 – 399)
+Respostas de erro do cliente (400 – 499)
+Respostas de erro do servidor (500 – 599)
+
+O content-type tem duas partes: tipo e subtipo. Por exemplo:
+
+Um servidor pode devolver uma imagem no formato png. O content-type da resposta viria como image/png;
+Se fosse um jpg, o content-type seria image/jpg;
+E se fosse um arquivo html? text/html;
+E um json? text/json.
+
