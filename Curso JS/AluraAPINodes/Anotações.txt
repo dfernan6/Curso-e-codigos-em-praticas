@@ -8,6 +8,7 @@ Respostas bem-sucedidas (200 – 299)
 Mensagens de redirecionamento (300 – 399)
 Respostas de erro do cliente (400 – 499)
 Respostas de erro do servidor (500 – 599)
+201= que é o código de status HTTP para registro criado.
 
 O content-type tem duas partes: tipo e subtipo. Por exemplo:
 
@@ -16,3 +17,4 @@ Se fosse um jpg, o content-type seria image/jpg;
 E se fosse um arquivo html? text/html;
 E um json? text/json.
 
+201= que é o código de status HTTP para registro criado.
