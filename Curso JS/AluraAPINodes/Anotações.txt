@@ -18,3 +18,11 @@ E se fosse um arquivo html? text/html;
 E um json? text/json.
 
 201= que é o código de status HTTP para registro criado.
+
+Async-> Essa palavra pode ser usada ao criar uma função convencional. Quando adicionamos esse identificador
+na criação desta função, nós definimos que ela será uma função assíncrona, e o melhor, retornará uma promessa!
+Quando usarmos a expressão return estaremos, na realidade, resolvendo uma promessa.
+
+Await-> Essa palavra será usada com o objetivo de esperar a resolução de uma função assíncrona.
+Se houver uma série de funções assíncronas, a expressão await definirá que o código só terá sequência quando a função anterior for resolvida.
+
