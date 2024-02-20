@@ -1,4 +1,4 @@
-import autor from "../models/Autor.js"
+import { autor } from "../models/Autor.js";
 
 class AutorController {
 
@@ -8,9 +8,7 @@ class AutorController {
        res.status(200).json(listaAutores);
        console.log("ok Conectado a Lista Autores!")
      } catch (e) {
-       res
-         .status(500)
-         .json({ message: `${erro.message} - falha na requisição` });
+       res.status(500).json({ message: `${erro.message} - falha na requisição` });
      }
     };
 
@@ -21,16 +19,14 @@ class AutorController {
        res.status(200).json(autorEncontrado);
        console.log("Autor encrontado com sucesso!");
      } catch (e) {
-       res
-         .status(500)
-         .json({ message: `${erro.message} - falha na requisição de encontrar autores` });
+       res.status(500).json({ message: `${erro.message} - falha na requisição de encontrar autores` });
      }
     };
 
     static async cadastrarAutor(req, res) {
       try {
         const novoAutor= await autor.create(req.body);
-        res.status(201).json({ message: "criado com sucesso", autor: novoAutor});
+        res.status(201).json({ message: "criado com sucesso", livro: novoAutor});
         console.log("Autor criado com sucesso!")
     } catch (e) {
         res.status(500).json({ message: `${erro.message} - falha ao cadastrar autor` });
@@ -44,9 +40,7 @@ class AutorController {
        res.status(200).json({ message: "Autor Atualizado"});
        console.log("Autor atualizado com sucesso!");
      } catch (e) {
-       res
-         .status(500)
-         .json({ message: `${erro.message} - falha na requisição de atualizar o Autor` });
+       res.status(500).json({ message: `${erro.message} - falha na requisição de atualizar o Autor` });
      }
     };
 
@@ -57,9 +51,7 @@ class AutorController {
       res.status(200).json({ message: "Autor deletado"});
       console.log("Autor deletado com sucesso!");
     } catch (e) {
-      res
-        .status(500)
-        .json({ message: `${erro.message} - falha na requisição de deletar o Autor` });
+      res.status(500).json({ message: `${erro.message} - falha na requisição de deletar o Autor` });
     }
    };
   };

@@ -1,4 +1,5 @@
 import livro from "../models/Livro.js"
+import { autor } from "../models/Autor.js"
 
 class LivroController {
 
@@ -9,8 +10,7 @@ class LivroController {
        console.log("ok Conectado a Lista Livros!")
      } catch (e) {
        res
-         .status(500)
-         .json({ message: `${erro.message} - falha na requisição` });
+         .status(500).json({ message: `${erro.message} - falha na requisição` });
      }
     };
 
@@ -22,15 +22,17 @@ class LivroController {
        console.log("Livro encrontado com sucesso!");
      } catch (e) {
        res
-         .status(500)
-         .json({ message: `${erro.message} - falha na requisição de encontrar livros` });
+         .status(500).json({ message: `${erro.message} - falha na requisição de encontrar livros` });
      }
     };
 
     static async cadastrarLivro (req, res) {
+      const novoLivro = req.body;
       try {
-        const novoLivro = await livro.create(req.body);
-        res.status(201).json({ message: "criado com sucesso", livro: novoLivro });
+        const autorEncontrado = await autor.findById(novoLivro.autor);
+        const livroCompleto = { ...novoLivro, autor: { ...autorEncontrado._doc }};
+        const livroCriado = await livro.create(livroCompleto)
+        res.status(201).json({ message: "criado com sucesso", livro: livroCriado });
         console.log("Livro criado com sucesso!")
     } catch (e) {
         res.status(500).json({ message: `${erro.message} - falha ao cadastrar livro` });
@@ -44,9 +46,7 @@ class LivroController {
        res.status(200).json({ message: "livro Atualizado"});
        console.log("Livro atualizado com sucesso!");
      } catch (e) {
-       res
-         .status(500)
-         .json({ message: `${erro.message} - falha na requisição de atualizar o livro` });
+       res.status(500).json({ message: `${erro.message} - falha na requisição de atualizar o livro` });
      }
     };
 
@@ -57,13 +57,19 @@ class LivroController {
       res.status(200).json({ message: "livro deletado"});
       console.log("Livro deletado com sucesso!");
     } catch (e) {
-      res
-        .status(500)
-        .json({ message: `${erro.message} - falha na requisição de deletar o livro` });
+      res.status(500).json({ message: `${erro.message} - falha na requisição de deletar o livro` });
     }
    };
-  };
 
-    
+  static async listarLivrosPorEditora (req, res) {
+    const editora = req.query.editora;
+    try {
+      const livrosPorEditora = await livro.find({ editora: editora });
+      res.status(200).json(livrosPorEditora);
+    } catch (erro) {
+      res.status(500).json({ message: `${erro.message} - falha na busca` });
+    }
+  }
+};
 
 export default LivroController;

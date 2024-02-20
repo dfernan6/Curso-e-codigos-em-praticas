@@ -21,10 +21,4 @@ app.delete("/livros/:id", (req, res) => {
   res.status(200).send("Ok, foi excluido com sucesso!.");
 });
 
-app.delete("/autores/:id", (req, res) => {
-    const index = buscaAutor(req.params.id);
-    autor.splice(index, 1);
-    res.status(200).send("Ok, foi excluido com sucesso!.");
-  });
-
 export default app;
