@@ -10,9 +10,12 @@ Nas linguagens: <br>
 <li><b>Next</b></li>
 <li><b>TypeScript</b></li>
 <li><b>Tailwind</b></li>
+<li><b>MongoDB</b></li>
+<li><b>JAVA</b></li>
+<li><b>Bash-Shell</b></li>
 </ul><br>
 Aviso <b>IMPORTANTE</b>:<br>
 Os códigos PHP Básico estão no arquivo: Anotações-Curso PHP.txt<br>
-Aqui temos vários códigos que eu peguei da Ûdemy, Cod3r, Curso em Vídeo,<br>
+Aqui temos vários códigos que foram compartilhados pelas instituições Alura, MongoDB, CISCO, Ûdemy, Cod3r, Curso em Vídeo,<br>
 trybe e mais algumas dicas encontradas via Google.<br>
 Mais alguns projetos que acabei desenvolvendo como prática.
