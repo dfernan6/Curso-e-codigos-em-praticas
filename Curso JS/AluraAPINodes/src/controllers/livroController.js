@@ -6,7 +6,7 @@ class LivroController {
      try {
        const listaLivros = await livro.find({});
        res.status(200).json(listaLivros);
-       console.log("ok Conectado a ListaLivros!")
+       console.log("ok Conectado a Lista Livros!")
      } catch (e) {
        res
          .status(500)
