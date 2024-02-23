@@ -108,8 +108,8 @@ BLOCO 02
 2.1 Git, GitHub e Internet
 
 git init = acesso o aplic
-Adicionar ( add )
-Comitar ( commit -m "mensagem" )
+git add --all
+git commit -m "mensagem"
 
 # Adicionar todos os arquivos modificados
 git add .
@@ -198,7 +198,7 @@ git fetch = não traz todas as informações, somente algumas informações
 git push = finaliza o atualização do arquivo clone
 git checkout = cria a brench
 git init e git clone é para novos repositorios
-
+git rebase --abort Ajuda a resolver conflitos entre atualização das branchs
 -----------------------------------------------------------
 2.3 Git, GitHub e Internet
 
@@ -354,20 +354,25 @@ criado 2 for e um if pra imprimir o resultado >:D
 
 .forEach()
 Caso você precise executar algum código para cada elemento do Array, executar um forEach é muito mais simples do que criar um for ou while, já que não precisamos declarar variáveis de controle.
------------------------------------------------------------
+-----------------------------------------------------------------------------------
+NODEJS
+
 Problemas com a versao NodeJs
 
-Digitado >> which node >> Para ver a localização e versão do Node
-Digitado >> which npm >> Para ver a localização e versão do Node
+which node >> Para ver a localização e versão do Node
+which npm >> Para ver a localização e versão do Node
 nvm install node >> Instalação do novo pacote Node e npm
 
 Maneira de atualizar o create-react-app >> npx create-react-app@5.0.0 my-app
 
--------------
-git rebase --abort
-Ajuda a resolver conflitos entre atualização das branchs
+npm init = Configura o package.json para a instalação
+npm init -y = Instala package.json com configuração padrão
+npm install = faz a instalação do package-lock.json
+node_modules são instalados devidos as instalações npm
 
-------------
+--------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
 Unzip the binary archive to any directory you wanna install Node, I use /usr/local/lib/nodejs
 
 sudo mkdir /usr/local/lib/node
