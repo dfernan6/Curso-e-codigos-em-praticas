@@ -373,7 +373,8 @@ node_modules são instalados devidos as instalações npm
 ESlint
 
 npm init @eslint/config = faz a instação  do eslint
-npx eslint . --fix = esse comando vai tentar corrigir automaticamente, e o que ele não conseguir corrigir, ele vai avisar no terminal.
+npx eslint . --fix = esse comando vai tentar corrigir automaticamente, e o que ele não 
+conseguir corrigir, ele vai avisar no terminal.
 
 --------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------
