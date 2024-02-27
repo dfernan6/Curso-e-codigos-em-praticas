@@ -1,14 +1,13 @@
-//import mongoose from "mongoose";
 import autores from "../models/Autor.js";
 
 class AutorController {
-  static listarAutores = async (req, res) => {
+  static listarAutores = async (req, res, next) => {
     try {
       const autoresResultado = await autores.find();
 
       res.status(200).json(autoresResultado);
     } catch (erro) {
-      res.status(500).json({ message: "Erro interno no servidor" });
+      next(erro);
     }
   };
 
@@ -28,7 +27,7 @@ class AutorController {
     }
   };
 
-  static cadastrarAutor = async (req, res) => {
+  static cadastrarAutor = async (req, res, next) => {
     try {
       let autor = new autores(req.body);
 
@@ -36,11 +35,11 @@ class AutorController {
 
       res.status(201).send(autorResultado.toJSON());
     } catch (erro) {
-      res.status(500).send({message: `${erro.message} - falha ao cadastrar Autor.`});
+      next(erro);
     }
   };
 
-  static atualizarAutor = async (req, res) => {
+  static atualizarAutor = async (req, res, next) => {
     try {
       const id = req.params.id;
   
@@ -48,11 +47,11 @@ class AutorController {
 
       res.status(200).send({message: "Autor atualizado com sucesso"});
     } catch (erro) {
-      res.status(500).send({message: erro.message});
+      next(erro);
     }
   };
 
-  static excluirAutor = async (req, res) => {
+  static excluirAutor = async (req, res, next) => {
     try {
       const id = req.params.id;
 
@@ -60,7 +59,7 @@ class AutorController {
 
       res.status(200).send({message: "Autor removido com sucesso"});
     } catch (erro) {
-      res.status(500).send({message: erro.message});
+      next(erro);
     }
   };
 }
