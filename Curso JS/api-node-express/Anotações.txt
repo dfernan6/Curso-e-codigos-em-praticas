@@ -28,7 +28,7 @@ Se houver uma série de funções assíncronas, a expressão await definirá que
 
 Adicionando a rota de busca: routes.get("/livros/busca", LivroController.listarLivrosPorEditora);
 http://localhost:3000/livros/busca?editora=Classicos
-
+http://localhost:3000/livros/busca?editora=Classicos&titulo=O Hobbit
 No arquivo Livro.js:
 Ao invés do autorSchema, adicionamos a propriedade autor tendo como valor um ID do tipo ObjectId do MongoDB, fazendo referência à coleção autores.
 
