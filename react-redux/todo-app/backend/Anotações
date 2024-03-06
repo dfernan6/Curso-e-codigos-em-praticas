@@ -1,0 +1,7 @@
+Acompanhar informações importantes Node Restfull:
+https://www.npmjs.com/package/node-restful
+
+$ npm i pm2 -g
+Faz a instalação do pm2 com monitoração do estado do servidor.
+https://pm2.keymetrics.io/
+
