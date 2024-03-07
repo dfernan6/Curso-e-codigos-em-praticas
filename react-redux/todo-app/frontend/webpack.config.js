@@ -1,11 +1,11 @@
 const webpack = require('webpack')
-const ExtraTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
     entry: './src/index.jsx',
     output: {
         path: __dirname + '/public',
-        filename: 'app.js'
+        filename: './app.js'
     },
     devServer: {
         port: 8080,
@@ -18,7 +18,7 @@ module.exports = {
         }
     },
     plugins: [
-        new ExtraTextPlugin('app.css')
+        new ExtractTextPlugin('app.css')
     ],
     module: {
         loaders: [{
@@ -31,7 +31,7 @@ module.exports = {
             }
         }, {
             test: /\.css$/,
-            loader: ExtraTextPlugin.extract('style-loader', 'css-loader')
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
         }, {
             test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
             loader: 'file'
