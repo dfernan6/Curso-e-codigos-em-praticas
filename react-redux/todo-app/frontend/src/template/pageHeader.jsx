@@ -1,7 +1,10 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
+import React from 'react';
 
-export default props => (
-    <header className='page-header'>
-        <h2>{props.name} <small>{props.small}</small></h2>
-    </header>
-)
+const PageHeader = props => (
+  <header className="page-header">
+    <h2>{props.name} <small>{props.small}</small></h2>
+  </header>
+);
+
+export default PageHeader;

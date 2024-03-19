@@ -1,11 +1,13 @@
-import React from "react"
-import If from "./if.jsx"
+/* eslint-disable react/prop-types */
+import React from 'react';
+import If from '../template/If.jsx';
 
-export default props => (
-    <If test={!props.hide}>
-        <button className={'btn btn-' + props.style}
-            onClick={props.onClick}>
-            <i className={'fa fa-' + props.icon}></i>
-        </button>
-    </If>
-)
+const IconButton = props => (
+  <If test={!props.hide}>
+    <button className={'btn btn-' + props.btnStyle} onClick={props.onClick}>
+      <i className={'fa fa-' + props.icon}></i>
+    </button>
+  </If>
+);
+
+export default IconButton;
