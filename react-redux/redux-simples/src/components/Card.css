@@ -8,6 +8,8 @@
 .Card .Header {
     display: flex;
     justify-content: center;
+    border-radius: 5px;
+    margin: 5px;
 }
 
 .Card .Header .Title {
@@ -16,9 +18,11 @@
 
 .Card .Content {
     padding: 20px;
+    border-radius: 5px;
+    margin: 5px;
 }
 
-.Card.Blue .Header { color:#FFF; background-color: aquamarine;}
+.Card.Blue .Header { color:#FFF; background-color: rgb(127, 219, 255);}
 .Card.Blue .Content { background-color: blue;}
 
 .Card.Green .Header { color:#FFF; background-color: rgb(127, 255, 148);}
