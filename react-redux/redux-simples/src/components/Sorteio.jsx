@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import Card from './Card'
 
-// eslint-disable-next-line import/no-anonymous-default-export
 function Sorteio(props) {
   const {min, max} = props
   const aleatorio = parseInt(Math.random() * (max - min)) + min
