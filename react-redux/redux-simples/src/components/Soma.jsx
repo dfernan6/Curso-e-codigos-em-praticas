@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import Card from './Card'
 
-// eslint-disable-next-line import/no-anonymous-default-export
 function Soma(props) {
   const {min, max} = props
     return (
