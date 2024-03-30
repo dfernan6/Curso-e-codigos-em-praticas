@@ -3,7 +3,7 @@ import PageHeader from '../template/PageHeader.jsx';
 
 const About = props => (
   <div>
-    <PageHeader name="Sobre" small="Nós"/>
+    <PageHeader name='Sobre' small='Nós'/>
     <h2>Nossa História</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
     <h2>Missão e Valores</h2>

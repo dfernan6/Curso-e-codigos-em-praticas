@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 
 export default class Grid extends Component {
@@ -18,9 +17,7 @@ export default class Grid extends Component {
     const gridClasses = this.toCssClasses(this.props.cols || 12);
 
     return (
-      // eslint-disable-next-line react/jsx-no-comment-textnodes
-      <div className={gridClasses}>;
-        // eslint-disable-next-line react/prop-types, react/prop-types, indent, indent
+      <div className={gridClasses}>
       {this.props.children}
       </div>
     );

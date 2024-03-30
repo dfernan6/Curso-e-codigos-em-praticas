@@ -1,11 +1,9 @@
-// eslint-disable-next-line no-unused-vars
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
   output: {
-    // eslint-disable-next-line n/no-path-concat
     path: __dirname + '/public',
     filename: './app.js'
   },
@@ -16,7 +14,6 @@ module.exports = {
   resolve: {
     extensios: ['', '.js', '.jsx'],
     alias: {
-      // eslint-disable-next-line n/no-path-concat
       modules: __dirname + '/node_modules'
     }
   },

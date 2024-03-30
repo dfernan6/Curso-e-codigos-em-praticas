@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import If from '../template/If.jsx';
+import If from './If.jsx';
 
 const IconButton = props => (
   <If test={!props.hide}>
