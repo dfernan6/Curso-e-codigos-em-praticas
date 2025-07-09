@@ -1,6 +1,6 @@
-const Todo = require('./todo')
+const Todos = require('./todos')
 
-Todo.methods(['get', 'post', 'put', 'delete'])
-Todo.updateOptions({new: true, runValidators:true})
+Todos.methods(['get', 'post', 'put', 'delete'])
+Todos.updateOptions({new: true, runValidators:true})
 
-module.exports = Todo
+module.exports = Todos
