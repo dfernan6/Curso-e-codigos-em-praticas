@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.Card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.541);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 5px;
+    width: 265px;
+    border: 3px solid;
+    outline: 1px solid black;
+}
+
+.Card .title{
+    padding: 5px;
+    color: rgb(224, 224, 224);
+    display: flex;
+    justify-content: center;
+}
+
+.Card .content {
+    color: rgb(0, 0, 0);
+    background-color: rgba(222, 225, 228, 0.514);
+    justify-content: center;
+    padding: 5px;
+    flex-grow: 1;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    box-shadow: inset 5px -5px 15px 2px #000000a9;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.title {
+    font-weight: bold;
+}
