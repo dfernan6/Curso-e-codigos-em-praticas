@@ -21,11 +21,28 @@ import Intervalo from './components/Intervalo';
 import Media from './components/Media';
 import Soma from './components/Soma';
 import Sorteio from './components/Sorteio';
+import logo from './github.png'; // adjust path as needed
 
 export default function App(){ 
   return (
 <div className="App">
 <h1>FUNDAMENTOS REACT</h1>
+<div className="info">
+ <b>Neste app os exercícios foram feitos para prática e conhecimentos.</b><br></br><br></br>
+
+React-Redux é a biblioteca oficial que conecta o Redux ao React, permitindo que seus componentes acessem e atualizem o estado global da aplicação de forma eficiente e organizada.<br></br><br></br>
+
+<b>Explicando um pouco mais:</b><br></br><br></br>
+
+Membros de familia são as notas do aluno com o ternário indicando aprovação.<br></br>
+
+No qual props e appendChild são conceitos de mundos diferentes no desenvolvimento web — um do React e outro do DOM tradicional é sempre bom evitar mistura los.<br></br>
+
+A função Math.random() em JavaScript é usada para gerar números pseudoaleatórios entre 0 (inclusive) e 1 (exclusivo). Ou seja, ela pode retornar algo como 0.2345, 0.9876, etc.<br></br>
+
+ O card Fragmento foi utilizado o recurso React.Fragment é  muito útil do React que permite agrupar múltiplos elementos sem adicionar tags extras no HTML — ideal para manter seu código limpo e semanticamente correto.<br></br><br></br>
+
+</div>
  <div className="Cards">
  <Card titulo="#14 - Mega Sena" color="#E3BDE6">
   <Mega />
@@ -99,13 +116,33 @@ export default function App(){
    <RandomNumber />
   </Card>
   </div> 
-      <h1>Exercicio React-Redux (Simples)</h1>
+      <h1>React-Redux</h1>
+      <div className="info">
+        <i><b>Gerenciamento centralizado de estado</b></i><br></br><br></br>
+
+- Toda a aplicação compartilha um único estado global, armazenado na store.<br></br>
+- Evita o "prop drilling" (passar props por vários níveis de componentes).<br></br><br></br>
+
+ <b><i> Conexão entre componentes e estado</i></b><br></br><br></br>
+
+- Usa o componente Provider para disponibilizar a store para toda a aplicação.<br></br>
+- Usa os hooks useSelector e useDispatch para ler e modificar o estado diretamente nos componentes.<br></br><br></br>
+
+ <b><i>Fluxo previsível de dados</i></b><br></br><br></br>
+- O estado só muda por meio de actions que são processadas por reducers.<br></br>
+- Isso torna o comportamento da aplicação mais fácil de entender e depurar.<br></br><br></br>
+
+ <b><i>Performance otimizada</i></b><br></br><br></br>
+- O React-Redux evita re-renderizações desnecessárias com verificações inteligentes de mudanças no estado.<br></br><br></br>
+
+      </div>
       <div className='linha'>
         <Intervalo></Intervalo>
         <Media></Media>
         <Soma></Soma>
         <Sorteio></Sorteio>
       </div>
+      <i>Fique à vontade para consultar os CODES da aplicação no repositório <b>GitHub:</b></i><a href="https://github.com/dfernan6/Curso-e-codigos-em-praticas/tree/master/react-fundamentals" target="_blank" rel="noreferrer"><img src={ logo } className="git" alt="https://github.com/dfernan6/Curso-e-codigos-em-praticas/tree/master/react-fundamentals" /></a><br></br><br></br>
 </div>
 )
 };

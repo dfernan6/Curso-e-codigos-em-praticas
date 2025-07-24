@@ -26,8 +26,8 @@
     padding: 5px;
     flex-grow: 1;
     border: 1px solid rgb(0, 0, 0);
-    border-radius: 10px;
-    box-shadow: inset 5px -5px 15px 2px #000000a9;
+    border-radius: 5px;
+    box-shadow: inset -6px -4px 0px 2px #000000a9;
 }
 
 h1 {

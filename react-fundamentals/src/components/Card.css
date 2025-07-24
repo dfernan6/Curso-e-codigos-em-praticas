@@ -3,7 +3,6 @@
     display: flex;
     max-height: 300px;
     min-width: 180px;
-    max-width: 220px;
     padding: 5px;
     font-size: 14px;
     flex-direction: column;
