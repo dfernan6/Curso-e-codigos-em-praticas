@@ -142,7 +142,7 @@ A função Math.random() em JavaScript é usada para gerar números pseudoaleat�
         <Soma></Soma>
         <Sorteio></Sorteio>
       </div>
-      <i>Fique à vontade para consultar os CODES da aplicação no repositório <b>GitHub:</b></i><a href="https://github.com/dfernan6/Curso-e-codigos-em-praticas/tree/master/react-fundamentals" target="_blank" rel="noreferrer"><img src={ logo } className="git" alt="https://github.com/dfernan6/Curso-e-codigos-em-praticas/tree/master/react-fundamentals" /></a><br></br><br></br>
+      <p><i>Fique à vontade para consultar os CODES da aplicação no repositório <b>GitHub</b></i></p><a href="https://github.com/dfernan6/Curso-e-codigos-em-praticas/tree/master/react-fundamentals" target="_blank" rel="noreferrer"><img src={ logo } className="git" alt="https://github.com/dfernan6/Curso-e-codigos-em-praticas/tree/master/react-fundamentals" /></a><br></br><br></br>
 </div>
 )
 };
