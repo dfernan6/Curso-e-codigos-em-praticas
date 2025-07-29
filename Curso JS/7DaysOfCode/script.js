@@ -8,7 +8,7 @@ let numeroDez = 10
 let stringDez = '10'
 
 if ( numeroUm == stringUm) {
-  console.log('As variáveis numeroUm e stringUm tem o mesmo valor, mas tipos diferentes')
+  console.log('As variáveis numeroUm e stringUm tem o mesmo valor, mas tipos diferentes');
 } else {
   console.log('As variáveis numeroUm e stringUm não tem o mesmo valor')
 }
@@ -36,51 +36,97 @@ function cadastro(){
     let idade = document.getElementById("idade").value;
     let linguagem = document.getElementById("linguagem").value;
     let mensagem = document.getElementById("seltab");
-    const reply = prompt(`Você gosta de estudar ${linguagem}? Responda com o número 1 para SIM ou 2 para NÃO?`)
-    mensagem.innerHTML += `<option>Olá ${nome}, você tem ${idade} anos e já está aprendendo ${linguagem}!</option>`
-
-if ( reply == '1') {
+    mensagem.innerHTML += `<option>Olá ${nome}, você tem ${idade} anos e já está aprendendo ${linguagem}!</option>`;
+    const reply = prompt(`Você gosta de estudar ${linguagem}?`);
+      decisao(linguagem, mensagem);
+      especialidade(nome, mensagem);
+if ( reply == 'Sim') {
  var alert = "Muito bom! Continue estudando e você terá muito sucesso.";
-} else {
- var alert = "Ahh que pena... Já tentou aprender outras linguagens?";
+} else if ( reply == 'Não'){
+ var alert = "Ahh que pena... Em breve você encontrará algo que goste!";
   }
-    
     mensagem.innerHTML += `<option>${alert}</option>`;
-
-     const msg = prompt(`Você que estuda ${linguagem}?  Se você quer seguir para qual área?
- Front-end  1 ou back-end 2.`)
-
- if ( msg == '1') {
-  let alert = "font-end";
-  prompt(`Além de seu foco em ${alert} ,qual linguagem você quer aprender? React 1 ou Vue 2`);
-} else {
-  let alert = "back-end";
-  prompt(`Além de seu foco em ${alert} ,qual linguagem você quer aprender? C# 1 ou Java 2`);
 }
-
-    const msg2 = prompt(`E você ${nome} gostaria de seguir se especializando na área escolhida 
-ou seguir se desenvolvendo para se tornar Fullstack?
- Area escolhida 1 ou Fullstack 2`)
-
-
- if ( msg2 == '1') {
- let alert2 = "Area escolhida";
-    prompt( `Quais são as tecnologias essenciais para ${alert2} ?`)
-    for (let i = 0; i < 5; i++) {
-      const msg3 = prompt(`Mais alguma tecnologia?`)
-          mensagem.innerHTML += `${msg3}`
-    }
-} else {
-let alert2 = "Area escolhida";
-    prompt( `Quais são as tecnologias essenciais para ${alert2} ?`)
-    for (let i = 0; i < 5; i++) {
-      const msg3 = prompt(`Mais alguma tecnologia?`)
-          mensagem.innerHTML += `${msg3}`
-    }
-  }
-
-};
-
 
 //#7DaysOfCode - Lógica JS 3/7: Fluxo de decisão
 
+function decisao(linguagem, mensagem) {
+  const msg = prompt(`Você que estuda ${linguagem}?  Se você quer seguir para qual área?
+  Front-end  1 ou back-end 2.`)
+
+  if ( msg == '1') {
+  let alert = "front-end";
+  var reply2  = prompt(`Além de seu foco em ${alert} ,qual linguagem você quer aprender? React 1 ou Vue 2`);
+     if (reply2 == '1'){
+     mensagem.innerHTML += `React é uma ótima escolha de linguagem para ${alert}`;
+     } else if (reply2 == '2'){
+     mensagem.innerHTML += `Vue é uma ótima escolha de linguagem para ${alert}`;
+      } else {
+        prompt(`Resposta incorreta! Perguntarei novamente!`);
+        decisao(linguagem, mensagem);
+  }
+} else if (msg == '2') {
+  let alert = "back-end";
+    var reply2 = prompt(`Além de seu foco em ${alert} ,qual linguagem você quer aprender? C# 1 ou Java 2`);
+       if (reply2 == '1'){
+     mensagem.innerHTML += `C# é uma ótima escolha de linguagem para ${alert}`;
+     } else if (reply2 == '2'){
+     mensagem.innerHTML += `Java é uma ótima escolha de linguagem para ${alert}`;
+      } else {
+        prompt(`Resposta incorreta! Perguntarei novamente!`);
+        decisao(linguagem, mensagem);
+  }
+} else {
+  prompt(`Resposta incorreta! Perguntarei novamente!`);
+  decisao(linguagem, mensagem);
+  }
+}
+
+function especialidade(nome, mensagem){
+    let msg2 = prompt(`E você ${nome} gostaria de seguir se especializando na Area escolhida ou  se tornar Fullstack? Area escolhida 1 ou Full-stack 2`)
+
+ if ( msg2 == '1') {
+ let alert2 = "Area escolhida";
+ let quantidade = Number(prompt( `Quantas tecnologias são essenciais para ${alert2} ?`));
+    for (let i = 0; i < quantidade; i++) {
+      let msg3 = prompt(`Quais tecnologias?`)
+          mensagem.innerHTML +=  `${msg3}, `;
+    }
+} else if (msg2 == '2') {
+let alert2 = "Full-stack";
+  let quantidade =  Number(prompt( `Quantas tecnologias são essenciais para ${alert2} ?`));
+    for (let i = 0; i < quantidade; i++) {
+      let msg3 = prompt(`Quais tecnologias?`)
+          mensagem.innerHTML +=  `${msg3}, `;
+} 
+} else {
+  prompt(`Resposta incorreta! Perguntarei novamente!`);
+  especialidade(nome, mensagem);
+  }
+};
+
+//#7DaysOfCode - Lógica JS 4/7: 👩🏽‍💻 Mais loops e randomização
+
+function sorteio() {
+  var chute = prompt(`Chute um número de 1 a 10`)
+  var numero = Math.floor(Math.random() * (10 - 0 + 1) + 0)
+
+  if (chute == numero){
+    prompt(`O número sorteado foi ${numero} Parabéns!! Você acertou!!`)
+  } else {
+      for (var i = 10; i >= 0; i--){
+        var chute = prompt(`O número sorteado foi ${numero}, Chute um número de 1 a 10.
+          Você tem mais ${i} tentativas!`);
+        var numero = Math.floor(Math.random() * (10 - 0 + 1) + 0);
+        chute; 
+        if (chute == numero){
+        var msg = prompt(`O número sorteado foi ${numero} Parabéns!! Você acertou!!`);
+        msg;
+        break;
+    } else if (i == 0) {
+      var msg = prompt(`Dez tentativa sem acerto! Desclassificado! `)
+      msg;
+     }
+    } 
+  }
+}

@@ -11,7 +11,19 @@ body {
 }
 
 .containerI {
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.containerII {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.containerIII {
+    display: flex;
     flex-wrap: wrap;
     margin: auto;
 }
