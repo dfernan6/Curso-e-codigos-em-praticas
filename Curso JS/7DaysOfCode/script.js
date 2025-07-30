@@ -135,8 +135,8 @@ function sorteio() {
 
 function compras() {
   const lista = []
-  let produtos = prompt(`Você deseja adicionar algum na sua lista de compras?
-    Por favor responda "Sim" ou "Não"`)
+  let produtos = prompt(`Você deseja adicionar algum produto na sua lista de compras?
+    Por favor responda "Sim" ou "Não"`);
 
     if (produtos == "Sim") {
       executarLoop(lista);
@@ -149,17 +149,26 @@ function compras() {
 
 
 function executarLoop(lista) {
-  let continuar = true;
+  var continuar = true;
 
   while (continuar) {
-    let duvida = Number(prompt("Quantos itens você quer adicionar na sua lista?"));
+        console.log("🛍️ Lista de Compras Organizada:");
+    lista.forEach((item, index) => {
+      console.log(`${index + 1}. ${item.nome} — Categoria: ${item.categoria}`);
+    });
+    let duvida = Number(prompt(`Quantos itens você quer adicionar? Quiser Sair pressione '0'`));
+
+    if (duvida == '0'){
+      continuar = false;
+      break;
+    }
 
     for (let i = 0; i < duvida; i++) {
       let produto = prompt("Qual produto você quer adicionar na sua lista?");
-      let categoria = prompt(`Em qual categoria essa comida se encaixa?\nFrutas, Laticínios, Congelados ou Doces?`);
+      let categoria = prompt(`Em qual categoria esse produto se encaixa? Exemplos:\nFrutas, Laticínios, Congelados ou Doces?`);
 
       // Criar objeto com produto e categoria
-      let item = {
+      const item = {
         nome: produto,
         categoria: categoria
       };
@@ -167,17 +176,51 @@ function executarLoop(lista) {
       lista.push(item);
     }
 
-    let esclarecer = prompt(`Mais algum produto ou podemos imprimir a lista?\nPressione '1' para mais produtos ou '2' para imprimir`);
+    let esclarecer = prompt(`Por favor, verifique a lista dos produtos para podermos imprimir?
+    \nAdicionar - '1', Excluir - '2', Imprimir - '3'`);
 
-    if (esclarecer === '2') {
+    if (esclarecer === '1'){
+      executarLoop(lista);
+      break;
+    }
+     else if (esclarecer === '2'){
+            console.log("🛍️ Lista de Compras Organizada:");
+      lista.forEach((item, index) => {
+        console.log(`${index + 1}. ${item.nome} — Categoria: ${item.categoria}`);
+      });
+      deletar(lista);
+      console.log("🛍️ Lista de Compras Organizada:");
+      lista.forEach((item, index) => {
+        console.log(`${index + 1}. ${item.nome} — Categoria: ${item.categoria}`);
+      });
+    }
+
+    else if (esclarecer === '3') {
       continuar = false;
       console.log("🛍️ Lista de Compras Organizada:");
       lista.forEach((item, index) => {
         console.log(`${index + 1}. ${item.nome} — Categoria: ${item.categoria}`);
       });
-    } else if (esclarecer !== '1') {
-      console.log("❌ Resposta incorreta! Vou questionar novamente!");
+    } else  {
+      console.log("❌ Resposta incorreta! Por favor nos acione novamten!");
+      continuar = false;
     }
   }
 }
 
+//#7DaysOfCode - Lógica JS 6/7: 👩🏽‍💻 Remoção de Arrays
+
+function deletar(lista){
+  let nomeRemover = prompt("Qual produto você quer remover na sua lista?");
+  let categoriaRemover = prompt(`Em qual categoria esse produto se encaixa? Exemplos:\nFrutas, Laticínios, Congelados ou Doces?`);
+  let indiceRemover = lista.findIndex(item => item.nome.toLowerCase() === nomeRemover.toLowerCase());
+  let categoriaDeletar = lista.findIndex(item => item.categoria.toLowerCase() === categoriaRemover.toLowerCase());
+
+  if (indiceRemover !== -1 && categoriaDeletar !== -1) {
+  lista.splice(indiceRemover, 1);
+  lista.splice(categoriaDeletar, 1);
+  console.log(`✅ Produto "${nomeRemover}" de sua Categoria: ${categoriaRemover} removido com sucesso!`);
+} else {
+  console.log(`❌ Produto "${nomeRemover}" não encontrado na lista.`);
+}
+};
