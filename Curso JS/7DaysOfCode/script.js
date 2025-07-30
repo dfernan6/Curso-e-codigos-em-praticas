@@ -130,3 +130,54 @@ function sorteio() {
     } 
   }
 }
+
+//#7DaysOfCode - Lógica JS 5/7: Arrays e coleções
+
+function compras() {
+  const lista = []
+  let produtos = prompt(`Você deseja adicionar algum na sua lista de compras?
+    Por favor responda "Sim" ou "Não"`)
+
+    if (produtos == "Sim") {
+      executarLoop(lista);
+    } else if (produtos == "Não") {
+      console.log(`Muito Obrigado! Você poderá solicitar outra lista no terminal quando quiser.`);
+    } else {
+      prompt("Resposta incorreta! Favor solicite novamente a montagem da lista no terminal.")
+    }
+  }
+
+
+function executarLoop(lista) {
+  let continuar = true;
+
+  while (continuar) {
+    let duvida = Number(prompt("Quantos itens você quer adicionar na sua lista?"));
+
+    for (let i = 0; i < duvida; i++) {
+      let produto = prompt("Qual produto você quer adicionar na sua lista?");
+      let categoria = prompt(`Em qual categoria essa comida se encaixa?\nFrutas, Laticínios, Congelados ou Doces?`);
+
+      // Criar objeto com produto e categoria
+      let item = {
+        nome: produto,
+        categoria: categoria
+      };
+
+      lista.push(item);
+    }
+
+    let esclarecer = prompt(`Mais algum produto ou podemos imprimir a lista?\nPressione '1' para mais produtos ou '2' para imprimir`);
+
+    if (esclarecer === '2') {
+      continuar = false;
+      console.log("🛍️ Lista de Compras Organizada:");
+      lista.forEach((item, index) => {
+        console.log(`${index + 1}. ${item.nome} — Categoria: ${item.categoria}`);
+      });
+    } else if (esclarecer !== '1') {
+      console.log("❌ Resposta incorreta! Vou questionar novamente!");
+    }
+  }
+}
+
