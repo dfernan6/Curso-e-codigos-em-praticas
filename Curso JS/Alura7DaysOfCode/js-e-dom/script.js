@@ -1,3 +1,5 @@
+//#7DaysOfCode - JS e DOM 1/7: Criando os elementos iniciais do formulário
+
 function cadastrar(){
     document.getElementById("form js-form").addEventListener("submit", function(e) {
     e.preventDefault(); // evita o reload da página
