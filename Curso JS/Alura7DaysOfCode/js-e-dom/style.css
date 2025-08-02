@@ -1,0 +1,8 @@
+body {
+    background-color: rgb(138, 138, 138);
+    box-sizing: content-box;
+    padding: 10px;
+    display: block;
+    flex-wrap: wrap;
+    font-size: 16px;
+}

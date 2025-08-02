@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> JS DOM</title>
+<link href="style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fuggles&display=swap" rel="stylesheet">
+</head>
+<script language="javascript" src="script.js"></script>
+<body>
+    <div id="iInterface" class="container">
+        <h1 class="exp" >JS DOM</h1>
+        <h1>Cadastro de pessoas</h1>
+    <form id="form js-form">
+      <label for="name">
+        Nome
+      <input class="form-field js-field" id="name" maxlength="120" name="name" required type="text">
+      </label>
+      <label for="birth-date">
+        Data de Nascimento
+      <input class="form-field js-field" id="birth-date" name="birth-date" required type="date">
+      </label>
+      <button onclick="cadastrar()" type="submit">Salvar</button>
+</form>
+<div id="resultado"></div>
+</div>  
+</body>
+<footer>
+    <div id="iFooter" >
+<p id=iFooter >&copy <i>Editado por <b>Danilo Fernandes<br></b></i></p><br>
+</div>
+</footer>
+</html>
