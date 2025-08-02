@@ -224,3 +224,55 @@ function deletar(lista){
   console.log(`❌ Produto "${nomeRemover}" não encontrado na lista.`);
 }
 };
+
+//#7DaysOfCode - Lógica JS 7/7: Funções em Javascript
+
+function calculadora(){
+  var calculo = prompt(`Simblos de cálculo: + - / *!: Cancelar pressione x`);
+  
+
+ switch (calculo) {
+    case "+":
+        var a = Number(prompt(`Digite o primeiro número!`));
+        var b = Number(prompt(`Digite o segundo número!`));
+        console.log(somar(a,b))
+        break;
+    case "-":
+        var a = Number(prompt(`Digite o primeiro número!`));
+        var b = Number(prompt(`Digite o segundo número!`));
+        console.log(subtrair(a,b))
+        break;
+    case "*":
+        var a = Number(prompt(`Digite o primeiro número!`));
+        var b = Number(prompt(`Digite o segundo número!`));
+        console.log(multiplicar(a,b))
+        break;
+    case "/":
+        var a = Number(prompt(`Digite o primeiro número!`));
+        var b = Number(prompt(`Digite o segundo número!`));
+        console.log(dividir(a,b))
+        break;
+    case "x":
+        break;
+    default:
+        alert(`Símbolo incorreto!Favor realize o cálculo novamente!`);
+        calculadora();
+    }
+}
+
+
+function somar(a,b){
+     return a + b;
+}
+
+function subtrair(a,b){
+    return a - b;
+}
+
+function multiplicar(a,b){
+    return a * b;
+}
+
+function dividir(a,b){
+    return a / b;
+}
