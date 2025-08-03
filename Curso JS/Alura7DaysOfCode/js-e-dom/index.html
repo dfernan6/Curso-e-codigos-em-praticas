@@ -17,11 +17,13 @@
     <form id="form js-form">
       <label for="name">
         Nome
-      <input class="form-field js-field" id="name" maxlength="120" name="name" required type="text">
+      <input class="form-field js-field" id="name" maxlength="120" minlength="3" name="name" type="text" required pattern="[A-Za-zÀ-ÿ\s]+"
+      oninvalid="this.setCustomValidity('Por favor, Verifique! Mín 3 caracteres, Max 120 e somente letras são aceitos para cadastro! ')" oninput="this.setCustomValidity('')">
       </label>
       <label for="birth-date">
         Data de Nascimento
-      <input class="form-field js-field" id="birth-date" name="birth-date" required type="date">
+      <input class="form-field js-field" id="birth-date" name="birth-date" required type="date" min="1920-01-01" 
+  max="2024-12-31">
       </label>
       <button onclick="cadastrar()" type="submit">Salvar</button>
 </form>

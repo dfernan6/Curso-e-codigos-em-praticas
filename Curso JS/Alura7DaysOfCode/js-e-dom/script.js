@@ -16,3 +16,5 @@ function cadastrar(){
     document.getElementById("resultado").innerHTML += `Olá, ${nome}! Você tem ${idade} anos.`
   });
 }
+
+//#7DaysOfCode - JS e DOM 2/7: 👩🏽‍💻 Adicionando validações ao formulário
