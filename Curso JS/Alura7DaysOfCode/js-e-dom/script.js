@@ -1,20 +1,51 @@
-//#7DaysOfCode - JS e DOM 1/7: Criando os elementos iniciais do formulário
+document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("form");
+      const resultado = document.getElementById("resultado");
 
-function cadastrar(){
-    document.getElementById("form js-form").addEventListener("submit", function(e) {
-    e.preventDefault(); // evita o reload da página
-    const nome = document.getElementById("name").value;
-    const dataNascimento = document.getElementById("birth-date").value;
-    const hoje = new Date();
-    const nascimento = new Date(dataNascimento);
-    let idade = hoje.getFullYear() - nascimento.getFullYear();
-    const mes = hoje.getMonth() - nascimento.getMonth();
-      if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
-      idade--;
-    }
-    idade;
-    document.getElementById("resultado").innerHTML += `Olá, ${nome}! Você tem ${idade} anos.`
-  });
-}
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
 
-//#7DaysOfCode - JS e DOM 2/7: 👩🏽‍💻 Adicionando validações ao formulário
+        const nome = document.getElementById("name").value;
+        const dataNascimento = document.getElementById("birth-date").value;
+
+        const hoje = new Date();
+        const nascimento = new Date(dataNascimento);
+
+        let idade = hoje.getFullYear() - nascimento.getFullYear();
+        const mes = hoje.getMonth() - nascimento.getMonth();
+        if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+          idade--;
+        }
+
+        const novoUsuario = {
+          nome: nome,
+          idade: idade,
+          dataNascimento: dataNascimento
+        };
+
+        // Recupera ou cria array
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        usuarios.push(novoUsuario);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+        // Chama a função para exibir
+        mostrarUsuarios();
+      });
+
+      // Função global para listar
+      function mostrarUsuarios() {
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        resultado.innerHTML = "<h3>Lista de Cadastros:</h3>";
+        usuarios.forEach((u, i) => {
+          resultado.innerHTML += `${i + 1}) ${u.nome} - ${u.idade} anos<br>`;
+        });
+      }
+
+      // Mostrar ao carregar
+      mostrarUsuarios();
+    });
+
+    function limparFila(){
+    localStorage.removeItem("usuarios");
+    document.getElementById("resultado").innerHTML = "Cadastros apagados.";
+  }

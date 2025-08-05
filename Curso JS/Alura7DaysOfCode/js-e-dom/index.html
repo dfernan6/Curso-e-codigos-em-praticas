@@ -1,38 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> JS DOM</title>
-<link href="style.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fuggles&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Cadastro Múltiplo</title>
+  <link href="style.css" rel="stylesheet"></link>
 </head>
-<script language="javascript" src="script.js"></script>
 <body>
-    <div id="iInterface" class="container">
-        <h1 class="exp" >JS DOM</h1>
-        <h1>Cadastro de pessoas</h1>
-    <form id="form js-form">
-      <label for="name">
-        Nome
-      <input class="form-field js-field" id="name" maxlength="120" minlength="3" name="name" type="text" required pattern="[A-Za-zÀ-ÿ\s]+"
-      oninvalid="this.setCustomValidity('Por favor, Verifique! Mín 3 caracteres, Max 120 e somente letras são aceitos para cadastro! ')" oninput="this.setCustomValidity('')">
-      </label>
-      <label for="birth-date">
-        Data de Nascimento
-      <input class="form-field js-field" id="birth-date" name="birth-date" required type="date" min="1920-01-01" 
-  max="2024-12-31">
-      </label>
-      <button onclick="cadastrar()" type="submit">Salvar</button>
-</form>
-<div id="resultado"></div>
-</div>  
+  <form id="form" class="js-form">
+    <label for="name">
+      Nome
+      <input
+        id="name"
+        maxlength="120"
+        minlength="3"
+        name="name"
+        type="text"
+        required
+        pattern="[A-Za-zÀ-ÿ\s]+"
+      >
+    </label>
+    <br><br>
+    <label for="birth-date">
+      Data de Nascimento
+      <input
+        id="birth-date"
+        name="birth-date"
+        required
+        type="date"
+        min="1920-01-01"
+        max="2024-12-31"
+      >
+    </label>
+    <br><br>
+    <button type="submit" id="submitbtn">Salvar</button>
+  </form>
+
+  <div id="resultado"></div>
+  <button onclick="limparFila()" type="submit" id="cleanbtn">Limpar</button>
+  <script src="script.js"></script>
 </body>
-<footer>
-    <div id="iFooter" >
-<p id=iFooter >&copy <i>Editado por <b>Danilo Fernandes<br></b></i></p><br>
-</div>
-</footer>
 </html>
