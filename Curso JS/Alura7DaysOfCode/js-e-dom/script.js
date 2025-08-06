@@ -14,6 +14,7 @@ function atualizarLista() {
     div.innerHTML = `
       <strong>${item.nome}</strong> - ${item.data}
       <button onclick="editar(${index})">✏️ Editar</button>
+      <button onclick="deletar(${index})">❌ Deletar</button>
     `;
     resultado.appendChild(div);
   });
@@ -57,19 +58,14 @@ window.limparFila = function () {
   form.reset();
 };
 
-// Botão "Alterar" agora só serve como atalho para salvar edição
-window.deletar = function () {
-  if (indexEditando !== null) {
-    const nome = nomeInput.value.trim();
-    const data = dataInput.value;
-    dados[indexEditando] = { nome, data };
-    indexEditando = null;
-    atualizarLista();
-    form.reset();
-  } else {
-    alert('Selecione um item para alterar.');
-  }
+// Botão "Deletar" agora só serve como atalho para salvar edição
+window.deletar = function(index) {
+  dados.splice(index, 1); // Remove o item do array
+  localStorage.setItem("usuarios", JSON.stringify(dados)); // Atualiza o localStorage
+  atualizarLista(); // Re-renderiza a lista na tela
 };
+
+
 
 // Inicializa a lista ao carregar
 document.addEventListener('DOMContentLoaded', atualizarLista);
