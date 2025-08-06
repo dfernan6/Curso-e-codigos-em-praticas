@@ -1,51 +1,75 @@
-document.addEventListener("DOMContentLoaded", function () {
-      const form = document.getElementById("form");
-      const resultado = document.getElementById("resultado");
+const form = document.getElementById('form');
+const nomeInput = document.getElementById('name');
+const dataInput = document.getElementById('birth-date');
+const resultado = document.getElementById('resultado');
 
-      form.addEventListener("submit", function(e) {
-        e.preventDefault();
+let dados = JSON.parse(localStorage.getItem('usuarios')) || [];
+let indexEditando = null;
 
-        const nome = document.getElementById("name").value;
-        const dataNascimento = document.getElementById("birth-date").value;
+// Atualiza a lista na tela
+function atualizarLista() {
+  resultado.innerHTML = '';
+  dados.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <strong>${item.nome}</strong> - ${item.data}
+      <button onclick="editar(${index})">✏️ Editar</button>
+    `;
+    resultado.appendChild(div);
+  });
+  localStorage.setItem('usuarios', JSON.stringify(dados));
+}
 
-        const hoje = new Date();
-        const nascimento = new Date(dataNascimento);
+// Salvar novo ou editar existente
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const nome = nomeInput.value.trim();
+  const data = dataInput.value;
 
-        let idade = hoje.getFullYear() - nascimento.getFullYear();
-        const mes = hoje.getMonth() - nascimento.getMonth();
-        if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
-          idade--;
-        }
+  if (!nome || !data) return;
 
-        const novoUsuario = {
-          nome: nome,
-          idade: idade,
-          dataNascimento: dataNascimento
-        };
-
-        // Recupera ou cria array
-        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-        usuarios.push(novoUsuario);
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-        // Chama a função para exibir
-        mostrarUsuarios();
-      });
-
-      // Função global para listar
-      function mostrarUsuarios() {
-        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-        resultado.innerHTML = "<h3>Lista de Cadastros:</h3>";
-        usuarios.forEach((u, i) => {
-          resultado.innerHTML += `${i + 1}) ${u.nome} - ${u.idade} anos<br>`;
-        });
-      }
-
-      // Mostrar ao carregar
-      mostrarUsuarios();
-    });
-
-    function limparFila(){
-    localStorage.removeItem("usuarios");
-    document.getElementById("resultado").innerHTML = "Cadastros apagados.";
+  if (indexEditando !== null) {
+    // Atualiza existente
+    dados[indexEditando] = { nome, data };
+    indexEditando = null;
+  } else {
+    // Adiciona novo
+    dados.push({ nome, data });
   }
+
+  form.reset();
+  atualizarLista();
+});
+
+// Editar item
+window.editar = function (index) {
+  const item = dados[index];
+  nomeInput.value = item.nome;
+  dataInput.value = item.data;
+  indexEditando = index;
+};
+
+// Limpar tudo
+window.limparFila = function () {
+  dados = [];
+  localStorage.removeItem('usuarios');
+  atualizarLista();
+  form.reset();
+};
+
+// Botão "Alterar" agora só serve como atalho para salvar edição
+window.deletar = function () {
+  if (indexEditando !== null) {
+    const nome = nomeInput.value.trim();
+    const data = dataInput.value;
+    dados[indexEditando] = { nome, data };
+    indexEditando = null;
+    atualizarLista();
+    form.reset();
+  } else {
+    alert('Selecione um item para alterar.');
+  }
+};
+
+// Inicializa a lista ao carregar
+document.addEventListener('DOMContentLoaded', atualizarLista);
