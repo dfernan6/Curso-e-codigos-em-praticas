@@ -6,17 +6,28 @@ const resultado = document.getElementById('resultado');
 let dados = JSON.parse(localStorage.getItem('usuarios')) || [];
 let indexEditando = null;
 
-// Atualiza a lista na tela
+// Função para formatar data para dd-mm-aaaa
+function formatarDataBrasileira(dataISO) {
+  const [ano, mes, dia] = dataISO.split('-');
+  return `${dia}-${mes}-${ano}`;
+}
+
+// Atualiza a tabela na tela
 function atualizarLista() {
   resultado.innerHTML = '';
   dados.forEach((item, index) => {
-    const div = document.createElement('div');
-    div.innerHTML = `
-      <strong>${item.nome}</strong> - ${item.data}
-      <button onclick="editar(${index})">✏️ Editar</button>
-      <button onclick="deletar(${index})">❌ Deletar</button>
+    const corLinha = index % 2 === 0 ? 'linha-verde-clara' : 'linha-azulada';
+    const tr = document.createElement('tr');
+    tr.className = corLinha;
+    tr.innerHTML = `
+      <td><strong>${item.nome}</strong></td>
+      <td>${formatarDataBrasileira(item.data)}</td>
+      <td>
+        <button onclick="editar(${index})" class="btn btn-sm btn-outline-primary me-2">✏️ Editar</button>
+        <button onclick="deletar(${index})" class="btn btn-sm btn-outline-danger">❌ Deletar</button>
+      </td>
     `;
-    resultado.appendChild(div);
+    resultado.appendChild(tr);
   });
   localStorage.setItem('usuarios', JSON.stringify(dados));
 }
@@ -30,11 +41,9 @@ form.addEventListener('submit', function (e) {
   if (!nome || !data) return;
 
   if (indexEditando !== null) {
-    // Atualiza existente
     dados[indexEditando] = { nome, data };
     indexEditando = null;
   } else {
-    // Adiciona novo
     dados.push({ nome, data });
   }
 
@@ -58,14 +67,12 @@ window.limparFila = function () {
   form.reset();
 };
 
-// Botão "Deletar" agora só serve como atalho para salvar edição
+// Deletar item
 window.deletar = function(index) {
-  dados.splice(index, 1); // Remove o item do array
-  localStorage.setItem("usuarios", JSON.stringify(dados)); // Atualiza o localStorage
-  atualizarLista(); // Re-renderiza a lista na tela
+  dados.splice(index, 1);
+  localStorage.setItem("usuarios", JSON.stringify(dados));
+  atualizarLista();
 };
-
-
 
 // Inicializa a lista ao carregar
 document.addEventListener('DOMContentLoaded', atualizarLista);

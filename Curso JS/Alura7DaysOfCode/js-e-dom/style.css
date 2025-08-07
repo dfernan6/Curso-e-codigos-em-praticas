@@ -1,8 +1,65 @@
 body {
-    background-color: rgb(138, 138, 138);
-    box-sizing: content-box;
-    padding: 10px;
-    display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #cdebe7;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(217 226 239);
+  border: 1px solid #bcc0f1; /* Corrigido: sem vírgula */
+  max-width: 800px;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.items {
+        background: rgb(238 240 249);
+    padding: 15px;
+    display: flex;
     flex-wrap: wrap;
-    font-size: 16px;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-end;
+    align-items: center;
+    border: solid, #a9cafb;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    margin: auto;
+    padding: 15px;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 20px;
+    color: rgb(119 132 167);
+    font-family: cursive;
+    text-align: center;
+}
+
+.linha-verde-clara {
+  background-color: #e6f4ea; /* verde bem claro */
+}
+
+.linha-azulada {
+  background-color: #eaf1f8; /* azul bem claro */
+}
+
+tr:hover {
+  background-color: #d0e0f0; /* azul mais forte no hover */
+}
+
+thead {
+  border-bottom: 2px solid #93c5fd;
+  background-color: #dbeafe;
 }
