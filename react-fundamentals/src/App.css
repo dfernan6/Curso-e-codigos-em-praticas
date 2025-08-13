@@ -1,10 +1,30 @@
 @charset "UTF-8";
 
+.App {
+    display: flex;
+    flex-direction: column;
+}
+
 .App .Cards {
     display: flex;
     min-height: 300px;
     flex-wrap: wrap;
     margin: auto;
+    flex-direction: row;
+    padding: 5px;
+    justify-content: center;
+}
+
+.Card, .Card .Header {
+    display: flex;
+    margin: 5px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border-color: rgb(0 0 0);
+    border: solid rgb(0, 0, 0);
+    border-radius: 5px;
 }
 
  input {
@@ -24,11 +44,18 @@ button {
 
 .linha {
     display: flex;
-    flex-wrap: wrap;
     margin: auto;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 div .info {
     color: rgb(247, 247, 247);
     background-color: rgba(0, 0, 0, 0.6);
+}
+
+.intervalo {
+    display: contents;
 }
