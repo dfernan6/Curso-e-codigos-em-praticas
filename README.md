@@ -16,6 +16,5 @@ Nas linguagens: <br>
 </ul><br>
 Aviso <b>IMPORTANTE</b>:<br>
 Os códigos PHP Básico estão no arquivo: Anotações-Curso PHP.txt<br>
-Aqui temos vários códigos que foram compartilhados pelas instituições Alura, MongoDB, CISCO, Ûdemy, Cod3r, Curso em Vídeo,<br>
-trybe e mais algumas dicas encontradas via Google.<br>
+Aqui temos vários códigos que foram compartilhados pelas instituições Alura, MongoDB, CISCO, Ûdemy, Cod3r, Curso em Vídeo, trybe e mais algumas dicas encontradas via Google.<br>
 Mais alguns projetos que acabei desenvolvendo como prática.
