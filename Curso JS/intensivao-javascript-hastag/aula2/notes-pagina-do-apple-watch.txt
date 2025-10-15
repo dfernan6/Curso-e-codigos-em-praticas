@@ -1,0 +1,2 @@
+Executar o link script.js sem precisar de enviar para o final do <body>
+<script src="./script.js" defer></script>

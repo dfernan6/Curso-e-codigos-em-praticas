@@ -1,0 +1,6 @@
+HTML
+
+No VS ao editar <p>, no top Menu clicar na opção 
+VIEW->World Wrap ou CRTL+Z ele organiza o texto
+na tela do VS.
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prática Aula 1 - JavaScript</title>
+
+  <!-- Link para o arquivo de estilos -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- HeroIcons via CDN (outline) -->
+  <script src="https://unpkg.com/heroicons@2.0.13/dist/heroicons.min.js"></script>
+</head>
+<body>
+  <section class="container">
+    <div>
+      <img src="./imagens/dom-casmurro.jpeg" alt="Dom Casmurro" />
+    </div>
+    <div>
+      <h1>Capítulo 1</h1>
+      <h2>Machado de Assis</h2>
+    </div>
+
+    <!-- Botões de controle -->
+    <div class="controls">
+      <button id="backBtn" title="Voltar">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button id="playPauseBtn" title="Play/Pause">
+        <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-6.518-3.74A1 1 0 007 8.26v7.48a1 1 0 001.234.972l6.518-1.872a1 1 0 000-1.944z" />
+        </svg>
+        <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" class="icon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6" />
+        </svg>
+      </button>
+
+      <button id="forwardBtn" title="Avançar">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
