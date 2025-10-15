@@ -36,6 +36,7 @@ Os conteúdos foram baseados em cursos e materiais das seguintes instituições:
 - Cod3r
 - Curso em Vídeo
 - Trybe
+- HashTag
 - Dicas e referências complementares encontradas via Google
 Além disso, foram incluídos projetos autorais desenvolvidos como prática para consolidar os conhecimentos adquiridos.
 
@@ -76,6 +77,7 @@ Content inspired by courses and materials from:
 - Cod3r
 - Curso em Vídeo
 - Trybe
+- HashTag
 - Additional tips and references found via Google
 Also includes personal projects developed as practice to reinforce acquired knowledge.
 
