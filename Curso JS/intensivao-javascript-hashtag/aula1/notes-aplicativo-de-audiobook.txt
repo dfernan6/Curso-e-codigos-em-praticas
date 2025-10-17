@@ -4,3 +4,5 @@ No VS ao editar <p>, no top Menu clicar na opção
 VIEW->World Wrap ou CRTL+Z ele organiza o texto
 na tela do VS.
 
+para liberar colar o no console, digitar: allow pasting
+
