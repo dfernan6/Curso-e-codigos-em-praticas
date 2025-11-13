@@ -1,51 +1,78 @@
-import { View, Text, Image, StyleSheet, Pressable } from "react-native";
+import React from "react";
+import { View, Text, Image, StyleSheet } from "react-native";
+import Button from "../components/Button/styles";
+import { globalStyles } from "../styles/global";
 
 export default function Home({ navigation }: any) {
   return (
-    <View style={styles.container}>
-      <Image
-        source={{ uri: "https://openweathermap.org/img/wn/11d@4x.png" }}
-        style={styles.image}
-      />
-      <Text style={styles.title}>Descubra o Clima de sua Cidade</Text>
-      <Text style={styles.subtitle}>
-        Com o <Text style={styles.bold}>FindWeather</Text> nunca ficou tão fácil
+    <View style={[globalStyles.container, { backgroundColor: "#111" }]}>
+      {/* Imagem centralizada */}
+      <View style={styles.imageWrapper}>
+        <Image
+          source={{ uri: "https://openweathermap.org/img/wn/11d@4x.png" }}
+          style={styles.image}
+        />
+      </View>
+
+      <Text style={[globalStyles.title, styles.title]}>
+        Descubra o Clima de sua Cidade
+      </Text>
+
+      <Text style={[globalStyles.subtitle, styles.subtitle]}>
+        Com o <Text style={{ fontWeight: "bold", color: "#FFD700" }}>FindWeather</Text> nunca foi tão fácil
         ter a previsão do tempo na palma da sua mão
       </Text>
 
-      <Pressable
-        style={({ pressed }) => [
-          styles.button,
-          { backgroundColor: pressed ? "#A9A9A9" : "#333333" }, // cinza claro no hover, cinza escuro normal
-        ]}
-        onPress={() => navigation.navigate("NextPage")}
-      >
-        <Text style={styles.buttonText}>Iniciar</Text>
-      </Pressable>
+      {/* Botão centralizado com marginRight */}
+      <View style={styles.buttonWrapper}>
+        <Button
+          backgroundColor="#fff"
+          borderColor="#fff"
+          borderRadius={18}
+          height={64}
+          onPress={() => navigation.navigate("NextPage")}
+        >
+          <Text style={styles.buttonText}>Iniciar</Text>
+        </Button>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center", justifyContent: "center", padding: 20 },
-  image: { width: 200, height: 200, resizeMode: "contain" },
-  title: { fontFamily: "sans-serif", fontSize: 24, marginVertical: 10, textAlign: "center" },
-  subtitle: { fontFamily: "sans-serif", fontSize: 16, textAlign: "center", marginBottom: 20 },
-  bold: { fontFamily: "sans-serif", fontWeight: "bold" },
-  button: {
-    width: 328,
-    height: 54,
-    borderRadius: 18,
-    borderWidth: 1,
-    borderColor: "#333333",
+  imageWrapper: {
     alignItems: "center",
     justifyContent: "center",
-    opacity: 1,
+    marginBottom: 40,
+  },
+  image: {
+    width: 300,
+    height: 300,
+    resizeMode: "contain",
+  },
+  title: {
+    color: "#fff",
+    fontSize: 30,
+    marginBottom: 30,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  subtitle: {
+    color: "#ddd",
+    fontSize: 20,
+    marginBottom: 60,
+    textAlign: "center",
+  },
+  buttonWrapper: {
+    width: "80%",
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 40,
   },
   buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontFamily: "sans-serif",
+    color: "#111",
+    fontSize: 22,
     fontWeight: "bold",
+    textAlign: "center",
   },
 });
