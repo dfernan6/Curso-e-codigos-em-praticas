@@ -90,31 +90,39 @@ export default function Home({ navigation }: any) {
       </Text>
 
       {weather && (
-        <View style={styles.resultWrapper}>
-          <View style={styles.infoRow}>
-            <Ionicons name="thermometer" size={22} color="#FFD700" />
-            <Text style={styles.info}> {weather.main.temp}°C</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Ionicons name="water" size={22} color="#00BFFF" />
-            <Text style={styles.info}>
-              {t("humidity", { value: weather.main.humidity })}
-            </Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Ionicons name="rainy" size={22} color="#1E90FF" />
-            <Text style={styles.info}> 
-              {t(weather.weather[0].main.toLowerCase())}
-            </Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Ionicons name="leaf" size={22} color="#32CD32" />
-            <Text style={styles.info}>
-              {t("wind", { value: weather.wind.speed })}
-            </Text>
-          </View>
-        </View>
-      )}
+  <View style={styles.resultWrapper}>
+    <View style={styles.column}>
+      <View style={styles.infoRow}>
+        <Ionicons name="thermometer" size={22} color="#FFD700" />
+        <Text style={styles.info}>
+          {Math.round(weather.main.temp)}°C
+        </Text>
+      </View>
+      <View style={styles.infoRow}>
+        <Ionicons name="water" size={22} color="#00BFFF" />
+        <Text style={styles.info}>
+          {t("humidity", { value: weather.main.humidity })}
+        </Text>
+      </View>
+    </View>
+
+    <View style={styles.column}>
+      <View style={styles.infoRow}>
+        <Ionicons name="rainy" size={22} color="#1E90FF" />
+        <Text style={styles.info}>
+          {t(weather.weather[0].main.toLowerCase())}
+        </Text>
+      </View>
+      <View style={styles.infoRow}>
+        <Ionicons name="leaf" size={22} color="#32CD32" />
+        <Text style={styles.info}>
+          {t("wind", { value: weather.wind.speed })}
+        </Text>
+      </View>
+    </View>
+  </View>
+)}
+
 
       <Text style={styles.sectionTitle}>{t("next5Days")}</Text>
 
@@ -126,22 +134,28 @@ export default function Home({ navigation }: any) {
   keyExtractor={(item, index) => index.toString()}
   style={styles.forecastList}
   renderItem={({ item }) => (
-    <View style={styles.card}>
-      {/* Weekday translated by locale */}
-      <Text style={styles.cardDate}>
-        {new Date(item.dt * 1000).toLocaleDateString(i18n.language, { weekday: "short" })}
-      </Text>
+ <View style={styles.card}>
+  {/* Weekday translated by locale */}
+  <Text style={styles.cardDate}>
+    {new Date(item.dt * 1000).toLocaleDateString(i18n.language, { weekday: "short" })}
+  </Text>
 
-      <Image
-        source={{ uri: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png` }}
-        style={{ width: 50, height: 50 }}
-      />
+  <Image
+    source={{ uri: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png` }}
+    style={{ width: 50, height: 50 }}
+  />
 
-      {/* Description mapped to translation keys */}
-      <Text style={styles.cardDesc}>
-        {t(item.weather[0].main.toLowerCase())}
-      </Text>
-    </View>
+  {/* Description mapped to translation keys */}
+  <Text style={styles.cardDesc}>
+    {t(item.weather[0].main.toLowerCase())}
+  </Text>
+
+  {/* Temperature */}
+  <Text style={styles.cardTemp}>
+    {Math.round(item.main.temp)}°C
+  </Text>
+</View>
+
               )}
             />
           )}
@@ -152,14 +166,36 @@ export default function Home({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  imageWrapper: { alignItems: "center", justifyContent: "center", marginBottom: 40 },
-  image: { width: 200, height: 200, resizeMode: "contain" },
-  title: { color: "#fff", fontSize: 30, marginBottom: 10, textAlign: "center", fontWeight: "bold" },
-  linkText: { color: "#FFD700", fontSize: 18, textDecorationLine: "underline", textAlign: "center", marginTop: 20 },
-  weatherText: { color: "#fff", fontSize: 22, textAlign: "center", marginTop: 20 },
-  resultWrapper: { marginTop: 20 },
-  infoRow: { flexDirection: "row", alignItems: "center", marginVertical: 4 },
-  info: { fontSize: 18, color: "#fff", marginLeft: 8 },
+    imageWrapper: { alignItems: "center", justifyContent: "center", marginBottom: 40 },
+    image: { width: 200, height: 200, resizeMode: "contain" },
+    title: { color: "#fff", fontSize: 30, marginBottom: 10, textAlign: "center", fontWeight: "bold" },
+    linkText: { color: "#FFD700", fontSize: 18, textDecorationLine: "underline", textAlign: "center", marginTop: 20 },
+    weatherText: { color: "#fff", fontSize: 22, textAlign: "center", marginTop: 20 },
+    resultWrapper: {
+    flexDirection: "row",       // coloca lado a lado
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
+    column: {
+    flex: 1,                     // cada coluna ocupa metade
+    paddingHorizontal: 10,
+    marginLeft: -20,
+  },
+    infoRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 8,
+    backgroundColor: "#222",
+    height: 40,
+    width: 200,
+    margin: 4,
+    borderRadius: 10,
+  },
+    info: {
+    fontSize: 18,
+    color: "#fff",
+    marginLeft: 8,
+  },
   forecastList: { marginTop: 20 },
   sectionTitle: {
   fontSize: 18,
@@ -176,7 +212,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
     alignItems: "center",
     width: 120,
-    height: 120,
+    height: 150,
   },
   cardDate: { color: "#FFD700", fontWeight: "bold", marginBottom: 6 },
   cardTemp: { color: "#fff", fontSize: 18, marginVertical: 4 },

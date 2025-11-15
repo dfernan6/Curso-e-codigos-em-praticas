@@ -23,9 +23,9 @@ function Tabs() {
         tabBarIcon: ({ color, size }) => {
           let iconName;
 
-          if (route.name === t("home")) {
+          if (route.name === t("Home")) {
             iconName = "home";
-          } else if (route.name === t("search")) {
+          } else if (route.name === t("Search")) {
             iconName = "search";
           }
 
@@ -36,8 +36,16 @@ function Tabs() {
         headerShown: false,
       })}
     >
-      <Tab.Screen name={t("home")} component={Home} />
-      <Tab.Screen name={t("search")} component={NextPage} />
+      <Tab.Screen 
+  name="Home" 
+  component={Home} 
+  options={{ title: t("home") }} 
+/>
+<Tab.Screen 
+  name="Search" 
+  component={NextPage} 
+  options={{ title: t("search") }} 
+/>
     </Tab.Navigator>
   );
 }

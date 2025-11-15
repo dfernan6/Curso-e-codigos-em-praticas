@@ -31,36 +31,39 @@ export default function NextPage() {
   const navigation = useNavigation();
 
   const handleSearch = async () => {
-    setError(false);
-    setWeather(null);
+  setError(false);
+  setWeather(null);
 
-    try {
-      const apiKey = Constants.expoConfig?.extra?.EXPO_PUBLIC_OPENWEATHER_API_KEY;
+  if (!city.trim()) {
+    setError(true);
+    return;
+  }
 
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`
-      );
-      const data: Weather = await response.json();
+  try {
+    const apiKey = Constants.expoConfig?.extra?.EXPO_PUBLIC_OPENWEATHER_API_KEY;
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`
+    );
+    const data: Weather = await response.json();
 
-      if (data.cod !== 200) {
-        setError(true);
-        return;
-      }
-
-      setWeather(data);
-      await AsyncStorage.setItem("city", city);
-
-      // ✅ Navigate back to Home after saving city
-      navigation.navigate("Home" as never);
-
-    } catch (err) {
+    if (data.cod !== 200) {
       setError(true);
+      return;
     }
-  };
+
+    setWeather(data);
+    await AsyncStorage.setItem("city", city);
+
+    // navegue para a tela correta (ajuste o nome conforme seu Stack.Navigator)
+    navigation.navigate("Home" as never);
+  } catch (err) {
+    setError(true);
+  }
+};
 
   return (
     <View style={styles.container}>
-      {/* Barra de busca */}
+    {/* Barra de busca */}
           <View style={styles.searchWrapper}>
       <TextInput
         style={styles.input}
@@ -72,6 +75,12 @@ export default function NextPage() {
       <TouchableOpacity onPress={handleSearch}>
         <Ionicons name="search" size={28} color="#FFD700" />
       </TouchableOpacity>
+    </View>
+      {/* Ícone e texto inicial */}
+    <View style={styles.headerWrapper}>
+      <Ionicons name="map-outline" size={40} color="#FFD700" style={styles.headerIcon} />
+      <Ionicons name="search" size={40} color="#FFD700" style={styles.headerIcon} />
+      <Text style={styles.headerText}>{t("search.startText")}</Text>
     </View>
 
     {/* Topo com imagem dinâmica do clima atual */}
@@ -88,10 +97,24 @@ export default function NextPage() {
 
     {/* Resultado */}
     {error && (
-      <Text style={styles.errorText}>
-        {t('search.error', { city })} 
-        {/* Example translation key: "Oppps! Desculpe cidade não encontrada: {{city}}" */}
-      </Text>
+  <View style={styles.errorWrapper}>
+    {/* Icon from Ionicons (react-native-vector-icons) */}
+    <Ionicons name="map-outline" size={80} color="red" style={styles.errorIcon} />
+
+    {/* Or alternatively, use a custom image asset */}
+    {/* 
+    <Image
+      source={require('../assets/map-error.png')}
+      style={styles.errorIcon}
+      resizeMode="contain"
+    />
+    */}
+
+    <Text style={styles.errorText}>
+      {t('search.error', { city })} 
+      {/* Example translation key: "Oppps! Desculpe cidade não encontrada: {{city}}" */}
+    </Text>
+  </View>
     )}
     </View>
   );
@@ -117,10 +140,43 @@ const styles = StyleSheet.create({
     borderColor: "#444",
   },
   input: { flex: 1, color: "#fff", fontSize: 18, paddingVertical: 10 },
-  errorText: {
-    color: "#ff4444",
-    fontSize: 16,
-    textAlign: "center",
-    marginTop: 20,
-  },
+  errorWrapper: {
+  flexDirection: 'column',   // coluna para empilhar ícone e texto
+  alignItems: 'center',      // centraliza horizontalmente
+  justifyContent: 'center',  // centraliza verticalmente
+  marginTop: 20,
+},
+
+errorIcon: {
+  marginBottom: 12,          // espaço entre ícone e texto
+},
+
+errorText: {
+  color: 'red',
+  fontSize: 18,              // texto maior
+  textAlign: 'center',       // centraliza o texto
+  fontWeight: 'bold'
+},
+cardTemp: {
+  color: "#fff",
+  fontSize: 16,
+  marginTop: 4,
+  textAlign: "center",
+},
+headerWrapper: {
+  flexDirection: "column",
+  alignItems: "center",
+  marginTop: 30,
+  marginBottom: 20,
+},
+headerIcon: {
+  marginVertical: 4,
+},
+headerText: {
+  fontSize: 20,
+  fontWeight: "bold",
+  color: "#FFD700",
+  textAlign: "center",
+  marginTop: 8,
+},
 });
