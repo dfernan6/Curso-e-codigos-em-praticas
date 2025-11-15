@@ -1,0 +1,95 @@
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+
+const resources = {
+  en: {
+    translation: {
+      home: "Home",
+      search: "Search",
+      forecastTitle: "5-Day Forecast",
+      language: "Language",
+      discoverWeather: "Discover the Weather in Your City",
+      subtitle: "With FindWeather it has never been so easy to have the forecast in your hand",
+      selectCity: "Select your city here to start",
+      loading: "Loading forecast...",
+      forecastFor: "Forecast for {{city}}",
+      temperature: "Temperature: {{value}}°C",
+      humidity: "Humidity: {{value}}%",
+      wind: "Wind: {{value}} m/s",
+      next5Days: "The forecast for the next 5 days",
+      clear: "Clear sky",
+      clouds: "Cloudy",
+      rain: "Rain",
+      drizzle: "Drizzle",
+      thunderstorm: "Thunderstorm",
+      snow: "Snow",
+      mist: "Mist",
+      // 🔑 Added keys
+      "search.placeholder": "Enter the city...",
+      "search.error": "Oppps! Sorry, city not found: {{city}}"
+    }
+  },
+  pt: {
+    translation: {
+      home: "Início",
+      search: "Buscar",
+      forecastTitle: "Previsão dos próximos 5 dias",
+      language: "Idioma",
+      discoverWeather: "Descubra o Clima de sua Cidade",
+      subtitle: "Com o FindWeather nunca foi tão fácil ter a previsão do tempo na palma da sua mão",
+      selectCity: "Selecione sua cidade aqui para começar",
+      loading: "Carregando previsão...",
+      forecastFor: "Previsão para {{city}}",
+      temperature: "Temperatura: {{value}}°C",
+      humidity: "Umidade: {{value}}%",
+      wind: "Vento: {{value}} m/s",
+      next5Days: "A previsão dos próximos 5 dias",
+      clear: "Céu limpo",
+      clouds: "Nublado",
+      rain: "Chuva",
+      drizzle: "Garoa",
+      thunderstorm: "Tempestade",
+      snow: "Neve",
+      mist: "Névoa",
+      // 🔑 Added keys
+      "search.placeholder": "Digite a cidade...",
+      "search.error": "Oppps! Desculpe cidade não encontrada: {{city}}"
+    }
+  },
+  de: {
+    translation: {
+      home: "Startseite",
+      search: "Suche",
+      forecastTitle: "Vorhersage für die nächsten 5 Tage",
+      language: "Sprache",
+      discoverWeather: "Entdecke das Wetter deiner Stadt",
+      subtitle: "Mit FindWeather war es noch nie so einfach, die Vorhersage in der Hand zu haben",
+      selectCity: "Wähle hier deine Stadt, um zu starten",
+      loading: "Vorhersage wird geladen...",
+      forecastFor: "Vorhersage für {{city}}",
+      temperature: "Temperatur: {{value}}°C",
+      humidity: "Luftfeuchtigkeit: {{value}}%",
+      wind: "Wind: {{value}} m/s",
+      next5Days: "Die Vorhersage für die nächsten 5 Tage",
+      clear: "Klarer Himmel",
+      clouds: "Bewölkt",
+      rain: "Regen",
+      drizzle: "Nieselregen",
+      thunderstorm: "Gewitter",
+      snow: "Schnee",
+      mist: "Nebel",
+      // 🔑 Added keys
+      "search.placeholder": "Geben Sie die Stadt ein...",
+      "search.error": "Oppps! Entschuldigung, Stadt nicht gefunden: {{city}}"
+    }
+  }
+};
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "en", // default language
+  fallbackLng: "en",
+  interpolation: { escapeValue: false }
+});
+
+export default i18n;
