@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from 'react-i18next';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 interface Weather {
   name: string;
   main: {
@@ -31,97 +32,79 @@ export default function NextPage() {
   const navigation = useNavigation();
 
   const handleSearch = async () => {
-  setError(false);
-  setWeather(null);
+    setError(false);
+    setWeather(null);
 
-  if (!city.trim()) {
-    setError(true);
-    return;
-  }
-
-  try {
-    const apiKey = Constants.expoConfig?.extra?.EXPO_PUBLIC_OPENWEATHER_API_KEY;
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`
-    );
-    const data: Weather = await response.json();
-
-    if (data.cod !== 200) {
+    if (!city.trim()) {
       setError(true);
       return;
     }
 
-    setWeather(data);
-    await AsyncStorage.setItem("city", city);
+    try {
+      const apiKey = Constants.expoConfig?.extra?.EXPO_PUBLIC_OPENWEATHER_API_KEY;
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`
+      );
+      const data: Weather = await response.json();
 
-    // navegue para a tela correta (ajuste o nome conforme seu Stack.Navigator)
-    navigation.navigate("Home" as never);
-  } catch (err) {
-    setError(true);
-  }
-};
+      if (data.cod !== 200) {
+        setError(true);
+        return;
+      }
+
+      setWeather(data);
+      await AsyncStorage.setItem("city", city);
+      navigation.navigate("Home" as never);
+    } catch (err) {
+      setError(true);
+    }
+  };
 
   return (
     <View style={styles.container}>
-    {/* Barra de busca */}
-          <View style={styles.searchWrapper}>
-      <TextInput
-        style={styles.input}
-        placeholder={t('search.placeholder')} // translated placeholder
-        placeholderTextColor="#888"
-        value={city}
-        onChangeText={setCity}
-      />
-      <TouchableOpacity onPress={handleSearch}>
-        <Ionicons name="search" size={28} color="#FFD700" />
-      </TouchableOpacity>
-    </View>
-      {/* Ícone e texto inicial */}
-    <View style={styles.headerWrapper}>
-      <Ionicons name="map-outline" size={40} color="#FFD700" style={styles.headerIcon} />
-      <Ionicons name="search" size={40} color="#FFD700" style={styles.headerIcon} />
+      {/* Search bar */}
       <Text style={styles.headerText}>{t("search.startText")}</Text>
-    </View>
-
-    {/* Topo com imagem dinâmica do clima atual */}
-    {weather && (
-      <View style={styles.imageWrapper}>
+      <View style={styles.searchWrapper}>
+        <TextInput
+          style={styles.input}
+          placeholder={t("search.placeholder")}
+          placeholderTextColor="#888"
+          value={city}
+          onChangeText={setCity}
+        />
+        <TouchableOpacity onPress={handleSearch}>
+          <MaterialCommunityIcons name="magnify" size={28} color="#FFD700" />
+        </TouchableOpacity>
+      </View>
+      {/* Search Image */}
+      <View style={styles.searchImageWrapper}>
         <Image
-          source={{
-            uri: `https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`,
-          }}
-          style={styles.image}
+          source={require("../../assets/imagens/search.png")}
+          style={styles.searchImage}
+          resizeMode="contain"
         />
       </View>
-    )}
 
-    {/* Resultado */}
-    {error && (
-  <View style={styles.errorWrapper}>
-    {/* Icon from Ionicons (react-native-vector-icons) */}
-    <Ionicons name="map-outline" size={80} color="red" style={styles.errorIcon} />
-
-    {/* Or alternatively, use a custom image asset */}
-    {/* 
-    <Image
-      source={require('../assets/map-error.png')}
-      style={styles.errorIcon}
-      resizeMode="contain"
-    />
-    */}
-
-    <Text style={styles.errorText}>
-      {t('search.error', { city })} 
-      {/* Example translation key: "Oppps! Desculpe cidade não encontrada: {{city}}" */}
-    </Text>
-  </View>
-    )}
+      {/* If error → show ONLY error block */}
+      {error ? (
+        <View style={styles.errorWrapper}>
+          <MaterialCommunityIcons name="alert-circle-outline" size={80} color="red" style={styles.errorIcon} />
+          <Text style={styles.errorText}>{t("search.error")}</Text>
+        </View>
+      ) : (
+        <>
+          {/* Header icons */}
+          <View style={styles.headerWrapper}>
+          </View>
+    
+        </>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#111", padding: 20 },
+  container: { flex: 1, backgroundColor: "rgb(27, 29, 34)", padding: 20 },
   imageWrapper: {
     alignItems: "center",
     justifyContent: "center",
@@ -171,6 +154,7 @@ headerWrapper: {
 },
 headerIcon: {
   marginVertical: 4,
+  marginHorizontal: 10,
 },
 headerText: {
   fontSize: 20,
@@ -178,5 +162,14 @@ headerText: {
   color: "#FFD700",
   textAlign: "center",
   marginTop: 8,
+},
+searchImageWrapper: {
+  alignItems: "center",
+  justifyContent: "center",
+  marginVertical: 20,
+},
+searchImage: {
+  width: 150,
+  height: 150,
 },
 });

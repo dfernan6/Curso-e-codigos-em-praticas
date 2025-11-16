@@ -24,9 +24,12 @@ const resources = {
       thunderstorm: "Thunderstorm",
       snow: "Snow",
       mist: "Mist",
-      // 🔑 Added keys
       "search.placeholder": "Enter the city...",
-      "search.error": "Oppps! Sorry, city not found: {{city}}"
+      "search.error": "Oppps! Sorry, city not found",
+      // ✅ new key
+      "search.startText": "Start your weather search below",
+      today: "Today",
+      tomorrow: "Tomorrow"
     }
   },
   pt: {
@@ -51,9 +54,12 @@ const resources = {
       thunderstorm: "Tempestade",
       snow: "Neve",
       mist: "Névoa",
-      // 🔑 Added keys
       "search.placeholder": "Digite a cidade...",
-      "search.error": "Oppps! Desculpe cidade não encontrada: {{city}}"
+      "search.error": "Oppps! Desculpe cidade não encontrada",
+      // ✅ new key
+      "search.startText": "Comece sua busca pelo clima abaixo",
+      today: "Hoje",
+      tomorrow: "Amanhã"
     }
   },
   de: {
@@ -78,9 +84,12 @@ const resources = {
       thunderstorm: "Gewitter",
       snow: "Schnee",
       mist: "Nebel",
-      // 🔑 Added keys
       "search.placeholder": "Geben Sie die Stadt ein...",
-      "search.error": "Oppps! Entschuldigung, Stadt nicht gefunden: {{city}}"
+      "search.error": "Oppps! Entschuldigung, Stadt nicht gefunden",
+      // ✅ new key
+      "search.startText": "Beginne deine Wettersuche unten",
+      today: "Heute",
+      tomorrow: "Morgen"
     }
   }
 };
