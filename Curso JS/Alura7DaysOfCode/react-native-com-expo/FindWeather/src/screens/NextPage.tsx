@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Linking,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -99,6 +100,19 @@ export default function NextPage() {
     
         </>
       )}
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>
+          © {t("developedBy")}{" "}
+          <Text
+            style={styles.footerLink}
+            onPress={() => Linking.openURL("https://dfernan6.github.io/")}
+          >
+            dfernan6
+          </Text>
+        </Text>
+        
+      </View>
+      
     </View>
   );
 }
@@ -171,5 +185,23 @@ searchImageWrapper: {
 searchImage: {
   width: 150,
   height: 150,
+},
+footer: {
+  position: "absolute",   // fixed at bottom
+  bottom: 10,
+  left: 0,
+  right: 0,
+  alignItems: "center",
+},
+
+footerText: {
+  color: "#ccc",
+  fontSize: 14,
+  fontStyle: "italic",
+},
+
+footerLink: {
+  color: "#FFD700",
+  textDecorationLine: "underline",
 },
 });

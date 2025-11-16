@@ -6,9 +6,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import "./src/utils/i18n";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
-import CountryFlag from "react-native-country-flag"; // ✅ use flag library
+import CountryFlag from "react-native-country-flag";
 import Home from "./src/screens/Home";
 import NextPage from "./src/screens/NextPage";
+import ModalScreen from "./src/screens/Modal"; // ✅ new start page
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,9 +24,9 @@ function Tabs() {
         tabBarIcon: ({ color, size }) => {
           let iconName;
 
-          if (route.name === t("Home")) {
+          if (route.name === "Home") {
             iconName = "home";
-          } else if (route.name === t("Search")) {
+          } else if (route.name === "Search") {
             iconName = "search";
           }
 
@@ -36,16 +37,16 @@ function Tabs() {
         headerShown: false,
       })}
     >
-      <Tab.Screen 
-  name="Home" 
-  component={Home} 
-  options={{ title: t("home") }} 
-/>
-<Tab.Screen 
-  name="Search" 
-  component={NextPage} 
-  options={{ title: t("search") }} 
-/>
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{ title: t("home") }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={NextPage}
+        options={{ title: t("search") }}
+      />
     </Tab.Navigator>
   );
 }
@@ -55,12 +56,20 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator id="MainStack" initialRouteName="Tabs">
+      <Stack.Navigator id="MainStack" initialRouteName="Modal">
+        {/* ✅ Start page modal */}
+        <Stack.Screen
+          name="Modal"
+          component={ModalScreen}
+          options={{ headerShown: false }}
+        />
+
+        {/* ✅ Main app tabs */}
         <Stack.Screen
           name="Tabs"
           component={Tabs}
           options={{
-            headerTitle: t("language"), // ✅ dynamic translation
+            headerTitle: t("language"),
             headerRight: () => (
               <View style={styles.flagsRow}>
                 <TouchableOpacity onPress={() => i18n.changeLanguage("en")}>
@@ -87,6 +96,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   flag: {
-    marginHorizontal: 6, // ✅ adds spacing between flags
-  }
+    marginHorizontal: 6,
+  },
 });

@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, Linking } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
@@ -128,6 +128,18 @@ const formatDayNameFull = (dt: number) => {
         <TouchableOpacity onPress={() => navigation.navigate("Search")}>
           <Text style={styles.linkText}>{t("selectCity")}</Text>
         </TouchableOpacity>
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            © {t("developedBy")}{" "}
+            <Text
+              style={styles.footerLink}
+              onPress={() => Linking.openURL("https://dfernan6.github.io/")}
+            >
+              dfernan6
+            </Text>
+          </Text>
+          
+        </View>
       </View>
     ) : loading ? (
       <Text style={styles.weatherText}>{t("loading")}</Text>
@@ -160,9 +172,12 @@ const formatDayNameFull = (dt: number) => {
               <View style={styles.resultWrapper}>
                 <View style={styles.column}>
                   <View style={styles.infoRow}>
-                    <Ionicons name="thermometer" size={22} color="#FFD700" />
-                    <Text style={styles.info}>{Math.round(currentForecast.main.temp)}°C</Text>
+                    <Ionicons name="thermometer" size={26} color="#FFD700" />
+                    <Text style={styles.tempText}>
+                      {Math.round(currentForecast.main.temp)}°C
+                    </Text>
                   </View>
+                  
                   <View style={styles.infoRow}>
                     <Ionicons name="water" size={22} color="#00BFFF" />
                     <Text style={styles.info}>
@@ -192,13 +207,18 @@ const formatDayNameFull = (dt: number) => {
         <Text style={styles.sectionTitle}>{t("next5Days")}</Text>
 
         {forecast.length > 0 && (
-          <FlatList
-            data={forecast}
-            horizontal
-            keyExtractor={(item, index) => index.toString()}
-            style={styles.forecastList}
-            renderItem={({ item }) => (
-              <TouchableOpacity style={styles.card} onPress={() => setCurrentForecast(item)}>
+        <FlatList
+          data={forecast}
+          horizontal
+          keyExtractor={(item, index) => index.toString()}
+          style={styles.forecastList}
+          renderItem={({ item }) => {
+            const isSelected = currentForecast && item.dt === currentForecast.dt;
+            return (
+              <TouchableOpacity
+                style={[styles.card, isSelected && styles.cardSelected]}
+                onPress={() => setCurrentForecast(item)}
+              >
                 <Text style={styles.cardDate}>{formatDayNameShort(item.dt)}</Text>
                 <Image
                   source={{
@@ -209,8 +229,9 @@ const formatDayNameFull = (dt: number) => {
                 <Text style={styles.cardDesc}>{t(item.weather[0].main.toLowerCase())}</Text>
                 <Text style={styles.cardTemp}>{Math.round(item.main.temp)}°C</Text>
               </TouchableOpacity>
-            )}
-          />
+            );
+          }}
+        />
         )}
       </>
     )}
@@ -309,5 +330,37 @@ info: {
     shadowRadius: 4,
     elevation: 4,                 // Android shadow
   },
+  tempText: {
+  fontSize: 28,           // bigger than normal info
+  fontWeight: "bold",     // stronger emphasis
+  color: "#FFD700",       // golden highlight
+  marginLeft: 8,
+  textShadowColor: "#000", // subtle shadow for effect
+  textShadowOffset: { width: 1, height: 1 },
+  textShadowRadius: 2,
+  },
+  cardSelected: {
+    opacity: 0.5,           // reduce opacity when selected
+    borderColor: "#FFD700", // optional: highlight border
+    borderWidth: 2,
+  },
+  footer: {
+  position: "absolute",   // fixed at bottom
+  bottom: 10,
+  left: 0,
+  right: 0,
+  alignItems: "center",
+},
+
+footerText: {
+  color: "#ccc",
+  fontSize: 14,
+  fontStyle: "italic",
+},
+
+footerLink: {
+  color: "#FFD700",
+  textDecorationLine: "underline",
+}
 });
 

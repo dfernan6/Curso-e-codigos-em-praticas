@@ -26,11 +26,14 @@ const resources = {
       mist: "Mist",
       "search.placeholder": "Enter the city...",
       "search.error": "Oppps! Sorry, city not found",
-      // ✅ new key
       "search.startText": "Start your weather search below",
       today: "Today",
-      tomorrow: "Tomorrow"
-    }
+      tomorrow: "Tomorrow",
+      developedBy: "Developed by:",
+      chooseLanguage: "Choose your language",
+      introText: "With FindWeather it's never been easier to have the forecast in your hand",
+      start: "Start",
+    },
   },
   pt: {
     translation: {
@@ -56,11 +59,14 @@ const resources = {
       mist: "Névoa",
       "search.placeholder": "Digite a cidade...",
       "search.error": "Oppps! Desculpe cidade não encontrada",
-      // ✅ new key
       "search.startText": "Comece sua busca pelo clima abaixo",
       today: "Hoje",
-      tomorrow: "Amanhã"
-    }
+      tomorrow: "Amanhã",
+      developedBy: "Desenvolvido por:",
+      chooseLanguage: "Escolha seu idioma",
+      introText: "Com o FindWeather nunca ficou tão fácil ter a previsão do tempo na palma da sua mão",
+      start: "Iniciar",
+    },
   },
   de: {
     translation: {
@@ -86,19 +92,22 @@ const resources = {
       mist: "Nebel",
       "search.placeholder": "Geben Sie die Stadt ein...",
       "search.error": "Oppps! Entschuldigung, Stadt nicht gefunden",
-      // ✅ new key
       "search.startText": "Beginne deine Wettersuche unten",
       today: "Heute",
-      tomorrow: "Morgen"
-    }
-  }
+      tomorrow: "Morgen",
+      developedBy: "Entwickelt von:",
+      chooseLanguage: "Wähle deine Sprache",
+      introText: "Mit FindWeather war es noch nie so einfach, die Wettervorhersage in der Hand zu haben",
+      start: "Starten",
+    },
+  },
 };
 
 i18n.use(initReactI18next).init({
   resources,
   lng: "en", // default language
   fallbackLng: "en",
-  interpolation: { escapeValue: false }
+  interpolation: { escapeValue: false },
 });
 
 export default i18n;
