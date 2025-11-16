@@ -8,7 +8,6 @@ import {
   Image,
   Linking,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
@@ -27,7 +26,7 @@ interface Weather {
 
 export default function NextPage() {
   const [city, setCity] = useState<string>("");
-  const [weather, setWeather] = useState<Weather | null>(null);
+  const [, setWeather] = useState<Weather | null>(null);
   const [error, setError] = useState<boolean>(false);
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -56,6 +55,7 @@ export default function NextPage() {
       setWeather(data);
       await AsyncStorage.setItem("city", city);
       navigation.navigate("Home" as never);
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     } catch (err) {
       setError(true);
     }

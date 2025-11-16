@@ -9,7 +9,8 @@ import { View, TouchableOpacity, StyleSheet } from "react-native";
 import CountryFlag from "react-native-country-flag";
 import Home from "./src/screens/Home";
 import NextPage from "./src/screens/NextPage";
-import ModalScreen from "./src/screens/Modal"; // ✅ new start page
+import ModalScreen from "./src/screens/Modal"; 
+import { StatusBar } from "expo-status-bar"; // ✅ import
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -55,38 +56,40 @@ export default function App() {
   const { i18n, t } = useTranslation();
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator id="MainStack" initialRouteName="Modal">
-        {/* ✅ Start page modal */}
-        <Stack.Screen
-          name="Modal"
-          component={ModalScreen}
-          options={{ headerShown: false }}
-        />
+    <>
+      {/* ✅ StatusBar configurada */}
+      <StatusBar style="light" backgroundColor="#1B1D22" />
 
-        {/* ✅ Main app tabs */}
-        <Stack.Screen
-          name="Tabs"
-          component={Tabs}
-          options={{
-            headerTitle: t("language"),
-            headerRight: () => (
-              <View style={styles.flagsRow}>
-                <TouchableOpacity onPress={() => i18n.changeLanguage("en")}>
-                  <CountryFlag isoCode="gb" size={24} style={styles.flag} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => i18n.changeLanguage("pt")}>
-                  <CountryFlag isoCode="br" size={24} style={styles.flag} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => i18n.changeLanguage("de")}>
-                  <CountryFlag isoCode="de" size={24} style={styles.flag} />
-                </TouchableOpacity>
-              </View>
-            ),
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator id="MainStack" initialRouteName="Modal">
+          <Stack.Screen
+            name="Modal"
+            component={ModalScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Tabs"
+            component={Tabs}
+            options={{
+              headerTitle: t("language"),
+              headerRight: () => (
+                <View style={styles.flagsRow}>
+                  <TouchableOpacity onPress={() => i18n.changeLanguage("en")}>
+                    <CountryFlag isoCode="gb" size={24} style={styles.flag} />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => i18n.changeLanguage("pt")}>
+                    <CountryFlag isoCode="br" size={24} style={styles.flag} />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => i18n.changeLanguage("de")}>
+                    <CountryFlag isoCode="de" size={24} style={styles.flag} />
+                  </TouchableOpacity>
+                </View>
+              ),
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 

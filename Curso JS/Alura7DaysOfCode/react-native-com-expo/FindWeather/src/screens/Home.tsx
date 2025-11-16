@@ -10,6 +10,7 @@ import i18n from "../utils/i18n";
 
 export default function Home({ navigation }: any) {
   const [city, setCity] = useState<string | null>(null);
+   
   const [weather, setWeather] = useState<any>(null);
   const [forecast, setForecast] = useState<any[]>([]);
   const [currentForecast, setCurrentForecast] = useState<any | null>(null); // 👈 new
@@ -52,23 +53,6 @@ export default function Home({ navigation }: any) {
     }, [])
   );
 
-  const formatDayName = (dt: number) => {
-  const date = new Date(dt * 1000);
-  const today = new Date();
-  const tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1);
-
-  const capitalize = (str: string) =>
-    str.charAt(0).toUpperCase() + str.slice(1);
-
-  if (date.toDateString() === today.toDateString()) {
-    return capitalize(t("today") || "Today");
-  }
-  if (date.toDateString() === tomorrow.toDateString()) {
-    return capitalize(t("tomorrow") || "Tomorrow");
-  }
-  return date.toLocaleDateString(i18n.language, { weekday: "short" });
-};
 
 // For cards → abbreviated weekday
 const formatDayNameShort = (dt: number) => {
@@ -108,11 +92,13 @@ const formatDayNameFull = (dt: number) => {
   return date.toLocaleDateString(i18n.language, { weekday: "long" });
 };
 
-  function capitalize(arg0: string): React.ReactNode {
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  function capitalize(_arg0: string): React.ReactNode {
     throw new Error("Function not implemented.");
   }
 
   return (
+  // eslint-disable-next-line react-native/no-inline-styles
   <View style={[globalStyles.container, { backgroundColor: "rgb(27, 29, 34)" }]}>
     {!city ? (
       <View style={styles.emptyWrapper}>
@@ -138,7 +124,7 @@ const formatDayNameFull = (dt: number) => {
               dfernan6
             </Text>
           </Text>
-          
+
         </View>
       </View>
     ) : loading ? (
@@ -170,14 +156,18 @@ const formatDayNameFull = (dt: number) => {
 </Text>
 
               <View style={styles.resultWrapper}>
+                {weather && (
+                    <Text style={styles.weatherText}>
+                      {t("", { value: Math.round(weather.main.temp) })}
+                    </Text>
+                  )}
                 <View style={styles.column}>
                   <View style={styles.infoRow}>
                     <Ionicons name="thermometer" size={26} color="#FFD700" />
                     <Text style={styles.tempText}>
                       {Math.round(currentForecast.main.temp)}°C
                     </Text>
-                  </View>
-                  
+                  </View>             
                   <View style={styles.infoRow}>
                     <Ionicons name="water" size={22} color="#00BFFF" />
                     <Text style={styles.info}>
@@ -224,6 +214,7 @@ const formatDayNameFull = (dt: number) => {
                   source={{
                     uri: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
                   }}
+                  // eslint-disable-next-line react-native/no-inline-styles
                   style={{ width: 50, height: 50 }}
                 />
                 <Text style={styles.cardDesc}>{t(item.weather[0].main.toLowerCase())}</Text>

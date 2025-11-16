@@ -7,25 +7,37 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/imagens/init.png",
+      "image": "./assets/imagens/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
+      "backgroundColor": "#1B1D22"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#1B1D22"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.dfernan6.FindWeather"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "backgroundColor": "#1B1D22",
+      "infoPlist": {
+        "UIStatusBarStyle": "UIStatusBarStyleLightContent"
+      }
+    },
+    "web": {
+      "themeColor": "#1B1D22",
+      "backgroundColor": "#1B1D22"
     },
     "plugins": [],
     "extra": {
       "EXPO_PUBLIC_OPENWEATHER_API_KEY": "aa8fe145e1a4fa963400582bf919afd5",
       "EXPO_PUBLIC_WEATHER_API_KEY": "cc5cbed5f87f47668d631925251211",
-      "EXPO_PUBLIC_OPENCAGE_API_KEY": "3fe2636440054449ad54e750703fa8fb"
+      "EXPO_PUBLIC_OPENCAGE_API_KEY": "3fe2636440054449ad54e750703fa8fb",
+      "eas": {
+        "projectId": "4bc3683d-e687-43f7-8363-330c71fed842"
+      }
     }
   }
 }
