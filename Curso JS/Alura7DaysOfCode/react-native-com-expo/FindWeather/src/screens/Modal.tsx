@@ -1,6 +1,13 @@
 // src/screens/Modal.tsx
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import {
+  ScrollView,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CountryFlag from "react-native-country-flag";
 import { useTranslation } from "react-i18next";
@@ -36,7 +43,16 @@ export default function ModalScreen({ navigation }: any) {
   if (!isReady) return null;
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      // eslint-disable-next-line react-native/no-inline-styles
+      contentContainerStyle={{
+        flexGrow: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.flagsWrapper}>
         <TouchableOpacity
           style={[
@@ -89,76 +105,90 @@ export default function ModalScreen({ navigation }: any) {
           </TouchableOpacity>
         </>
       )}
-    </View>
+    </ScrollView>
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1, justifyContent: "center", alignItems: "center",
-    backgroundColor: "#1B1D22", paddingHorizontal: 24,
+    flex: 1,
+    backgroundColor: "#1B1D22",
+    paddingHorizontal: 19,          // 4/5 of 24
   },
+
   flagsWrapper: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    marginBottom: 10,
+    marginBottom: 8,                // 4/5 of 10
   },
+
   flagBtn: {
     alignItems: "center",
-    marginVertical: 12,
+    marginVertical: 10,             // 4/5 of 12
     backgroundColor: "#222",
-    padding: 20,
-    borderRadius: 16,
-    width: "66%", // ✅ reduzido para 2/3 da tela
+    padding: 16,                    // 4/5 of 20
+    borderRadius: 13,               // 4/5 of 16
+    width: "66%",                   // keep proportional width
   },
+
   flagSelected: {
     borderWidth: 3,
-    borderColor: "#FFD700", // ✅ amarelo quando selecionado
+    borderColor: "#FFD700",
   },
+
   flagUnselected: {
     borderWidth: 3,
-    borderColor: "#000", // ✅ preto quando não selecionado
+    borderColor: "#000",
   },
+
   flag: {
-    borderRadius: 8,
+    borderRadius: 6,                // 4/5 of 8
     overflow: "hidden",
   },
+
   flagLabel: {
-    marginTop: 10,
+    marginTop: 8,                    // 4/5 of 10
     color: "#FFD700",
-    fontSize: 22,
+    fontSize: 18,                    // 4/5 of 22
     fontWeight: "bold",
     textShadowColor: "#000",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },
+
   flagSubLabel: {
-    marginTop: 6,
+    marginTop: 5,                    // 4/5 of 6
     color: "#ccc",
-    fontSize: 16,
+    fontSize: 13,                    // 4/5 of 16
     fontStyle: "italic",
   },
+
   image: {
-    width: 110, // ✅ metade do tamanho anterior
-    height: 110,
-    marginBottom: 10,
+    width: 88,                       // 4/5 of 110
+    height: 88,                      // 4/5 of 110
+    marginBottom: 8,                  // 4/5 of 10
+    resizeMode: "contain",
   },
+
   subtitle: {
-    fontSize: 16,
+    fontSize: 13,                    // 4/5 of 16
     color: "#ccc",
     textAlign: "center",
-    marginBottom: 10,
+    marginBottom: 8,                  // 4/5 of 10
   },
+
   startButton: {
     backgroundColor: "#FFD700",
-    paddingVertical: 6, // ✅ metade do tamanho
-    paddingHorizontal: 20,
-    borderRadius: 8,
+    paddingVertical: 5,               // 4/5 of 6
+    paddingHorizontal: 16,            // 4/5 of 20
+    borderRadius: 6,                  // 4/5 of 8
   },
+
   startText: {
-    fontSize: 9, // ✅ metade do tamanho anterior
+    fontSize: 7,                      // 4/5 of 9
     fontWeight: "bold",
     color: "#1B1D22",
   },
