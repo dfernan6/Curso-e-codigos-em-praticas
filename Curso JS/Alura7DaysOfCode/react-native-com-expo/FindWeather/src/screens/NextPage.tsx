@@ -1,39 +1,40 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Linking,
-} from "react-native";
+/* eslint-disable react-native/no-inline-styles */
+import React, { useState, useEffect } from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, TextInput,Linking } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
-import { useNavigation } from "@react-navigation/native";
-import { useTranslation } from 'react-i18next';
+import * as Location from "expo-location";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-interface Weather {
+import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
+type Weather = {
+  cod: number;
   name: string;
+  weather: { main: string; description: string; icon: string }[];
+  wind: { speed: number };
   main: {
     temp: number;
     humidity: number;
+    temp_min: number;   // ✅ add this
+    temp_max: number;   // ✅ add this
   };
-  weather: { main: string; description: string; icon: string }[];
-  wind: { speed: number };
-  cod: number;
-}
+};
+
 
 export default function NextPage() {
   const [city, setCity] = useState<string>("");
-  const [, setWeather] = useState<Weather | null>(null);
+  const [locationInfo, setLocationInfo ] = useState<Weather | null>(null);
   const [error, setError] = useState<boolean>(false);
   const { t } = useTranslation();
   const navigation = useNavigation();
 
+  useEffect(() => {
+    // auto-run localization when NextPage mounts
+    handleLocalization();
+  }, []);
+
   const handleSearch = async () => {
     setError(false);
-    setWeather(null);
 
     if (!city.trim()) {
       setError(true);
@@ -52,67 +53,138 @@ export default function NextPage() {
         return;
       }
 
-      setWeather(data);
       await AsyncStorage.setItem("city", city);
+      // ✅ navigate to Home to load forecasts
       navigation.navigate("Home" as never);
-    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    } catch (err) {
+    } catch {
       setError(true);
     }
   };
 
+  const handleLocalization = async () => {
+  try {
+    setError(false);
+
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      setError(true);
+      return;
+    }
+
+    const location = await Location.getCurrentPositionAsync({});
+    const { latitude, longitude } = location.coords;
+
+    const apiKey = Constants.expoConfig?.extra?.EXPO_PUBLIC_OPENWEATHER_API_KEY;
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=pt_br`
+    );
+    const data: Weather = await response.json();
+
+    if (data.cod !== 200) {
+      setError(true);
+      return;
+    }
+
+    setLocationInfo(data); // ✅ show card
+    await AsyncStorage.setItem("city", data.name);
+    // ❌ don’t navigate here
+  } catch {
+    setError(true);
+  }
+};
+
+
   return (
     <View style={styles.container}>
-      {/* Search bar */}
-      <Text style={styles.headerText}>{t("search.startText")}</Text>
-      <View style={styles.searchWrapper}>
-        <TextInput
-          style={styles.input}
-          placeholder={t("search.placeholder")}
-          placeholderTextColor="#888"
-          value={city}
-          onChangeText={setCity}
-        />
-        <TouchableOpacity onPress={handleSearch}>
-          <MaterialCommunityIcons name="magnify" size={28} color="#FFD700" />
-        </TouchableOpacity>
-      </View>
-      {/* Search Image */}
-      <View style={styles.searchImageWrapper}>
-        <Image
-          source={require("../../assets/imagens/search.png")}
-          style={styles.searchImage}
-          resizeMode="contain"
-        />
-      </View>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Search bar */}
+        <Text style={styles.headerText}>{t("search.startText")}</Text>
+        <View style={styles.searchWrapper}>
+  <TextInput
+    style={styles.input}
+    placeholder={t("search.placeholder")}
+    placeholderTextColor="#888"
+    value={city}
+    onChangeText={setCity}
+  />
 
-      {/* If error → show ONLY error block */}
-      {error ? (
-        <View style={styles.errorWrapper}>
-          <MaterialCommunityIcons name="alert-circle-outline" size={80} color="red" style={styles.errorIcon} />
-          <Text style={styles.errorText}>{t("search.error")}</Text>
-        </View>
-      ) : (
-        <>
-          {/* Header icons */}
-          <View style={styles.headerWrapper}>
+  {/* Search button with magnifying glass icon */}
+  <TouchableOpacity style={styles.iconButton} onPress={handleSearch}>
+    <MaterialCommunityIcons name="magnify" size={28} color="#FFD700" />
+  </TouchableOpacity>
+
+  {/* GPS button with map-marker icon */}
+  <TouchableOpacity style={[styles.iconButton, { marginLeft: 12 }]} onPress={handleLocalization}>
+    <MaterialCommunityIcons name="map-marker" size={28} color="#FFD700" />
+  </TouchableOpacity>
+</View>
+
+
+        {/* Error block only */}
+        {error && (
+  <View style={styles.errorWrapper}>
+    {/* Alert icon */}
+    <MaterialCommunityIcons
+      name="alert-circle-outline"
+      size={80}
+      color="red"
+      style={styles.errorIcon}
+    />
+
+    {/* Error image */}
+    <Image
+      source={require("../../assets/imagens/search.png")}
+      style={styles.errorImage}
+      resizeMode="contain"
+    />
+
+    {/* Error text */}
+    <Text style={styles.errorText}>{t("search.error")}</Text>
+  </View>
+)}
+
+        {/* ✅ GPS location card in middle */}
+        {locationInfo && !error && (
+          <View style={{ alignItems: "center", marginVertical: 30 }}>
+            <TouchableOpacity
+              style={styles.forecastCard}
+              onPress={() => {
+                AsyncStorage.setItem("city", locationInfo.name);
+                navigation.navigate("Home" as never);
+              }}
+            >
+              <Image
+                source={{
+                  uri: `https://openweathermap.org/img/wn/${locationInfo.weather[0].icon}@4x.png`,
+                }}
+                style={styles.forecastIcon}
+              />
+              <Text style={styles.cardTitle}>{locationInfo.name}</Text>
+              <Text style={styles.cardTemp}>{Math.round(locationInfo.main.temp)}°C</Text>
+              <Text style={styles.cardMinMax}>
+                Min {Math.round(locationInfo.main.temp_min)}°C / Max {Math.round(locationInfo.main.temp_max)}°C
+              </Text>
+            </TouchableOpacity>
           </View>
-    
-        </>
-      )}
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          © {t("developedBy")}{" "}
-          <Text
-            style={styles.footerLink}
-            onPress={() => Linking.openURL("https://dfernan6.github.io/")}
-          >
-            dfernan6
-          </Text>
-        </Text>
+        )}
         
-      </View>
-      
+         
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            © {t("developedBy")}{" "}
+            <Text
+              style={styles.footerLink}
+              onPress={() => Linking.openURL("https://dfernan6.github.io/")}
+            >
+              dfernan6
+            </Text>
+          </Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -187,11 +259,8 @@ searchImage: {
   height: 150,
 },
 footer: {
-  position: "absolute",   // fixed at bottom
-  bottom: 10,
-  left: 0,
-  right: 0,
   alignItems: "center",
+  paddingVertical: 10,
 },
 
 footerText: {
@@ -204,4 +273,59 @@ footerLink: {
   color: "#FFD700",
   textDecorationLine: "underline",
 },
+locationButton: {
+  backgroundColor: "#FFD700",
+  paddingVertical: 12,
+  paddingHorizontal: 20,
+  borderRadius: 8,
+  alignItems: "center",
+  justifyContent: "center",
+},
+locationText: {
+  color: "#000",
+  fontSize: 16,
+  fontWeight: "bold",
+},
+iconButton: {
+  backgroundColor: "#222",
+  padding: 10,
+  borderRadius: 8,
+  alignItems: "center",
+  justifyContent: "center",
+
+},
+forecastCard: {
+  backgroundColor: "#222",
+  padding: 20,
+  borderRadius: 12,
+  alignItems: "center",
+  justifyContent: "center",
+  shadowColor: "#000",
+  shadowOpacity: 0.3,
+  shadowRadius: 6,
+  elevation: 5,
+  width: "80%",
+},
+forecastIcon: {
+  width: 100,
+  height: 100,
+  marginBottom: 12,
+},
+cardTitle: {
+  fontSize: 20,
+  fontWeight: "bold",
+  color: "#FFD700",
+  marginBottom: 6,
+},
+cardMinMax: {
+  fontSize: 16,
+  color: "#ccc",
+  marginTop: 4,
+},
+errorImage: {
+    width: 120,
+    height: 120,
+    marginVertical: 12,
+    resizeMode: "contain",
+  },
 });

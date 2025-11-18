@@ -1,22 +1,80 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, Linking, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+  Linking,
+  ScrollView,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { globalStyles } from "../styles/global";
 import { useFocusEffect } from "@react-navigation/native";
 import i18n from "../utils/i18n";
 
+interface ForecastItem {
+  dt: number;
+  main: {
+    temp: number;
+    temp_min: number;
+    temp_max: number;
+    humidity: number;
+  };
+  weather: { main: string; description: string; icon: string }[];
+  wind: { speed: number };
+}
+
+interface ForecastResponse {
+  list: ForecastItem[];
+  city: { name: string };
+}
 
 export default function Home({ navigation }: any) {
   const [city, setCity] = useState<string | null>(null);
   const [weather, setWeather] = useState<any>(null);
-  const [forecast, setForecast] = useState<any[]>([]);
-  const [currentForecast, setCurrentForecast] = useState<any | null>(null); // 👈 new
+  const [forecast, setForecast] = useState<ForecastItem[]>([]);
+  const [currentForecast, setCurrentForecast] = useState<ForecastItem | null>(null);
+  const [forecastData, setForecastData] = useState<ForecastResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
-  
+
+  // ✅ Define a working capitalize once
+  const capitalize = (str: string): string =>
+    str.charAt(0).toUpperCase() + str.slice(1);
+
+  // ✅ Helper: daily min/max with fallback temperature
+  const getDailyMinMax = (
+    dt: number,
+    fd: ForecastResponse | null,
+    fallbackTemp: number
+  ) => {
+    if (!fd) return { min: fallbackTemp, max: fallbackTemp };
+
+    // Use the day indicated by dt
+    const targetDate = new Date(dt * 1000).toDateString();
+
+    const dayEntries = fd.list.filter(
+      (item) => new Date(item.dt * 1000).toDateString() === targetDate
+    );
+
+    if (dayEntries.length === 0) {
+      // Fallback when there are no slices for that day
+      return { min: fallbackTemp, max: fallbackTemp };
+    }
+
+    const temps = dayEntries.map((item) => item.main.temp);
+    return {
+      min: Math.min(...temps),
+      max: Math.max(...temps),
+    };
+  };
+
   const loadCityAndWeather = async () => {
     const savedCity = await AsyncStorage.getItem("city");
     setCity(savedCity);
@@ -26,19 +84,49 @@ export default function Home({ navigation }: any) {
       try {
         const apiKey = Constants.expoConfig?.extra?.EXPO_PUBLIC_OPENWEATHER_API_KEY;
 
+        // Current weather (today)
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${savedCity}&appid=${apiKey}&units=metric&lang=pt_br`
         );
         const data = await response.json();
         setWeather(data);
-        setCurrentForecast(data); // 👈 initialize with today’s weather
 
+        // Forecast (future days)
         const forecastResponse = await fetch(
           `https://api.openweathermap.org/data/2.5/forecast?q=${savedCity}&appid=${apiKey}&units=metric&lang=pt_br`
         );
-        const forecastData = await forecastResponse.json();
-        const daily = forecastData.list.filter((_: any, index: number) => index % 8 === 0).slice(0, 5);
-        setForecast(daily);
+        const forecastDataJson: ForecastResponse = await forecastResponse.json();
+        setForecastData(forecastDataJson);
+
+        const daily = forecastDataJson.list
+          .filter((_: any, index: number) => index % 8 === 0)
+          .slice(0, 5); // next 5 days
+
+        // ✅ Compute today's min/max from forecastData with fallback to current temp
+        const { min, max } = getDailyMinMax(
+          data.dt,
+          forecastDataJson,
+          data.main.temp
+        );
+
+        // ✅ Combine today + next 4 days
+        const todayForecast: ForecastItem = {
+          dt: data.dt,
+          main: {
+            ...data.main,
+            temp_min: min ?? data.main.temp,
+            temp_max: max ?? data.main.temp,
+          },
+          weather: data.weather,
+          wind: data.wind,
+        };
+
+        const combined = [todayForecast, ...daily];
+        setForecast(combined);
+
+        // ✅ Select today’s card by default
+        setForecast(daily); // only future days
+        setCurrentForecast(todayForecast);
       } catch (err) {
         console.log("Erro ao buscar clima:", err);
       } finally {
@@ -53,55 +141,50 @@ export default function Home({ navigation }: any) {
     }, [])
   );
 
+  // For cards → abbreviated weekday
+  const formatDayNameShort = (dt: number) => {
+    const date = new Date(dt * 1000);
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
 
-// For cards → abbreviated weekday
-const formatDayNameShort = (dt: number) => {
-  const date = new Date(dt * 1000);
-  const today = new Date();
-  const tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1);
+    if (date.toDateString() === today.toDateString()) {
+      return capitalize(t("today") || "Today");
+    }
+    if (date.toDateString() === tomorrow.toDateString()) {
+      return capitalize(t("tomorrow") || "Tomorrow");
+    }
+    return date.toLocaleDateString(i18n.language, { weekday: "short" });
+  };
 
-  const capitalize = (str: string) =>
-    str.charAt(0).toUpperCase() + str.slice(1);
+  const formatDayNameFull = (dt: number) => {
+    const date = new Date(dt * 1000);
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
 
-  if (date.toDateString() === today.toDateString()) {
-    return capitalize(t("today") || "Today");
-  }
-  if (date.toDateString() === tomorrow.toDateString()) {
-    return capitalize(t("tomorrow") || "Tomorrow");
-  }
-  return date.toLocaleDateString(i18n.language, { weekday: "short" });
-};
+    if (date.toDateString() === today.toDateString()) {
+      return capitalize(t("today") || "Today");
+    }
+    if (date.toDateString() === tomorrow.toDateString()) {
+      return capitalize(t("tomorrow") || "Tomorrow");
+    }
+    return date.toLocaleDateString(i18n.language, { weekday: "long" });
+  };
 
-// For selected forecast → full weekday
-const formatDayNameFull = (dt: number) => {
-  const date = new Date(dt * 1000);
-  const today = new Date();
-  const tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1);
-
-  const capitalize = (str: string) =>
-    str.charAt(0).toUpperCase() + str.slice(1);
-
-  if (date.toDateString() === today.toDateString()) {
-    return capitalize(t("today") || "Today");
-  }
-  if (date.toDateString() === tomorrow.toDateString()) {
-    return capitalize(t("tomorrow") || "Tomorrow");
-  }
-  return date.toLocaleDateString(i18n.language, { weekday: "long" });
-};
-
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  function capitalize(_arg0: string): React.ReactNode {
-    throw new Error("Function not implemented.");
-  }
-  
+  // ✅ derive min/max for currently selected card (safe guards)
+  const dailyMinMax =
+    currentForecast && forecastData
+      ? getDailyMinMax(
+          currentForecast.dt,
+          forecastData,
+          currentForecast.main.temp // fallback temp
+        )
+      : { min: null, max: null };
 
 return (
   <ScrollView
     style={styles.container}
-    // eslint-disable-next-line react-native/no-inline-styles
     contentContainerStyle={{ flexGrow: 1 }}
     showsVerticalScrollIndicator={false}
   >
@@ -134,9 +217,13 @@ return (
       <Text style={styles.weatherText}>{t("loading")}</Text>
     ) : (
       <>
-        <Text style={[globalStyles.title, styles.title]}>
-          {t("forecastFor", { city })}
-        </Text>
+        {/* City name with map-marker icon */}
+        <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 12 }}>
+          <MaterialCommunityIcons name="map-marker" size={28} color="#FFD700" />
+          <Text style={[globalStyles.title, styles.title, { marginLeft: 6 }]}>
+            {t("forecastFor", { city })}
+          </Text>
+        </View>
 
         {currentForecast && (
           <>
@@ -153,12 +240,15 @@ return (
             {/* Forecast details */}
             <View style={styles.selectedWrapper}>
               <Text style={styles.sectionTitle}>
-                {currentForecast.dt
+                {currentForecast?.dt
                   ? formatDayNameFull(currentForecast.dt) +
                     " – " +
                     new Date(currentForecast.dt * 1000).toLocaleDateString(i18n.language)
                   : capitalize(t("today") || "Today")}
               </Text>
+            </View>
+            
+            
 
               <View style={styles.resultWrapper}>
                 {weather && (
@@ -195,7 +285,56 @@ return (
                   </View>
                 </View>
               </View>
-            </View>
+
+              {/* ✅ Max/Min temperatures */}
+              <View style={[styles.infoRow, { marginTop: 10 }]}>
+                <Ionicons name="arrow-up" size={20} color="#FF4500" />
+                <Text style={styles.info}>
+                  {dailyMinMax.max !== null
+                    ? t("maxTemp", { value: Math.round(dailyMinMax.max) })
+                    : ""}
+                </Text>
+                <Ionicons name="arrow-down" size={20} color="#1E90FF" style={{ marginLeft: 12 }} />
+                <Text style={styles.info}>
+                  {dailyMinMax.min !== null
+                    ? t("minTemp", { value: Math.round(dailyMinMax.min) })
+                    : ""}
+                </Text>
+              </View>            
+
+            {/* ✅ Hourly temperatures for the selected day */}
+            <Text style={styles.sectionTitle}>{t("dayDetails")}</Text>
+            <FlatList
+              data={
+                forecastData?.list.filter(
+                  (item: any) =>
+                    new Date(item.dt * 1000).toDateString() ===
+                    new Date(currentForecast.dt * 1000).toDateString()
+                ) || []
+              }
+              horizontal
+              keyExtractor={(item, index) => index.toString()}
+              style={styles.hourlyList}
+              showsHorizontalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <View style={styles.hourlyCard}>
+                  <Text style={styles.hourlyTime}>
+                    {new Date(item.dt * 1000).toLocaleTimeString(i18n.language, {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </Text>
+                  <Image
+                    source={{
+                      uri: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
+                    }}
+                    style={styles.hourlyIcon}
+                  />
+                  <Text style={styles.hourlyTemp}>{Math.round(item.main.temp)}°C</Text>
+                </View>
+              )}
+            />
+
           </>
         )}
 
@@ -207,7 +346,7 @@ return (
             horizontal
             keyExtractor={(item, index) => index.toString()}
             style={styles.forecastList}
-            showsHorizontalScrollIndicator={false}   // ✅ cleaner look
+            showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => {
               const isSelected =
                 currentForecast && item.dt === currentForecast.dt;
@@ -426,6 +565,34 @@ const styles = StyleSheet.create({
     height: 32,                      // 4/5 of 40
     resizeMode: "contain",
   },
+  hourlyList: {
+    marginVertical: 12,
+  },
+  hourlyCard: {
+    backgroundColor: "#2A2D34",
+    borderRadius: 8,
+    padding: 10,
+    marginRight: 10,
+    alignItems: "center",
+    width: 80,
+  },
+  hourlyTime: {
+    fontSize: 14,
+    color: "#FFD700",
+    marginBottom: 4,
+  },
+  hourlyIcon: {
+    width: 40,
+    height: 40,
+    marginBottom: 4,
+  },
+  hourlyTemp: {
+    fontSize: 16,
+    color: "#FFF",
+    fontWeight: "bold",
+  },
 });
+
+
 
 

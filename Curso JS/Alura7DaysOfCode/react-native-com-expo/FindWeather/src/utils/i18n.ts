@@ -16,7 +16,10 @@ const resources = {
       temperature: "Temperature: {{value}}°C",
       humidity: "Humidity: {{value}}%",
       wind: "Wind: {{value}} m/s",
+      maxTemp: "Max: {{value}}",
+      minTemp: "Min: {{value}}",
       next5Days: "The forecast for the next 5 days",
+      dayDetails: "Hourly forecast for the day",   // ✅ added
       clear: "Clear sky",
       clouds: "Cloudy",
       rain: "Rain",
@@ -49,7 +52,10 @@ const resources = {
       temperature: "Temperatura: {{value}}°C",
       humidity: "Umidade: {{value}}%",
       wind: "Vento: {{value}} m/s",
+      maxTemp: "Máx: {{value}}",
+      minTemp: "Mín: {{value}}",
       next5Days: "A previsão dos próximos 5 dias",
+      dayDetails: "Previsão horária do dia",       // ✅ added
       clear: "Céu limpo",
       clouds: "Nublado",
       rain: "Chuva",
@@ -82,7 +88,10 @@ const resources = {
       temperature: "Temperatur: {{value}}°C",
       humidity: "Luftfeuchtigkeit: {{value}}%",
       wind: "Wind: {{value}} m/s",
+      maxTemp: "Max: {{value}}",
+      minTemp: "Min: {{value}}",
       next5Days: "Die Vorhersage für die nächsten 5 Tage",
+      dayDetails: "Stündliche Vorhersage für den Tag", // ✅ added
       clear: "Klarer Himmel",
       clouds: "Bewölkt",
       rain: "Regen",
