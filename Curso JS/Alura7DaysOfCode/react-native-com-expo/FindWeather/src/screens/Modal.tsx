@@ -101,7 +101,7 @@ export default function ModalScreen({ navigation }: any) {
         <>
           <Text style={styles.subtitle}>{t("introText")}</Text>
           <TouchableOpacity style={styles.startButton} onPress={handleStart}>
-            <Text style={styles.startText}>{t("start")}</Text>
+            <Text style={styles.startButtonText}>{t("start")}</Text>
           </TouchableOpacity>
         </>
       )}
@@ -181,15 +181,19 @@ const styles = StyleSheet.create({
   },
 
   startButton: {
-    backgroundColor: "#FFD700",
-    paddingVertical: 5,               // 4/5 of 6
-    paddingHorizontal: 16,            // 4/5 of 20
-    borderRadius: 6,                  // 4/5 of 8
-  },
-
-  startText: {
-    fontSize: 7,                      // 4/5 of 9
-    fontWeight: "bold",
-    color: "#1B1D22",
-  },
+  backgroundColor: "#FFD700",   // keep your color
+  paddingVertical: 16,          // increase vertical padding
+  paddingHorizontal: 32,        // increase horizontal padding
+  borderRadius: 12,             // rounded corners
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: 20,
+  width: "80%",                 // make it wider
+  alignSelf: "center",          // center horizontally
+},
+startButtonText: {
+  fontSize: 20,                 // bigger text
+  fontWeight: "bold",
+  color: "#000",
+},
 });

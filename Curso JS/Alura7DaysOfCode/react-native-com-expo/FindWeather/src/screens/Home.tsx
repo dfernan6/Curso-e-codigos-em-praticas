@@ -376,8 +376,10 @@ return (
       </>
     )}
   </ScrollView>
+  
 );
 }
+
 
 const styles = StyleSheet.create({
   container: {

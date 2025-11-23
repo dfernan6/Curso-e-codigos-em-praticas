@@ -95,98 +95,94 @@ export default function NextPage() {
 
 
   return (
-    <View style={styles.container}>
-      <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Search bar */}
-        <Text style={styles.headerText}>{t("search.startText")}</Text>
-        <View style={styles.searchWrapper}>
-  <TextInput
-    style={styles.input}
-    placeholder={t("search.placeholder")}
-    placeholderTextColor="#888"
-    value={city}
-    onChangeText={setCity}
-  />
+  <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={styles.searchWrapper}>
+        {/* Magnifying glass button first */}
+        <TouchableOpacity style={styles.iconButton} onPress={handleSearch}>
+          <MaterialCommunityIcons name="magnify" size={28} color="#FFD700" />
+        </TouchableOpacity>
 
-  {/* Search button with magnifying glass icon */}
-  <TouchableOpacity style={styles.iconButton} onPress={handleSearch}>
-    <MaterialCommunityIcons name="magnify" size={28} color="#FFD700" />
-  </TouchableOpacity>
+        {/* Search bar in the middle */}
+        <TextInput
+          style={[styles.input, { flex: 1, marginHorizontal: 12 }]} // flex makes it expand
+          placeholder={t("search.placeholder")}
+          placeholderTextColor="#888"
+          value={city}
+          onChangeText={setCity}
+        />
 
-  {/* GPS button with map-marker icon */}
-  <TouchableOpacity style={[styles.iconButton, { marginLeft: 12 }]} onPress={handleLocalization}>
-    <MaterialCommunityIcons name="map-marker" size={28} color="#FFD700" />
-  </TouchableOpacity>
-</View>
+        {/* GPS button last */}
+        <TouchableOpacity style={styles.iconButton} onPress={handleLocalization}>
+          <MaterialCommunityIcons name="map-marker" size={28} color="#FFD700" />
+        </TouchableOpacity>
+      </View>
 
-
-        {/* Error block only */}
-        {error && (
-  <View style={styles.errorWrapper}>
-    {/* Alert icon */}
-    <MaterialCommunityIcons
-      name="alert-circle-outline"
-      size={80}
-      color="red"
-      style={styles.errorIcon}
-    />
-
-    {/* Error image */}
-    <Image
-      source={require("../../assets/imagens/search.png")}
-      style={styles.errorImage}
-      resizeMode="contain"
-    />
-
-    {/* Error text */}
-    <Text style={styles.errorText}>{t("search.error")}</Text>
-  </View>
-)}
-
-        {/* ✅ GPS location card in middle */}
-        {locationInfo && !error && (
-          <View style={{ alignItems: "center", marginVertical: 30 }}>
-            <TouchableOpacity
-              style={styles.forecastCard}
-              onPress={() => {
-                AsyncStorage.setItem("city", locationInfo.name);
-                navigation.navigate("Home" as never);
-              }}
-            >
-              <Image
-                source={{
-                  uri: `https://openweathermap.org/img/wn/${locationInfo.weather[0].icon}@4x.png`,
-                }}
-                style={styles.forecastIcon}
-              />
-              <Text style={styles.cardTitle}>{locationInfo.name}</Text>
-              <Text style={styles.cardTemp}>{Math.round(locationInfo.main.temp)}°C</Text>
-              <Text style={styles.cardMinMax}>
-                Min {Math.round(locationInfo.main.temp_min)}°C / Max {Math.round(locationInfo.main.temp_max)}°C
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
-        
-         
-
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>
-            © {t("developedBy")}{" "}
-            <Text
-              style={styles.footerLink}
-              onPress={() => Linking.openURL("https://dfernan6.github.io/")}
-            >
-              dfernan6
-            </Text>
-          </Text>
+      {/* Error block only */}
+      {error && (
+        <View style={styles.errorWrapper}>
+          <MaterialCommunityIcons
+            name="alert-circle-outline"
+            size={80}
+            color="red"
+            style={styles.errorIcon}
+          />
+          <Image
+            source={require("../../assets/imagens/search.png")}
+            style={styles.errorImage}
+            resizeMode="contain"
+          />
+          <Text style={styles.errorText}>{t("search.error")}</Text>
         </View>
-      </ScrollView>
-    </View>
-  );
+      )}
+
+      {/* ✅ GPS location card in middle */}
+      {locationInfo && !error && (
+        <View style={{ alignItems: "center", marginVertical: 30 }}>
+          <TouchableOpacity
+            style={styles.forecastCard}
+            onPress={() => {
+              AsyncStorage.setItem("city", locationInfo.name);
+              navigation.navigate("Home" as never);
+            }}
+          >
+            <Image
+              source={{
+                uri: `https://openweathermap.org/img/wn/${locationInfo.weather[0].icon}@4x.png`,
+              }}
+              style={styles.forecastIcon}
+            />
+            <Text style={styles.cardTitle}>{locationInfo.name}</Text>
+            <Text style={styles.cardTemp}>
+              {Math.round(locationInfo.main.temp)}°C
+            </Text>
+            <Text style={styles.cardMinMax}>
+              Min {Math.round(locationInfo.main.temp_min)}°C / Max{" "}
+              {Math.round(locationInfo.main.temp_max)}°C
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>
+          © {t("developedBy")}{" "}
+          <Text
+            style={styles.footerLink}
+            onPress={() =>
+              Linking.openURL("https://dfernan6.github.io/")
+            }
+          >
+            dfernan6
+          </Text>
+        </Text>
+      </View>
+    </ScrollView>
+  </View>
+);
 }
 
 const styles = StyleSheet.create({

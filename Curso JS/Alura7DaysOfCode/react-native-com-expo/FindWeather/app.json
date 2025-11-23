@@ -2,11 +2,11 @@
   "expo": {
     "name": "FindWeather",
     "slug": "FindWeather",
-    "version": "1.0.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-    "icon": "./assets/imagens/logo.png",   // ✅ app icon for home screen
+    "icon": "./assets/imagens/logo.png",
     "splash": {
       "image": "./assets/imagens/logo.png",
       "resizeMode": "contain",
@@ -14,7 +14,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/imagens/logo.png", // ✅ adaptive icon foreground
+        "foregroundImage": "./assets/imagens/logo.png",
         "backgroundColor": "#343434"
       },
       "edgeToEdgeEnabled": true,
@@ -25,8 +25,10 @@
       "supportsTablet": true,
       "backgroundColor": "#343434",
       "infoPlist": {
-        "UIStatusBarStyle": "UIStatusBarStyleLightContent"
-      }
+        "UIStatusBarStyle": "UIStatusBarStyleLightContent",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.dfernan6.FindWeather"
     },
     "web": {
       "themeColor": "#343434",

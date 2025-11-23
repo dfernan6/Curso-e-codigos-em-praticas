@@ -1,16 +1,15 @@
 <?php
-
-require_once 'view.php';
+require_once 'crud.php';
 
 function do_register() {
-    render_view('register');
-}
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['person'])) {
+        $user = $_POST['person'];
 
-function do_login() {
-    render_view('login');
-}
+        crud_create($user);
 
-function do_not_found() {
-    http_response_code(404); // Código HTTP para "Not Found"
-    render_view('404');
+        header('Location: /?page=login');
+        exit;
+    }
+
+    include 'view/register.view';
 }
