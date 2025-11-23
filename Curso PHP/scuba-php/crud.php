@@ -21,3 +21,30 @@ function crud_create($user) {
     // Salva no arquivo
     file_put_contents($file, $newJson);
 }
+
+/**
+ * Procura usuário pelo email.
+ * Retorna o array do usuário se encontrar, ou false se não existir.
+ */
+function crud_find_by_email($email) {
+    $file = __DIR__ . '/data/users.json';
+
+    if (!file_exists($file)) {
+        return false;
+    }
+
+    $json = file_get_contents($file);
+    $users = json_decode($json, true);
+
+    if (!is_array($users)) {
+        return false;
+    }
+
+    foreach ($users as $user) {
+        if (isset($user['email']) && $user['email'] === $email) {
+            return $user;
+        }
+    }
+
+    return false;
+}
