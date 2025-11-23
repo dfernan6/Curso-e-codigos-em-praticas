@@ -1,9 +1,9 @@
 [
     {
         "name": "Teste teste teste",
-        "email": "dani.ruivaosarado@gmail.com",
+        "email": "asdasd@asdas.com",
         "password": "123123123123",
         "password-confirm": "123123123123",
-        "mail_validation": false
+        "mail_validation": true
     }
 ]

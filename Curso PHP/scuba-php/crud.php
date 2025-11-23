@@ -1,50 +1,44 @@
 <?php
 function crud_create($user) {
-    $file = __DIR__ . '/data/users.json';
-
-    // Lê o conteúdo atual do arquivo
-    $json = file_get_contents($file);
-
-    // Converte para array associativo
-    $users = json_decode($json, true);
-
-    if (!is_array($users)) {
-        $users = [];
+    $data = [];
+    if (file_exists('data.json')) {
+        $data = json_decode(file_get_contents('data.json'), true);
     }
-
-    // Adiciona o novo usuário
-    $users[] = $user;
-
-    // Converte de volta para JSON
-    $newJson = json_encode($users, JSON_PRETTY_PRINT);
-
-    // Salva no arquivo
-    file_put_contents($file, $newJson);
+    $data[] = $user;
+    file_put_contents('data.json', json_encode($data, JSON_PRETTY_PRINT));
 }
 
-/**
- * Procura usuário pelo email.
- * Retorna o array do usuário se encontrar, ou false se não existir.
- */
-function crud_find_by_email($email) {
-    $file = __DIR__ . '/data/users.json';
-
-    if (!file_exists($file)) {
+function crud_update_mail_validation($email, $status) {
+    if (!file_exists('data.json')) {
         return false;
     }
 
-    $json = file_get_contents($file);
-    $users = json_decode($json, true);
-
-    if (!is_array($users)) {
-        return false;
+    $data = json_decode(file_get_contents('data.json'), true);
+    error_log("Trying to validate: $email");
+foreach ($data as &$user) {
+    error_log("Checking user: " . $user['email']);
+    if (trim(strtolower($user['email'])) === trim(strtolower($email))) {
+        $user['mail_validation'] = $status;
+        file_put_contents('data.json', json_encode($data, JSON_PRETTY_PRINT));
+        error_log("Validation updated for: " . $user['email']);
+        return true;
     }
-
-    foreach ($users as $user) {
-        if (isset($user['email']) && $user['email'] === $email) {
-            return $user;
-        }
-    }
+}
+error_log("No match found for: $email");
 
     return false;
+}
+
+function crud_find_by_email($email) {
+    if (!file_exists('data.json')) {
+        return null;
+    }
+
+    $data = json_decode(file_get_contents('data.json'), true);
+    foreach ($data as $user) {
+        if ($user['email'] === $email) {
+            return $user; // return the user array if found
+        }
+    }
+    return null; // return null if not found
 }

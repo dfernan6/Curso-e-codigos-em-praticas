@@ -1,1 +1,36 @@
+# Dependências do Composer
 /vendor/
+
+# Arquivos de configuração sensíveis
+.env
+config.php
+
+# Cache e logs
+/storage/
+bootstrap/cache/
+*.log
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.swo
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# IDEs e editores
+.vscode/
+.idea/
+
+# Testes e cobertura
+coverage/
+.phpunit.result.cache
+
+# Outros
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/data/users.json
+data.json
