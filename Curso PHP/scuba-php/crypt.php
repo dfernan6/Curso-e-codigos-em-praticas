@@ -1,18 +1,17 @@
 <?php
 function ssl_crypt($data) {
     $cipher = "AES-128-CTR";
-    $options = 0;
-    $encryption_iv = '1234567891011121'; // 16 bytes
-    $encryption_key = "chave_secreta";   // troque por uma chave segura
+    $iv = '1234567891011121'; // 16 bytes
+    $key = "my_secret_key_16"; // 16 bytes
 
-    return openssl_encrypt($data, $cipher, $encryption_key, $options, $encryption_iv);
+    return openssl_encrypt($data, $cipher, $key, 0, $iv);
 }
 
 function ssl_decrypt($data) {
     $cipher = "AES-128-CTR";
-    $options = 0;
-    $encryption_iv = '1234567891011121'; // mesmo IV usado na criptografia
-    $encryption_key = "chave_secreta";   // mesma chave usada na criptografia
+    $iv = '1234567891011121';
+    $key = "my_secret_key_16";
 
-    return openssl_decrypt($data, $cipher, $encryption_key, $options, $encryption_iv);
+    return openssl_decrypt($data, $cipher, $key, 0, $iv);
 }
+

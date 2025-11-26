@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "intelephense": "^1.16.1"
+  }
+}

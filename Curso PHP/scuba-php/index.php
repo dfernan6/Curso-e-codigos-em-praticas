@@ -1,14 +1,13 @@
-
 <?php
+session_start();
 require_once 'boot.php';
-require_once 'controller.php';
+require_once 'auth.php';
+require_once 'routes.php'; 
 
-$page = $_GET['page'] ?? 'home';
+$route = $_GET['page'] ?? 'login';
 
-switch ($page) {
-    case 'register':        do_register(); break;
-    case 'login':           do_login();    break;
-    case 'home':            render_view('home'); break;
-    case 'mail-validation': do_validation(); break;
-    default:                do_not_found(); break;
+if (auth_user()) {
+    auth_routes($route);
+} else {
+    guest_routes($route);
 }
