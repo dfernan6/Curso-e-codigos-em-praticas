@@ -80,14 +80,17 @@ function do_login() {
         error_log("Session user: " . print_r($_SESSION['user'] ?? null, true));
 
         if ($result) {
-            header('Location: /?page=home', true, 302);
-            exit;
-        } else {
-            render_view('login', [
-                'error' => 'Usuário ou/e senha incorretos'
-            ]);
-            return;
-        }
+    header('Location: /?page=home', true, 302);
+    exit;
+} else {
+    render_view('login', [
+        'error_email'    => 'E-mail não encontrado ou inválido',
+        'error_password' => 'Senha incorreta',
+        'error_general'  => 'Usuário ou/e senha incorretos'
+    ]);
+    return;
+}
+
     }
 
     render_view('login');

@@ -7,10 +7,14 @@
 </head>
 <body>
     <h1>Scuba<span>PHP</span></h1>
+
     <form action="/?page=login&from=login" method="POST">
         <div class="mensagem-sucesso">
             <p>Welcome to ScubaPHP</p>
         </div>
+
+        <!-- General error message -->
+        <div class="mensagem-erro">{{error_general}}</div>
 
         <label for="email">Email</label>
         <input type="text" id="email" name="email" required>
@@ -20,7 +24,7 @@
         <input type="password" id="password" name="password" required>
         <span class="mensagem-erro">{{error_password}}</span>
 
-        <button>Entrar</button>
+        <button type="submit">Entrar</button>
         <a href="./?page=register">Cadastrar Usuário</a>
         <a href="./?page=forget-password">Esqueci Minha Senha</a>
     </form>

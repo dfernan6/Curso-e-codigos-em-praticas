@@ -11,7 +11,7 @@ function render_view($template, $data = [])
 
     $content = file_get_contents($path);
 
-    // Substitui erros
+    // Replace specific error placeholders
     if (!empty($data['errors'])) {
         foreach ($data['errors'] as $field => $message) {
             $placeholder = "{{error_$field}}";
@@ -19,7 +19,7 @@ function render_view($template, $data = [])
         }
     }
 
-    // Substitui valores antigos
+    // Replace old values
     if (!empty($data['old'])) {
         foreach ($data['old'] as $field => $value) {
             $placeholder = "{{old_$field}}";
@@ -27,12 +27,17 @@ function render_view($template, $data = [])
         }
     }
 
-    // Substitui mensagens de sucesso
-    if (!empty($data['success'])) {
-        $content = str_replace("{{success_message}}", $data['success'], $content);
+    // Replace all other keys directly
+    foreach ($data as $key => $value) {
+        // Skip arrays (already handled above)
+        if (is_array($value)) {
+            continue;
+        }
+        $placeholder = "{{{$key}}}";
+        $content = str_replace($placeholder, htmlspecialchars((string)$value), $content);
     }
 
-    // Limpa placeholders não usados (para não aparecerem crus)
+    // Clean up unused placeholders
     $content = preg_replace('/{{[^}]+}}/', '', $content);
 
     echo $content;
