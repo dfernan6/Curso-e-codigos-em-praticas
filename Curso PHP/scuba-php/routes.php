@@ -23,6 +23,9 @@ function auth_routes($route) {
         case 'home': 
             do_home(); 
             break;
+        case 'logout':
+            do_logout(); 
+            break;
         default: 
             do_not_found(); 
             break;

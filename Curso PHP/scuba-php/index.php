@@ -4,7 +4,7 @@ require_once 'boot.php';
 require_once 'auth.php';
 require_once 'routes.php'; 
 
-$route = $_GET['page'] ?? 'login';
+$route = $_GET['page'] ?? 'home';
 
 if (auth_user()) {
     auth_routes($route);

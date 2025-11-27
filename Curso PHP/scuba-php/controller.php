@@ -75,11 +75,17 @@ function do_login() {
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        if (authentication($email, $password)) {
-            header('Location: /?page=home');
+        $result = authentication($email, $password);
+        error_log("Auth result: " . ($result ? "true" : "false"));
+        error_log("Session user: " . print_r($_SESSION['user'] ?? null, true));
+
+        if ($result) {
+            header('Location: /?page=home', true, 302);
             exit;
         } else {
-            render_view('login', ['error' => 'Usuário ou senha incorretos']);
+            render_view('login', [
+                'error' => 'Usuário ou/e senha incorretos'
+            ]);
             return;
         }
     }
@@ -87,11 +93,23 @@ function do_login() {
     render_view('login');
 }
 
-function do_not_found() {
-    render_view('404.view');
+function do_home() {
+    $user = auth_user(); // returns $_SESSION['user']
+
+    render_view('home', [
+        'field_name'  => $user['name'] ?? '',
+        'field_email' => $user['email'] ?? '',
+        'success'     => 'Bem-vindo, ' . ($user['name'] ?? 'usuário') . '!',
+        'error'       => '' // you can set this dynamically if needed
+    ]);
 }
 
-function do_home() {
-    // Por enquanto, apenas renderiza a view 'home'
-    render_view('home');
+function do_not_found() {
+    render_view('not_found');
+}
+
+function do_logout() {
+    session_destroy();
+    header('Location: /?page=login');
+    exit;
 }
