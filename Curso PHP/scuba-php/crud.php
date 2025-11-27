@@ -83,3 +83,20 @@ function crud_delete($user) {
     return true;
 }
 
+function crud_restore($email) {
+    $path = __DIR__ . '/data.json';
+    if (!file_exists($path)) {
+        return false;
+    }
+
+    $users = json_decode(file_get_contents($path), true) ?? [];
+
+    foreach ($users as $user) {
+        if (trim(strtolower($user['email'])) === trim(strtolower($email))) {
+            // Found the user, return true so controller can generate reset link
+            return true;
+        }
+    }
+
+    return false; // user not found
+}

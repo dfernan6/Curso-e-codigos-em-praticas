@@ -3,6 +3,10 @@ require_once 'controller.php';
 
 function guest_routes($route) {
     switch ($route) {
+        case 'home':
+            // For guests, show the login page when they hit /
+            do_login();
+            break;
         case 'register': 
             do_register(); 
             break;
@@ -11,6 +15,12 @@ function guest_routes($route) {
             break;
         case 'mail-validation': 
             do_validation(); 
+            break;
+        case 'forget-password':
+            do_forget_password();
+            break;
+        case 'change-password':
+            do_change_password();
             break;
         default: 
             do_not_found(); 
@@ -21,6 +31,7 @@ function guest_routes($route) {
 function auth_routes($route) {
     switch ($route) {
         case 'home':
+            // For authenticated users, show the home page
             do_home();
             break;
         case 'logout':

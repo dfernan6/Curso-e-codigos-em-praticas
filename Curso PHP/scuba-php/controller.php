@@ -69,14 +69,17 @@ function do_validation() {
 }
 
 function do_login() {
-    // Show success messages if redirected
+    $messages = [];
+
+    // Collect success messages if redirected
     if (isset($_GET['deleted']) && $_GET['deleted'] == 1) {
-        render_view('login', ['success_message' => 'Your account was deleted successfully.']);
-        return;
+        $messages[] = 'Your account was deleted successfully.';
     }
     if (isset($_GET['validated']) && $_GET['validated'] == 1) {
-        render_view('login', ['success_message' => 'Your email was validated successfully.']);
-        return;
+        $messages[] = 'Your email was validated successfully.';
+    }
+    if (isset($_GET['reset']) && $_GET['reset'] == 1) {
+        $messages[] = 'Your password was reset successfully.';
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -94,13 +97,15 @@ function do_login() {
             render_view('login', [
                 'error_email'    => 'E-mail não encontrado ou inválido',
                 'error_password' => 'Senha incorreta',
-                'error_general'  => 'Usuário ou/e senha incorretos'
+                'error_general'  => 'Usuário ou/e senha incorretos',
+                'success_messages' => $messages
             ]);
             return;
         }
     }
 
-    render_view('login');
+    // Render login with any collected success messages
+    render_view('login', ['success_messages' => $messages]);
 }
 
 function do_home() {
@@ -140,3 +145,83 @@ function do_delete_account() {
         ]);
     }
 }
+
+function do_forget_password() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $email = $_POST['email'] ?? '';
+
+        // crud_restore returns true if user exists and reset link can be generated
+        if (crud_restore($email)) {
+            // Generate token for change-password link
+            $token = urlencode(ssl_crypt($email));
+            $link = "http://localhost:8000/?page=change-password&token={$token}";
+
+            // Simulate sending email by showing link
+            echo "<div style='border:1px solid #ccc; padding:10px; margin:10px;'>
+                    <strong>Password reset link:</strong> 
+                    <a href='{$link}'>{$link}</a>
+                  </div>";
+            exit;
+        } else {
+            render_view('forget_password', [
+                'error_general' => 'Email not found in our records.'
+            ]);
+            return;
+        }
+    }
+
+    // Show the forget-password form
+    render_view('forget_password');
+}
+
+function do_change_password() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $token = $_POST['token'] ?? '';
+        $newPassword = $_POST['password'] ?? '';
+        $confirmPassword = $_POST['password_confirm'] ?? '';
+
+        $email = ssl_decrypt(urldecode($token));
+
+        // Validation rules
+        $errors = [];
+
+        if (strlen($newPassword) < 6) {
+            $errors['error_password'] = 'Password must be at least 6 characters long.';
+        }
+
+        if ($newPassword !== $confirmPassword) {
+            $errors['error_password_confirm'] = 'Passwords do not match.';
+        }
+
+        if (!$email) {
+            $errors['error_general'] = 'Invalid token.';
+        }
+
+        if (!empty($errors)) {
+            // Re-render form with errors and token preserved
+            render_view('change_password', array_merge($errors, ['token' => $token]));
+            return;
+        }
+
+        // If validation passed, update user
+        $user = crud_find_by_email($email);
+        if ($user) {
+            $user['password'] = md5($newPassword); // MD5 for challenge
+            crud_update($user);
+
+            header('Location: /?page=login&reset=1');
+            exit;
+        } else {
+            render_view('change_password', [
+                'error_general' => 'User not found.',
+                'token' => $token
+            ]);
+            return;
+        }
+    }
+
+    // GET request: show form with token
+    $token = $_GET['token'] ?? '';
+    render_view('change_password', ['token' => $token]);
+}
+
