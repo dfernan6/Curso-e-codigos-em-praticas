@@ -15,3 +15,11 @@ function authentication($email, $password) {
 function auth_user() {
     return $_SESSION['user'] ?? null;
 }
+
+function auth_logout() {
+    $_SESSION = [];
+    if (session_id() !== '' || isset($_COOKIE[session_name()])) {
+        setcookie(session_name(), '', time()-3600, '/');
+    }
+    session_destroy();
+}

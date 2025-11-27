@@ -60,3 +60,26 @@ function crud_update($user) {
 
     return false; // usuário não encontrado
 }
+
+function crud_delete($user) {
+    $path = __DIR__ . '/data.json'; // use the same file as create/update
+    if (!file_exists($path)) {
+        return false;
+    }
+
+    $users = json_decode(file_get_contents($path), true) ?? [];
+
+    // Log which user we are trying to delete
+    error_log("Deleting user: " . $user['email']);
+
+    // Filter out the user by email
+    $users = array_filter($users, function($u) use ($user) {
+        return trim(strtolower($u['email'])) !== trim(strtolower($user['email']));
+    });
+
+    // Save back to file
+    file_put_contents($path, json_encode(array_values($users), JSON_PRETTY_PRINT));
+
+    return true;
+}
+

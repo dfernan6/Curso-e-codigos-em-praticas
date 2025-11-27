@@ -20,14 +20,17 @@ function guest_routes($route) {
 
 function auth_routes($route) {
     switch ($route) {
-        case 'home': 
-            do_home(); 
+        case 'home':
+            do_home();
             break;
         case 'logout':
-            do_logout(); 
+            do_logout();
             break;
-        default: 
-            do_not_found(); 
+        case 'delete-account':
+            do_delete_account();
+            break;
+        default:
+            do_not_found();
             break;
     }
 }

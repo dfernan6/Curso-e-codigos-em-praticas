@@ -2,26 +2,25 @@
 require_once 'crud.php';
 require_once 'validation.php';
 require_once 'crypt.php';
+require_once 'auth.php'; // make sure you include this for auth_user() and auth_logout()
 
 function register_post($user) {
-    // Garante que a flag de validação de email esteja falsa no início
+    // Ensure mail validation flag starts false
     $user['mail_validation'] = false;
 
-    // Hash da senha antes de salvar (MD5 para o desafio, mas em produção use password_hash)
+    // Hash password (MD5 for challenge, use password_hash in production)
     if (!empty($user['password'])) {
         $user['password'] = md5($user['password']);
     }
 
-    // Salva usuário
+    // Save user
     crud_create($user);
 
-    // Gera link de validação
+    // Generate validation link
     $token = urlencode(ssl_crypt($user['email']));
-    $email = ssl_decrypt(urldecode($_GET['token']));
-    error_log("Decrypted email: " . $email);
     $link = "http://localhost:8000/?page=mail-validation&token={$token}";
 
-    // Exibe link (simulando envio de email)
+    // Show link (simulating email)
     echo "<div style='border:1px solid #ccc; padding:10px; margin:10px;'>
             <strong>Validation link:</strong> 
             <a href='{$link}'>{$link}</a>
@@ -44,7 +43,6 @@ function do_register() {
             return;
         }
 
-        // Chama a função utilitária
         register_post($user);
     }
 
@@ -71,6 +69,16 @@ function do_validation() {
 }
 
 function do_login() {
+    // Show success messages if redirected
+    if (isset($_GET['deleted']) && $_GET['deleted'] == 1) {
+        render_view('login', ['success_message' => 'Your account was deleted successfully.']);
+        return;
+    }
+    if (isset($_GET['validated']) && $_GET['validated'] == 1) {
+        render_view('login', ['success_message' => 'Your email was validated successfully.']);
+        return;
+    }
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
@@ -80,17 +88,16 @@ function do_login() {
         error_log("Session user: " . print_r($_SESSION['user'] ?? null, true));
 
         if ($result) {
-    header('Location: /?page=home', true, 302);
-    exit;
-} else {
-    render_view('login', [
-        'error_email'    => 'E-mail não encontrado ou inválido',
-        'error_password' => 'Senha incorreta',
-        'error_general'  => 'Usuário ou/e senha incorretos'
-    ]);
-    return;
-}
-
+            header('Location: /?page=home', true, 302);
+            exit;
+        } else {
+            render_view('login', [
+                'error_email'    => 'E-mail não encontrado ou inválido',
+                'error_password' => 'Senha incorreta',
+                'error_general'  => 'Usuário ou/e senha incorretos'
+            ]);
+            return;
+        }
     }
 
     render_view('login');
@@ -103,7 +110,7 @@ function do_home() {
         'field_name'  => $user['name'] ?? '',
         'field_email' => $user['email'] ?? '',
         'success'     => 'Bem-vindo, ' . ($user['name'] ?? 'usuário') . '!',
-        'error'       => '' // you can set this dynamically if needed
+        'error'       => ''
     ]);
 }
 
@@ -112,7 +119,24 @@ function do_not_found() {
 }
 
 function do_logout() {
-    session_destroy();
+    auth_logout(); // use helper to clear session properly
     header('Location: /?page=login');
     exit;
+}
+
+function do_delete_account() {
+    $user = auth_user();
+    if ($user) {
+        crud_delete($user);
+        auth_logout();
+        header('Location: /?page=login&deleted=1');
+        exit;
+    } else {
+        render_view('home', [
+            'field_name'  => '',
+            'field_email' => '',
+            'success'     => '',
+            'error'       => 'User not found for deletion.'
+        ]);
+    }
 }
