@@ -1,0 +1,44 @@
+# Composer dependencies
+/vendor/
+
+# Node dependencies
+/node_modules/
+
+# Environment & sensitive configs
+.env
+config.php
+
+# Cache & logs
+/storage/
+bootstrap/cache/
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/editor configs
+.vscode/
+.idea/
+
+# Test artifacts
+coverage/
+.phpunit.result.cache
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Data files (local only)
+data.json
+/data/users.json
+
+# Git files
+.git
+.gitignore
