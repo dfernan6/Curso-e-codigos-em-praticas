@@ -1,20 +1,14 @@
-# Use official PHP with Apache
 FROM php:8.2-apache
 
-# Enable Apache mod_rewrite (needed for Laravel routes)
 RUN a2enmod rewrite
-
-# Install PHP extensions Laravel needs
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Copy project files into container
+# Add ServerName to Apache config to silence warning
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+WORKDIR /var/www/html
 COPY . /var/www/html
 
-# Set working directory
-WORKDIR /var/www/html
-
-# Give Apache permission
 RUN chown -R www-data:www-data /var/www/html
 
-# Expose port 80
 EXPOSE 80
