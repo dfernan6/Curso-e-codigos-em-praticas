@@ -1,5 +1,8 @@
 import { App } from "../layouts/App";
 import { useForm } from "react-hook-form";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const {
@@ -8,15 +11,27 @@ export const Home = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form submitted:", data);
-    // Here you could send data to your API or backend
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      console.log("Conta criada:", userCredential.user);
+      alert("Conta criada com sucesso!");
+      navigate("/home-page"); // redirect after signup
+    } catch (error) {
+      console.error("Erro ao criar conta:", error.message);
+      alert(error.message);
+    }
   };
 
   return (
     <App>
       <h1 className="text-2xl font-bold text-sky-600 mb-6">Aluritter</h1>
-
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-sm mx-auto grid grid-cols-1 gap-4 justify-items-center w-full"
@@ -32,7 +47,7 @@ export const Home = () => {
             <span className="text-red-500 text-sm">{errors.email.message}</span>
           )}
         </label>
-          <br />
+        <br />
         <label className="w-full flex flex-col">
           <input
             type="password"
@@ -46,8 +61,8 @@ export const Home = () => {
             </span>
           )}
         </label>
-          <br />
-          <br />
+        <br />
+        <br />
         <button
           type="submit"
           className="bg-sky-600 text-white font-semibold py-2 px-6 rounded hover:bg-sky-700 transition"
